@@ -439,8 +439,8 @@ MonoBehaviour:
   decel: 15
   airDecel: 2
   maxSpeed: 100
-  rotateSpeed: 5
-  airRotateSpeed: 2.5
+  rotateSpeed: 0
+  airRotateSpeed: 0
   m_currentSpeed: {x: 0, y: 0, z: 0}
   m_DistanceToTarget: 0
   jumpForce: {x: 0, y: 10, z: 0}
@@ -464,7 +464,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!136 &374845358
 CapsuleCollider:

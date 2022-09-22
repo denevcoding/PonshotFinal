@@ -100,23 +100,9 @@ public class PoncherController : MonoBehaviour
     {
         isGrounded = IsGrounded();
 
-        if (isGrounded)
-        {
-            //On the ground
-            coyoteTimeCounter = coyoteTime;
-            uprightForce = 50;
-            uprightSpringDamper = 10;
-            isStabilizing = true;
-        }
-        else
-        {
-            //Falling or in the air
-            coyoteTimeCounter -= Time.deltaTime;
-        }
+        HandleCoyoteTime();
 
         CalculateInputs();
-        
-
         
     }
 
@@ -132,12 +118,13 @@ public class PoncherController : MonoBehaviour
         curRotateSpeed = (isGrounded) ? rotateSpeed : airRotateSpeed;
 
 
+
         //get movement axis relative to camera
         screenMovementForward = screenMovementSpace * Camera.main.transform.forward;
         screenMovementRight = screenMovementSpace * Camera.main.transform.right;
 
         //only apply vertical input to movemement, if player is not sidescroller
-        if (false)
+        if (true)
             inputDirection = (screenMovementForward * v) + (screenMovementRight * h);
         else
             inputDirection = Vector3.right * h;
@@ -149,10 +136,10 @@ public class PoncherController : MonoBehaviour
         moveDirection = transform.position + inputDirection;
 
         Debug.DrawRay(transform.position, moveDirection, Color.green);
-
         Debug.DrawRay(transform.position, inputDirection * 2f, Color.red);
-
         Debug.DrawRay(transform.position, rigidBodiePoncher.velocity);
+
+
 
         if (Input.GetKeyDown(KeyCode.Space) && coyoteTimeCounter > 0f)
         {
@@ -160,6 +147,7 @@ public class PoncherController : MonoBehaviour
             Jump(jumpForce);
         }
 
+        //Flipping capsule
         if (Input.GetMouseButton(0))
         {
             if (!isGrounded)
@@ -193,13 +181,19 @@ public class PoncherController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        rigidBodiePoncher.WakeUp();
+
         currentAngVel = rigidBodiePoncher.angularVelocity;
 
         MoveTo(moveDirection, curAccel, 0.05f, true);
 
         if (rotateSpeed != 0 && inputDirection.magnitude != 0)        
-            RotateToDirection(inputDirection,curRotateSpeed, true); 
+            RotateToDirection(inputDirection,curRotateSpeed, true);
+        
+
         ManageSpeed(curDecel, maxSpeed + movingObjSpeed.magnitude, true);
+
+
 
         //Movement();
         UpdateUprightForce();
@@ -221,6 +215,23 @@ public class PoncherController : MonoBehaviour
         }
 
         return false;
+    }
+
+    void HandleCoyoteTime()
+    {
+        if (isGrounded)
+        {
+            //On the ground
+            coyoteTimeCounter = coyoteTime;
+            uprightForce = 50;
+            uprightSpringDamper = 10;
+            isStabilizing = true;
+        }
+        else
+        {
+            //Falling or in the air
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
 
 
