@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PoncherController : MonoBehaviour
 {
     Rigidbody rigidBodiePoncher;
     CapsuleCollider colliderPoncher;
+
+    [Header("Input Properties")]
+    PlayerInput poncherInput;
 
     [Header("Ground Detection")]
     public float rayLenght;
@@ -87,6 +92,15 @@ public class PoncherController : MonoBehaviour
     {
         rigidBodiePoncher = GetComponent<Rigidbody>();
         colliderPoncher = GetComponent<CapsuleCollider>();
+
+        poncherInput = GetComponent<PlayerInput>();
+        poncherInput.onActionTriggered += PeayerInputOnActionTriggered;
+    }
+
+    private void PeayerInputOnActionTriggered(InputAction.CallbackContext context)
+    {
+
+        Debug.Log(context);
     }
 
     // Start is called before the first frame update
