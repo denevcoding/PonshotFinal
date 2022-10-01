@@ -145,6 +145,32 @@ public class PoncherController : MonoBehaviour
         {
             coyoteTimeCounter = -2;
             Jump(jumpForce);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         //Flipping capsule
