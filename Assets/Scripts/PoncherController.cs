@@ -9,8 +9,7 @@ public class PoncherController : MonoBehaviour
     Rigidbody rigidBodiePoncher;
     CapsuleCollider colliderPoncher;
 
-    [Header("Input Properties")]
-    PlayerInput poncherInput;
+
 
     [Header("Ground Detection")]
     public float rayLenght;
@@ -42,8 +41,10 @@ public class PoncherController : MonoBehaviour
     public Vector3 inputDirection;
     public Vector3 moveDirection;
     PoncherInputActions poncherActions;
+    [Header("Input Properties")]
+    PlayerInput poncherInput;
 
-   [Header("Movement")]
+    [Header("Movement")]
     public float accel;
     public float airAccel;
     public float decel;
@@ -70,6 +71,7 @@ public class PoncherController : MonoBehaviour
     public float coyoteTime;
     public float coyoteTimeCounter;
     public float flipForce;
+    public bool Jumping;
 
     public Vector3 currentAngVel;
 
@@ -99,7 +101,7 @@ public class PoncherController : MonoBehaviour
 
         poncherActions = new PoncherInputActions();
         poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
-        poncherActions.PlayerGameplay.Jump.performed += Jump;
+        poncherActions.PlayerGameplay.Jump.started += Jump;
 
         //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
     }
@@ -119,9 +121,25 @@ public class PoncherController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = IsGrounded();
-        HandleCoyoteTime();
         CalculateInputDirection();
+
+        isGrounded = IsGrounded();
+        Jumping = !isGrounded;
+        HandleCoyoteTime();
+      
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            //Get click operations
+        }
+
+        //Switch between Action maps
+        if (Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            //poncherInput.SwitchCurrentActionMap("UI"); // C# events
+            poncherActions.PlayerGameplay.Enable();
+            //Disable the other current map manually when we have a c# class
+        }
     }
 
 
@@ -209,8 +227,6 @@ public class PoncherController : MonoBehaviour
         
 
         ManageSpeed(curDecel, maxSpeed + movingObjSpeed.magnitude, true);
-
-
 
         //Movement();
         UpdateUprightForce();
@@ -341,14 +357,22 @@ public class PoncherController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context) 
     {
+        if (coyoteTimeCounter < 0 && Jumping == true)
+          return;
+
+        Jumping = true;
+        Debug.Log("salto");
         coyoteTimeCounter = -2;
-        rigidBodiePoncher.AddRelativeForce(jumpForce, ForceMode.Impulse);  
+        rigidBodiePoncher.AddRelativeForce(jumpForce, ForceMode.Impulse);
+        Gamepad gamepad = Gamepad.current;
+        //gamepad.SetMotorSpeeds(0.5f, 0.8f);
     }
     void HandleCoyoteTime()
     {
         if (isGrounded)
         {
             //On the ground
+            
             coyoteTimeCounter = coyoteTime;
             uprightForce = 50;
             uprightSpringDamper = 10;
