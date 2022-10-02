@@ -41,8 +41,9 @@ public class PoncherController : MonoBehaviour
     [Header("Inputs and Directions")]
     public Vector3 inputDirection;
     public Vector3 moveDirection;
+    PoncherInputActions poncherActions;
 
-    [Header("Movement")]
+   [Header("Movement")]
     public float accel;
     public float airAccel;
     public float decel;
@@ -95,12 +96,18 @@ public class PoncherController : MonoBehaviour
 
         poncherInput = GetComponent<PlayerInput>();
         poncherInput.onActionTriggered += PeayerInputOnActionTriggered;
+
+        poncherActions = new PoncherInputActions();
+        poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
+        poncherActions.PlayerGameplay.Jump.performed += Jump;
+
+        //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
     }
 
     private void PeayerInputOnActionTriggered(InputAction.CallbackContext context)
     {
 
-        Debug.Log(context);
+        //Debug.Log(context);
     }
 
     // Start is called before the first frame update
@@ -113,18 +120,18 @@ public class PoncherController : MonoBehaviour
     void Update()
     {
         isGrounded = IsGrounded();
-
         HandleCoyoteTime();
-
-        CalculateInputs();
-        
+        CalculateInputDirection();
     }
 
 
-    void CalculateInputs()
+    void CalculateInputDirection()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+       
+        Vector3 inputVector = poncherActions.PlayerGameplay.Movement.ReadValue<Vector2>();
+
+        float h = inputVector.x;
+        float v = inputVector.y;
 
         //adjust movement values if we're in the air or on the ground
         curAccel = (isGrounded) ? accel : airAccel;
@@ -138,7 +145,7 @@ public class PoncherController : MonoBehaviour
         screenMovementRight = screenMovementSpace * Camera.main.transform.right;
 
         //only apply vertical input to movemement, if player is not sidescroller
-        if (true)
+        if (false)
             inputDirection = (screenMovementForward * v) + (screenMovementRight * h);
         else
             inputDirection = Vector3.right * h;
@@ -155,37 +162,7 @@ public class PoncherController : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimeCounter > 0f)
-        {
-            coyoteTimeCounter = -2;
-            Jump(jumpForce);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
 
         //Flipping capsule
         if (Input.GetMouseButton(0))
@@ -257,22 +234,7 @@ public class PoncherController : MonoBehaviour
         return false;
     }
 
-    void HandleCoyoteTime()
-    {
-        if (isGrounded)
-        {
-            //On the ground
-            coyoteTimeCounter = coyoteTime;
-            uprightForce = 50;
-            uprightSpringDamper = 10;
-            isStabilizing = true;
-        }
-        else
-        {
-            //Falling or in the air
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-    }
+  
 
 
     //Movement
@@ -377,12 +339,26 @@ public class PoncherController : MonoBehaviour
 
 
 
-    public void Jump(Vector3 force) {
-
-       
-            rigidBodiePoncher.AddRelativeForce(force, ForceMode.Impulse);
-            
-        
+    public void Jump(InputAction.CallbackContext context) 
+    {
+        coyoteTimeCounter = -2;
+        rigidBodiePoncher.AddRelativeForce(jumpForce, ForceMode.Impulse);  
+    }
+    void HandleCoyoteTime()
+    {
+        if (isGrounded)
+        {
+            //On the ground
+            coyoteTimeCounter = coyoteTime;
+            uprightForce = 50;
+            uprightSpringDamper = 10;
+            isStabilizing = true;
+        }
+        else
+        {
+            //Falling or in the air
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
 
 
