@@ -116,7 +116,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""0d4ca828-f776-4433-8b35-8276dea12bbe"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

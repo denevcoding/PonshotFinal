@@ -254,8 +254,7 @@ public class UITweener : MonoBehaviour
                 SwapDirection();
                 gameObject.SetActive(false);
             });
-            //Using out animation on disable
-            int holi = 0;
+            //Using out animation on disable       
         }
         
     }
