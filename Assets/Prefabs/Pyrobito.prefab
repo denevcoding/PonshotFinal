@@ -4340,8 +4340,10 @@ GameObject:
   - component: {fileID: 8742467519731677957}
   - component: {fileID: 8742467519731677956}
   - component: {fileID: 8742467519731677955}
-  - component: {fileID: 8742467519731677954}
   - component: {fileID: 4858787159399615565}
+  - component: {fileID: 8742467519731677954}
+  - component: {fileID: 5579102558988260845}
+  - component: {fileID: 7226188538808431467}
   m_Layer: 3
   m_Name: Pyrobito
   m_TagString: Untagged
@@ -4462,7 +4464,7 @@ MonoBehaviour:
   poncherState: 0
   animator: {fileID: 0}
   isGrounded: 0
-  rayLenght: 0
+  rayLenght: 0.08
   groundedLayerMask: 0
   coyoteTime: 0.1
   coyoteTimeCounter: 0
@@ -4541,25 +4543,34 @@ MonoBehaviour:
     m_RotationOrder: 4
   ForceScale: {x: 1, y: 0, z: 1}
   GravityScaleDrop: 10
-  inputDirection: {x: 0, y: 0, z: 0}
-  moveDirection: {x: 0, y: 0, z: 0}
-  accel: 125
-  decel: 15
-  airAccel: 5
-  airDecel: 1
-  maxSpeed: 100
-  rotateSpeed: 4.68
-  airRotateSpeed: 3.88
-  m_currentSpeed: {x: 0, y: 0, z: 0}
-  m_DistanceToTarget: 0
-  jumpForce: {x: 0, y: 10, z: 0}
-  coyoteTime: 0.1
-  coyoteTimeCounter: 0
-  flipForce: 0.1
-  Jumping: 0
-  currentAngVel: {x: 0, y: 0, z: 0}
   m_unitGoal: {x: 0, y: 0, z: 0}
   m_goalVel: {x: 0, y: 0, z: 0}
+  inputDirection: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  flipForce: 0.1
+--- !u!114 &4858787159399615565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471853856245897656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfe0fbe8dff7ab42ae0f647561f0280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poncherCharacter: {fileID: 8742467519731677956}
+  accel: 125
+  decel: 8
+  airAccel: 6
+  airDecel: 0.8
+  maxSpeed: 200
+  rotateSpeed: 4.56
+  airRotateSpeed: 4.01
+  m_currentSpeed: {x: -6.096155e-36, y: 0, z: 0}
+  m_DistanceToTarget: 0.000000056189037
+  currentAngVel: {x: 0.000023907472, y: 4.5317808e-14, z: 8.4707695e-18}
 --- !u!114 &8742467519731677954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4573,8 +4584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_poncherCharacter: {fileID: 0}
-  jumpForce: {x: 0, y: 12.5, z: 0}
---- !u!114 &4858787159399615565
+  jumpForce: {x: 0, y: 13, z: 0}
+--- !u!114 &5579102558988260845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4583,9 +4594,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8471853856245897656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dfe0fbe8dff7ab42ae0f647561f0280, type: 3}
+  m_Script: {fileID: 11500000, guid: 32760f7aa8262c643a5b5e447a23f632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_poncherCharacter: {fileID: 0}
+  rollType: 0
+  canRoll: 0
+--- !u!114 &7226188538808431467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471853856245897656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc558acaf353c744ac8c08a1dfd56f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poncherCharacter: {fileID: 0}
 --- !u!1 &8838561752421664531
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,15 @@
             "id": "dd46eaeb-4d6e-4735-bd75-9dbcc18e6c5e",
             "actions": [
                 {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "a1bb198a-0d40-41c0-8c3b-0db8eeb74ca9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "10b9162b-6b53-4cac-b055-401557422b22",
@@ -15,27 +24,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Movement",
-                    "type": "Value",
-                    "id": "a1bb198a-0d40-41c0-8c3b-0db8eeb74ca9",
-                    "expectedControlType": "Vector2",
+                    "name": "Roll",
+                    "type": "Button",
+                    "id": "ef4946f6-5a6b-4a39-8e49-6a7235ff6eeb",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "43b7f245-21bd-40f5-badd-bdfac7b7b3c0",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "25784e9a-3c4e-4c73-a60f-c00938779086",
@@ -145,6 +143,39 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "34e2b443-7ca1-42b2-ab1d-7594f64b450b",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f0ebca4-341a-4701-b834-5b4896051a5c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43b7f245-21bd-40f5-badd-bdfac7b7b3c0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

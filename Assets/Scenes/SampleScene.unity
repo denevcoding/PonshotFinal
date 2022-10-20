@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97365828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.65, y: -4.33, z: -0.68}
+  m_LocalPosition: {x: 5.49, y: -4.33, z: -0.68}
   m_LocalScale: {x: 5.1484933, y: 10.678, z: 6.128357}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -487,18 +487,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.48351383, y: 0.5519822, z: 0.32263353}
   m_Center: {x: 0, y: 0.20255348, z: -0.019603848}
---- !u!114 &218351720 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
-    type: 3}
-  m_PrefabInstance: {fileID: 8742467520567968224}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de7ed6bce7d9e84586e87f664c6d427, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &266246669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_poncherCharacter: {fileID: 0}
   jumpForce: {x: 0, y: 10, z: 0}
+  canJump: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5419,85 +5408,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
+    - target: {fileID: 2898609838215059832, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
-      propertyPath: accel
-      value: 125
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: decel
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: airAccel
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: airDecel
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 200
+      propertyPath: m_UpdateMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
       propertyPath: rotateSpeed
-      value: 4.56
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
       propertyPath: airRotateSpeed
-      value: 4.01
+      value: 4.35
       objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: currentAngVel.x
-      value: 0.000023907472
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: currentAngVel.y
-      value: 4.5317808e-14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: currentAngVel.z
-      value: 8.4707695e-18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: m_currentSpeed.x
-      value: -6.096155e-36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: m_DistanceToTarget
-      value: 0.000000056189037
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: m_poncherCharacter
-      value: 
-      objectReference: {fileID: 218351720}
     - target: {fileID: 8471853856245897656, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
       propertyPath: m_Name
       value: Pyrobito
-      objectReference: {fileID: 0}
-    - target: {fileID: 8742467519731677954, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: jumpForce.y
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
-        type: 3}
-      propertyPath: rayLenght
-      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 9140550906079544066, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}

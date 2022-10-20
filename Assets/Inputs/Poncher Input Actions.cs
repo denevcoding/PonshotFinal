@@ -28,6 +28,15 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
             ""id"": ""dd46eaeb-4d6e-4735-bd75-9dbcc18e6c5e"",
             ""actions"": [
                 {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""a1bb198a-0d40-41c0-8c3b-0db8eeb74ca9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""10b9162b-6b53-4cac-b055-401557422b22"",
@@ -37,27 +46,16 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Movement"",
-                    ""type"": ""Value"",
-                    ""id"": ""a1bb198a-0d40-41c0-8c3b-0db8eeb74ca9"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef4946f6-5a6b-4a39-8e49-6a7235ff6eeb"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""43b7f245-21bd-40f5-badd-bdfac7b7b3c0"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""25784e9a-3c4e-4c73-a60f-c00938779086"",
@@ -170,6 +168,39 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""34e2b443-7ca1-42b2-ab1d-7594f64b450b"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f0ebca4-341a-4701-b834-5b4896051a5c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43b7f245-21bd-40f5-badd-bdfac7b7b3c0"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""0772de8d-17fd-4f8d-9ab2-e76d5f78b1fc"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -209,8 +240,9 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
 }");
         // Player Gameplay
         m_PlayerGameplay = asset.FindActionMap("Player Gameplay", throwIfNotFound: true);
-        m_PlayerGameplay_Jump = m_PlayerGameplay.FindAction("Jump", throwIfNotFound: true);
         m_PlayerGameplay_Movement = m_PlayerGameplay.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerGameplay_Jump = m_PlayerGameplay.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerGameplay_Roll = m_PlayerGameplay.FindAction("Roll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -270,14 +302,16 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
     // Player Gameplay
     private readonly InputActionMap m_PlayerGameplay;
     private IPlayerGameplayActions m_PlayerGameplayActionsCallbackInterface;
-    private readonly InputAction m_PlayerGameplay_Jump;
     private readonly InputAction m_PlayerGameplay_Movement;
+    private readonly InputAction m_PlayerGameplay_Jump;
+    private readonly InputAction m_PlayerGameplay_Roll;
     public struct PlayerGameplayActions
     {
         private @PoncherInputActions m_Wrapper;
         public PlayerGameplayActions(@PoncherInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Jump => m_Wrapper.m_PlayerGameplay_Jump;
         public InputAction @Movement => m_Wrapper.m_PlayerGameplay_Movement;
+        public InputAction @Jump => m_Wrapper.m_PlayerGameplay_Jump;
+        public InputAction @Roll => m_Wrapper.m_PlayerGameplay_Roll;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -287,22 +321,28 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerGameplayActionsCallbackInterface != null)
             {
-                @Jump.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnJump;
                 @Movement.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnMovement;
+                @Jump.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnJump;
+                @Roll.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRoll;
+                @Roll.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRoll;
+                @Roll.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRoll;
             }
             m_Wrapper.m_PlayerGameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Roll.started += instance.OnRoll;
+                @Roll.performed += instance.OnRoll;
+                @Roll.canceled += instance.OnRoll;
             }
         }
     }
@@ -327,7 +367,8 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
     }
     public interface IPlayerGameplayActions
     {
-        void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
     }
 }

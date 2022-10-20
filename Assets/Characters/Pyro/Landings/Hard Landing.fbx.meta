@@ -44,8 +44,8 @@ ModelImporter:
       name: hard_landing
       takeName: hard_landing
       internalID: 0
-      firstFrame: 19
-      lastFrame: 42
+      firstFrame: 17
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0.56

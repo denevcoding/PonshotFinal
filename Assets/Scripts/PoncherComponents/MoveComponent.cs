@@ -52,6 +52,9 @@ public class MoveComponent : PoncherComponentBase
     //Movement
     public bool MoveTo(Vector3 destination, float stopDistance, bool ignoreY)
     {
+        if (!m_poncherCharacter.canMove)
+            return false;
+
         m_poncherCharacter.GetRigidbody().WakeUp();
        
 
@@ -107,6 +110,9 @@ public class MoveComponent : PoncherComponentBase
     }
     public void RotateToDirection(Vector3 lookDir, bool ignoreY)
     {
+
+        if (!m_poncherCharacter.canRotate)
+            return;
 
         Vector3 characterPos = transform.position;
         if (ignoreY)

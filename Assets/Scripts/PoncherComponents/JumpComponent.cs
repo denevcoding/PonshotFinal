@@ -7,12 +7,13 @@ public class JumpComponent : PoncherComponentBase
 {
     [Header("Jump Properties")]
     public Vector3 jumpForce;
+    public bool canJump;
     //public bool Jumping;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        canJump = true;
     }
 
     // Update is called once per frame
@@ -34,7 +35,10 @@ public class JumpComponent : PoncherComponentBase
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (CheckPreconditions() == false)
+        if (CheckBasePreconditions() == false)
+            return;
+
+        if (canJump == false)
             return;
 
         if (m_poncherCharacter.GetState() == PoncherState.Jumping)
@@ -53,14 +57,9 @@ public class JumpComponent : PoncherComponentBase
 
     public void EndJump()
     {
-        if (m_poncherCharacter.GetRigidbody().velocity.y < 0 || m_poncherCharacter.isGrounded)
+        if (m_poncherCharacter.GetRigidbody().velocity.y < -1 || m_poncherCharacter.isGrounded)
         {
             m_poncherCharacter.GetAnimator().SetBool("Jumping", false);
         }
     }
-
-
-    
-
-    
 }

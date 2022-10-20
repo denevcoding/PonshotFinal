@@ -65,6 +65,7 @@ public class PoncherController : PoncherComponentBase
         poncherActions = new PoncherInputActions();
         poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
         poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().Jump;
+        poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
         //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
     }
 
@@ -172,16 +173,15 @@ public class PoncherController : PoncherComponentBase
 
     private void FixedUpdate()
     {
+        UpdateUprightForce();
 
-        //if (canMove == false)
-        //    return false;
+        if (!CheckBasePreconditions())
+            return;
+
         m_poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
 
         if (inputDirection.magnitude != 0)
-            m_poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true);        
-
-     
-        UpdateUprightForce();
+            m_poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true); 
     }
 
    

@@ -32,6 +32,7 @@ public class PoncherCharacter : MonoBehaviour
     private MoveComponent moveComponent;
     private PoncherController poncherController;
     private RollComponent rollComponent;
+    private PoncherAnimManager animManager;
 
     [Header("Grounded Settings")]
     public bool isGrounded;
@@ -134,12 +135,15 @@ public class PoncherCharacter : MonoBehaviour
         moveComponent = GetComponent<MoveComponent>();
         poncherController = GetComponent<PoncherController>();
         rollComponent = GetComponent<RollComponent>();
+        animManager = GetComponent<PoncherAnimManager>();
 
         //Init PonshotComponents with the owner
         PoncherComponentBase[] poncherComponents = this.GetComponents<PoncherComponentBase>();
         foreach (PoncherComponentBase poncherComp in poncherComponents)
         {
             poncherComp.m_poncherCharacter = this;
+
+            poncherComp.Initcomponent();
         }     
     }
 
@@ -150,13 +154,8 @@ public class PoncherCharacter : MonoBehaviour
         poncherState = PoncherState.Idle;
         groundedLayerMask = LayerMask.GetMask("Obstacle");
 
-        //Initilice the character in state machine behaviouyr scripts
-        BaseSMB[] bsmbs = animator.GetBehaviours<BaseSMB>();
-        foreach (BaseSMB smb in bsmbs)
-        {
-            smb.poncherCharacter = this;
-        }
-        Debug.Log("estados:" + bsmbs.Length);
+        canMove = true;
+        canRotate = true;
     }
     #endregion
 
@@ -218,16 +217,23 @@ public class PoncherCharacter : MonoBehaviour
         poncherState = state;
     }
 
+
+
+    //Poncher Components
     public MoveComponent GetMoveComponent()
     {
         return moveComponent;
     }
-
+    public PoncherAnimManager GetAnimManager()
+    {
+        return animManager;
+    }
     public RollComponent GetRoll()
     {
         return rollComponent;
     }
 
+    //Unity
     public Rigidbody GetRigidbody()
     {
         return poncheRigidbodie;
