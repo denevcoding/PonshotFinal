@@ -967,12 +967,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 2
+  m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 34.45931
+  m_FocalLength: 33.059464
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -981,9 +981,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 38.4
-  orthographic: 0
-  orthographic size: 5
+  field of view: 39.9
+  orthographic: 1
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1296,6 +1296,9 @@ MonoBehaviour:
   isSidescroller: 1
   canMove: 0
   canRotate: 0
+  rayCornerLenght: 0
+  rayOffset: 0
+  fixForce: 0
 --- !u!114 &374845364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4191,6 +4194,12 @@ CapsuleCollider:
   m_Height: 0.33450836
   m_Direction: 0
   m_Center: {x: -0.16725418, y: 0, z: 0}
+--- !u!95 &1619822167 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2898609838215059832, guid: d009da5d9ed474444bd7deae582d48fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 8742467520567968224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650176009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5878602600018501017, guid: 26202694b4f2d0440a5cb919150354bd,
@@ -4273,6 +4282,103 @@ CapsuleCollider:
   m_Height: 0.37036377
   m_Direction: 1
   m_Center: {x: 0, y: -0.18518189, z: 0}
+--- !u!1 &1721226670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721226674}
+  - component: {fileID: 1721226673}
+  - component: {fileID: 1721226672}
+  - component: {fileID: 1721226671}
+  m_Layer: 6
+  m_Name: Floor (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1721226671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721226670}
+  m_Material: {fileID: 13400000, guid: ffe3be000b79ea34ea2343edb26b1843, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1721226672
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721226670}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1721226673
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721226670}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1721226674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721226670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.34, y: 4.42, z: -0.68}
+  m_LocalScale: {x: 5.713678, y: 4.414499, z: 6.128357}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1722530318
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,6 +5533,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pyrobito
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677954, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: jumpForce.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1619822167}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: fixForce
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: canRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: rayOffset
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: rayCornerLenght
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: coyoteTimeCounter
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: groundedLayerMask
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677958, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 9140550906079544066, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}

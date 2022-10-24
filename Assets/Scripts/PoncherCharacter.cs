@@ -49,6 +49,11 @@ public class PoncherCharacter : MonoBehaviour
     public bool canMove;
     public bool canRotate;
 
+    [Header("Corner Correction")]
+    public float rayCornerLenght;
+    public float rayOffset;
+    public float fixForce;
+
 
     private void Awake()
     {
@@ -66,6 +71,8 @@ public class PoncherCharacter : MonoBehaviour
     {
         isGrounded = IsGrounded();
         HandleCoyoteTime();
+
+        CheckCorners();
 
         animator.SetBool("Grounded", isGrounded);
 
@@ -168,10 +175,10 @@ public class PoncherCharacter : MonoBehaviour
     public bool IsGrounded()
     {
         //get distance to ground, from centre of collider (where floorcheckers should be)
-        float dist = GetComponent<CapsuleCollider>().bounds.extents.y + rayLenght;
+        float dist = GetComponent<CapsuleCollider>().bounds.extents.y;
 
         RaycastHit hit;
-        Debug.DrawRay(transform.position, Vector3.down * (dist), Color.cyan, rayLenght);
+        Debug.DrawRay(transform.position, Vector3.down * (dist), Color.cyan, 0f);
         if (Physics.Raycast(transform.position, Vector3.down, out hit, dist + rayLenght, groundedLayerMask))
         {
             poncherController.FloatingCapsule(hit);
@@ -181,6 +188,47 @@ public class PoncherCharacter : MonoBehaviour
 
         return false;
     }
+
+
+
+    public void CheckCorners()
+    {
+        //get distance to ground, from centre of collider (where floorcheckers should be)
+        float dist = GetComponent<CapsuleCollider>().bounds.extents.y + rayCornerLenght;
+
+        RaycastHit rayRight;
+        RaycastHit rayLeft;
+        bool right = Physics.Raycast(transform.position + new Vector3(0.5f, 0f, 0f), Vector3.up, out rayRight, dist, groundedLayerMask);
+        bool left = Physics.Raycast(transform.position + new Vector3(-0.5f, 0f, 0f), Vector3.up, out rayLeft, dist, groundedLayerMask);
+
+        Debug.DrawRay(transform.position + new Vector3(rayOffset, 0f, 0f), Vector3.up * (dist), Color.cyan, 0f);
+        Debug.DrawRay(transform.position + new Vector3(-rayOffset, 0f, 0f), Vector3.up * (dist), Color.magenta, 0f);
+
+        if (GetRigidbody().velocity.y > 0)
+        {
+
+      
+            //Right
+            if (right && !left)
+            {
+                //rayRight
+                transform.position += new Vector3(-fixForce, 0.1f);
+                //GetRigidbody().AddForce(-Vector3.right * fixForce * Time.deltaTime, ForceMode.Acceleration);
+                //GetRigidbody().MovePosition(transform.position += new Vector3(-fixForce, 0f));
+
+            }//Left 
+            else if (left && !right)
+            {
+                transform.position += new Vector3(fixForce, 0.1f);
+                //GetRigidbody().AddForce(Vector3.right * fixForce * Time.deltaTime, ForceMode.Acceleration);
+                //GetRigidbody().MovePosition(transform.position += new Vector3(fixForce, 0f));
+            }
+
+        }
+
+
+    }
+
 
 
 
