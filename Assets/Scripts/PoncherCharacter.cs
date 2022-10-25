@@ -6,7 +6,7 @@ public enum PoncherState
 {
     Idle = 0,
     Running = 1,
-    Jumping = 2,
+    Jumping = 2,    
     Falling = 3,
     Landing = 4,
     Diving = 5,
@@ -15,6 +15,8 @@ public enum PoncherState
     Ponched = 8,
     Stumbled = 9,
     Hanging = 10,
+    WallJumping = 11,
+    WallSliding = 12
 
 }
 
@@ -41,6 +43,13 @@ public class PoncherCharacter : MonoBehaviour
     [Space(5)]
     public float coyoteTime;
     public float coyoteTimeCounter;
+
+    [Header("Walled Settings")]
+    public bool isWalled;
+    public bool isStiking;
+    public float wallRayLenght;
+    public float wallAngleTreshold;
+    public Vector3 wallNormal = Vector3.zero;
 
 
     [Header("Movement - Locomotion")]
@@ -70,14 +79,14 @@ public class PoncherCharacter : MonoBehaviour
     void Update()
     {
         isGrounded = IsGrounded();
+        isWalled = checkIsWalled();
         HandleCoyoteTime();
 
-        CheckCorners();
+        CorrectCorners();
 
         animator.SetBool("Grounded", isGrounded);
-
-        animator.SetFloat("DistanceToTarget", moveComponent.m_DistanceToTarget);
-    
+        animator.SetBool("Walled", isWalled);
+        animator.SetFloat("DistanceToTarget", moveComponent.m_DistanceToTarget);    
         animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
 
         if (!isGrounded)
@@ -191,7 +200,7 @@ public class PoncherCharacter : MonoBehaviour
 
 
 
-    public void CheckCorners()
+    public void CorrectCorners()
     {
         //get distance to ground, from centre of collider (where floorcheckers should be)
         float dist = GetComponent<CapsuleCollider>().bounds.extents.y + rayCornerLenght;
@@ -204,30 +213,121 @@ public class PoncherCharacter : MonoBehaviour
         Debug.DrawRay(transform.position + new Vector3(rayOffset, 0f, 0f), Vector3.up * (dist), Color.cyan, 0f);
         Debug.DrawRay(transform.position + new Vector3(-rayOffset, 0f, 0f), Vector3.up * (dist), Color.magenta, 0f);
 
+          
         if (GetRigidbody().velocity.y > 0)
         {
 
-      
+            Vector2 currVelocity = Vector2.zero;
+            
             //Right
             if (right && !left)
             {
+
+                //currVelocity.x = 0f;
+                //currVelocity.y = GetRigidbody().velocity.y;
+                //GetRigidbody().velocity = currVelocity;
                 //rayRight
-                transform.position += new Vector3(-fixForce, 0.1f);
+                transform.position += new Vector3(-fixForce, 0);
                 //GetRigidbody().AddForce(-Vector3.right * fixForce * Time.deltaTime, ForceMode.Acceleration);
                 //GetRigidbody().MovePosition(transform.position += new Vector3(-fixForce, 0f));
 
             }//Left 
             else if (left && !right)
             {
-                transform.position += new Vector3(fixForce, 0.1f);
+                //currVelocity.x = 0f;
+                //currVelocity.y = GetRigidbody().velocity.y;
+                //GetRigidbody().velocity = currVelocity;
+                transform.position += new Vector3(fixForce, 0);
                 //GetRigidbody().AddForce(Vector3.right * fixForce * Time.deltaTime, ForceMode.Acceleration);
                 //GetRigidbody().MovePosition(transform.position += new Vector3(fixForce, 0f));
             }
 
         }
 
-
     }
+
+
+
+    public bool checkIsWalled()
+    {
+        //get distance to ground, from centre of collider (where floorcheckers should be)
+        float dist = GetComponent<Collider>().bounds.extents.y;
+
+        RaycastHit wallRay;
+        Vector3 centerPoncher = transform.position;
+        centerPoncher.y = centerPoncher.y + dist / 2;
+
+        Vector3 inputDir = poncherController.inputDirection;
+        Debug.DrawRay(centerPoncher, inputDir * wallRayLenght, Color.magenta, 0f);
+
+        if (Physics.Raycast(centerPoncher, transform.forward, out wallRay, wallRayLenght, groundedLayerMask))
+        {
+           
+            if (!wallRay.transform.GetComponent<Collider>().isTrigger)
+            {
+                float angle = Vector3.Angle(wallRay.normal, Vector3.up);
+                wallNormal = wallRay.normal;
+
+                if (angle > wallAngleTreshold)
+                {// In front of a wall                   
+
+                    float dot = Vector3.Dot(inputDir, transform.forward);
+                    //Debug.Log("DOT "+ dot);
+                    if (dot > 0)
+                    {   //Stiking                  
+
+                        if (isGrounded == false && GetRigidbody().velocity.y < 0)
+                        {
+                            if (GetState() != PoncherState.WallJumping)
+                            {
+                                //isStiking = true;
+                                //SetState(PoncherState.WallSliding);
+
+                                Vector3 newVel = GetRigidbody().velocity;
+                                Vector3 slide = new Vector3(0f, newVel.y * -5f, 0f);
+                                GetRigidbody().AddForce(slide, ForceMode.Acceleration);
+                                return true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Not Stiking                       
+                        return false;
+                    }
+
+                    return false;
+                }
+            }
+        }
+
+   
+        return false;
+    }
+
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    foreach (ContactPoint contact in collision.contacts)
+    //    {
+    //        Debug.DrawRay(contact.point, contact.normal * 2f, Color.white, 0f);
+    //        if (contact.normal.y < 0.1f)
+    //        {
+    //            isWalled = true;
+    //        }
+    //    }
+    //    //Debug.DrawRay(collision., Vector3.up * (dist), Color.cyan, 0f);
+    //}
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (isWalled == true)
+    //    {
+    //        isWalled = false;
+    //    }
+    //}
+
+
 
 
 

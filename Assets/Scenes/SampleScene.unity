@@ -1293,6 +1293,11 @@ MonoBehaviour:
   groundedLayerMask: 0
   coyoteTime: 0.1
   coyoteTimeCounter: 0
+  isWalled: 0
+  isStiking: 0
+  wallRayLenght: 0
+  wallAngleTreshold: 0
+  wallNormal: {x: 0, y: 0, z: 0}
   isSidescroller: 1
   canMove: 0
   canRotate: 0
@@ -5521,6 +5526,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
+      propertyPath: airAccel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
       propertyPath: rotateSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -5528,6 +5538,21 @@ PrefabInstance:
         type: 3}
       propertyPath: airRotateSpeed
       value: 4.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: currentAngVel.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: currentAngVel.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858787159399615565, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: currentAngVel.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8471853856245897656, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
@@ -5537,7 +5562,7 @@ PrefabInstance:
     - target: {fileID: 8742467519731677954, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
       propertyPath: jumpForce.y
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
@@ -5552,7 +5577,7 @@ PrefabInstance:
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
       propertyPath: fixForce
-      value: 0.05
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
@@ -5562,7 +5587,7 @@ PrefabInstance:
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
       propertyPath: rayOffset
-      value: 0.59
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
@@ -5571,8 +5596,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
+      propertyPath: wallRayLenght
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
       propertyPath: rayCornerLenght
-      value: 0.6
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
@@ -5583,6 +5613,11 @@ PrefabInstance:
         type: 3}
       propertyPath: groundedLayerMask
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
+      propertyPath: wallAngleTreshold
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8742467519731677958, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}

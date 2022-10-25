@@ -57,9 +57,10 @@ public class JumpComponent : PoncherComponentBase
 
     public void EndJump()
     {
-        if (m_poncherCharacter.GetRigidbody().velocity.y < -1 || m_poncherCharacter.isGrounded)
+        if (m_poncherCharacter.GetRigidbody().velocity.y < -1 || m_poncherCharacter.isGrounded || m_poncherCharacter.isWalled)
         {
             m_poncherCharacter.GetAnimator().SetBool("Jumping", false);
         }
+       
     }
 }
