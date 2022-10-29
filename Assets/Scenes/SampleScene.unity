@@ -5586,6 +5586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
+      propertyPath: rayLenght
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742467519731677956, guid: d009da5d9ed474444bd7deae582d48fc,
+        type: 3}
       propertyPath: rayOffset
       value: 0.5
       objectReference: {fileID: 0}

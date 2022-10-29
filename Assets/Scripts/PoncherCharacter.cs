@@ -185,16 +185,25 @@ public class PoncherCharacter : MonoBehaviour
     {
         //get distance to ground, from centre of collider (where floorcheckers should be)
         float dist = GetComponent<CapsuleCollider>().bounds.extents.y;
+        RaycastHit hitCenter;
 
-        RaycastHit hit;
-        Debug.DrawRay(transform.position, Vector3.down * (dist), Color.cyan, 0f);
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, dist + rayLenght, groundedLayerMask))
+        for (int i = -1; i < 2; i++)
         {
-            poncherController.FloatingCapsule(hit);
-            return true;
+            float point = 0f;
+            point = GetComponent<CapsuleCollider>().bounds.size.x;
+            point /= 3;
+            point *= i;
+            Vector2 rayPos = new Vector2((transform.position.x + point), transform.position.y);          
 
+            Debug.DrawRay(rayPos, Vector3.down * (dist), Color.cyan, 0f);//Center 
+
+            if (Physics.Raycast(rayPos, Vector3.down, out hitCenter, dist + rayLenght, groundedLayerMask))
+            {
+                poncherController.FloatingCapsule(hitCenter);
+                return true;
+
+            }
         }
-
         return false;
     }
 
@@ -261,8 +270,7 @@ public class PoncherCharacter : MonoBehaviour
         Debug.DrawRay(centerPoncher, inputDir * wallRayLenght, Color.magenta, 0f);
 
         if (Physics.Raycast(centerPoncher, transform.forward, out wallRay, wallRayLenght, groundedLayerMask))
-        {
-           
+        {           
             if (!wallRay.transform.GetComponent<Collider>().isTrigger)
             {
                 float angle = Vector3.Angle(wallRay.normal, Vector3.up);
