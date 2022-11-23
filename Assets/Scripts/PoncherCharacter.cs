@@ -84,6 +84,9 @@ public class PoncherCharacter : MonoBehaviour
 
         CorrectCorners();
 
+        LedgeDetection();
+        
+
         animator.SetBool("Grounded", isGrounded);
         animator.SetBool("Walled", isWalled);
         animator.SetFloat("DistanceToTarget", moveComponent.m_DistanceToTarget);    
@@ -256,6 +259,20 @@ public class PoncherCharacter : MonoBehaviour
     }
 
 
+    public bool LedgeDetection()
+    {
+        if (poncherState == PoncherState.Falling)
+        {
+            float xOffset = 1.2f;
+            float yOffset = 2.5f;
+
+            float yExtent = GetComponent<Collider>().bounds.min.y;
+            Vector2 heightRayrigin = new Vector2(transform.position.x + xOffset, yExtent); 
+
+            Debug.DrawRay(heightRayrigin, Vector3.down * 5f, Color.green, 0f);
+        }
+        return true;
+    }
 
     public bool checkIsWalled()
     {
