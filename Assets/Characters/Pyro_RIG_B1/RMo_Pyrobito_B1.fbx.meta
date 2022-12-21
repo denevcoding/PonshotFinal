@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: ed41558efdecb8e469c9822aede710fb
+guid: 3d691990adef71b4591d56c49c73b480
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable:
-  - first:
-      74: 5537090591127091777
-    second: Disgust
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
