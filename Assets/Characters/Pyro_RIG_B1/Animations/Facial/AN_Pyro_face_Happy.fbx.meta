@@ -63,284 +63,278 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: DeformationSystem
+      - path: GameSkeletonRoot
         weight: 1
-      - path: DeformationSystem/root
+      - path: GameSkeletonRoot/GameSkeletonRoot_M
         weight: 1
-      - path: DeformationSystem/root/Root_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_L/HipPart1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_L/HipPart1_L/Knee_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L/GameSkeletonKneePart1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_L/HipPart1_L/Knee_L/KneePart1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L/GameSkeletonKneePart1_L/GameSkeletonAnkle_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_L/HipPart1_L/Knee_L/KneePart1_L/Ankle_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L/GameSkeletonKneePart1_L/GameSkeletonAnkle_L/GameSkeletonToes_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_L/HipPart1_L/Knee_L/KneePart1_L/Ankle_L/Toes_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_R/HipPart1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R/GameSkeletonKnee_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_R/HipPart1_R/Knee_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R/GameSkeletonKnee_R/GameSkeletonKneePart1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_R/HipPart1_R/Knee_R/KneePart1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R/GameSkeletonKnee_R/GameSkeletonKneePart1_R/GameSkeletonAnkle_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_R/HipPart1_R/Knee_R/KneePart1_R/Ankle_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R/GameSkeletonKnee_R/GameSkeletonKneePart1_R/GameSkeletonAnkle_R/GameSkeletonToes_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Hip_R/HipPart1_R/Knee_R/KneePart1_R/Ankle_R/Toes_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonCheekJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/CheekJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonCheekJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/CheekJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonCheekRaiserJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/CheekRaiserJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonCheekRaiserJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/CheekRaiserJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeBrowCenterJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeBrowCenterJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeBrowInnerJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeBrowInnerJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeBrowInnerJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeBrowInnerJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeBrowOuterJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeBrowOuterJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeBrowOuterJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeBrowOuterJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeJoint_L/GameSkeletonIrisJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeJoint_L/IrisJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeJoint_L/GameSkeletonIrisJoint_L/GameSkeletonPupilJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeJoint_L/IrisJoint_L/PupilJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeJoint_R/GameSkeletonIrisJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeJoint_R/IrisJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonEyeJoint_R/GameSkeletonIrisJoint_R/GameSkeletonPupilJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/EyeJoint_R/IrisJoint_R/PupilJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonFrownBulgeJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/FrownBulgeJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonFrownBulgeJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/FrownBulgeJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletoninnerLidJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/innerLidJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletoninnerLidJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/innerLidJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonJawJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/JawJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonLipJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/LipJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonLipJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/LipJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonlowerLipAJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/lowerLipAJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonlowerLipAJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/lowerLipAJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonlowerLipBJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/lowerLipBJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonlowerLipBJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/lowerLipBJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonlowerLipJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/lowerLipJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonupperLipAJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/upperLipAJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonupperLipAJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/upperLipAJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonupperLipBJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/upperLipBJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonupperLipBJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/upperLipBJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonLipJoints_M/GameSkeletonupperLipJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/LipJoints_M/upperLipJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonlowerLidJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/lowerLidJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonlowerLidJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/lowerLidJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonlowerTeethJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/lowerTeethJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonNoseCornerJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/NoseCornerJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonNoseCornerJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/NoseCornerJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonNoseJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/NoseJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonouterLidJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/outerLidJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonouterLidJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/outerLidJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonSmileBulgeJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/SmileBulgeJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonSmileBulgeJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/SmileBulgeJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonTongue0Joint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/Tongue0Joint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonTongue0Joint_M/GameSkeletonTongue1Joint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/Tongue0Joint_M/Tongue1Joint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonTongue0Joint_M/GameSkeletonTongue1Joint_M/GameSkeletonTongue2Joint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/Tongue0Joint_M/Tongue1Joint_M/Tongue2Joint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonTongue0Joint_M/GameSkeletonTongue1Joint_M/GameSkeletonTongue2Joint_M/GameSkeletonTongue3Joint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/Tongue0Joint_M/Tongue1Joint_M/Tongue2Joint_M/Tongue3Joint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonupperLidJoint_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/upperLidJoint_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonupperLidJoint_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/upperLidJoint_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonFaceJoint_M/GameSkeletonupperTeethJoint_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/FaceJoint_M/upperTeethJoint_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonjoint1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/joint1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonjoint1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/joint1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonjoint3_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/joint3_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonjoint5_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/joint5_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonNeck_M/GameSkeletonHead_M/GameSkeletonjoint7_M
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/joint7_M
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonIndexFinger1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/IndexFinger1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonIndexFinger1_L/GameSkeletonIndexFinger2_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/IndexFinger1_L/IndexFinger2_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonIndexFinger1_L/GameSkeletonIndexFinger2_L/GameSkeletonIndexFinger3_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/IndexFinger1_L/IndexFinger2_L/IndexFinger3_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonMiddleFinger1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/MiddleFinger1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonMiddleFinger1_L/GameSkeletonMiddleFinger2_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonMiddleFinger1_L/GameSkeletonMiddleFinger2_L/GameSkeletonMiddleFinger3_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonPinkyFinger1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/PinkyFinger1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonPinkyFinger1_L/GameSkeletonPinkyFinger2_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/PinkyFinger1_L/PinkyFinger2_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonPinkyFinger1_L/GameSkeletonPinkyFinger2_L/GameSkeletonPinkyFinger3_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/PinkyFinger1_L/PinkyFinger2_L/PinkyFinger3_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonRingFinger1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/RingFinger1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonRingFinger1_L/GameSkeletonRingFinger2_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/RingFinger1_L/RingFinger2_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonRingFinger1_L/GameSkeletonRingFinger2_L/GameSkeletonRingFinger3_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/RingFinger1_L/RingFinger2_L/RingFinger3_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonThumbFinger1_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/ThumbFinger1_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonThumbFinger1_L/GameSkeletonThumbFinger2_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_L/GameSkeletonShoulder_L/GameSkeletonShoulderPart1_L/GameSkeletonElbow_L/GameSkeletonElbowPart1_L/GameSkeletonWrist_L/GameSkeletonThumbFinger1_L/GameSkeletonThumbFinger2_L/GameSkeletonThumbFinger3_L
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/Elbow_L/ElbowPart1_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonIndexFinger1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/IndexFinger1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonIndexFinger1_R/GameSkeletonIndexFinger2_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/IndexFinger1_R/IndexFinger2_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonIndexFinger1_R/GameSkeletonIndexFinger2_R/GameSkeletonIndexFinger3_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/IndexFinger1_R/IndexFinger2_R/IndexFinger3_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonMiddleFinger1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/MiddleFinger1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonMiddleFinger1_R/GameSkeletonMiddleFinger2_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonMiddleFinger1_R/GameSkeletonMiddleFinger2_R/GameSkeletonMiddleFinger3_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonPinkyFinger1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/PinkyFinger1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonPinkyFinger1_R/GameSkeletonPinkyFinger2_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/PinkyFinger1_R/PinkyFinger2_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonPinkyFinger1_R/GameSkeletonPinkyFinger2_R/GameSkeletonPinkyFinger3_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/PinkyFinger1_R/PinkyFinger2_R/PinkyFinger3_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonRingFinger1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/RingFinger1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonRingFinger1_R/GameSkeletonRingFinger2_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/RingFinger1_R/RingFinger2_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonRingFinger1_R/GameSkeletonRingFinger2_R/GameSkeletonRingFinger3_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/RingFinger1_R/RingFinger2_R/RingFinger3_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonThumbFinger1_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/ThumbFinger1_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonThumbFinger1_R/GameSkeletonThumbFinger2_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+      - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonSpine1_M/GameSkeletonSpine2_M/GameSkeletonChest_M/GameSkeletonScapula_R/GameSkeletonShoulder_R/GameSkeletonShoulderPart1_R/GameSkeletonElbow_R/GameSkeletonElbowPart1_R/GameSkeletonWrist_R/GameSkeletonThumbFinger1_R/GameSkeletonThumbFinger2_R/GameSkeletonThumbFinger3_R
         weight: 1
-      - path: DeformationSystem/root/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/Elbow_R/ElbowPart1_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
-        weight: 1
-      - path: Geometry
+      - path: Group
         weight: 0
-      - path: Geometry/model:geo
+      - path: Group/Geometry
         weight: 0
-      - path: Geometry/model:geo/model:belt
+      - path: Group/Geometry/model:geo
         weight: 0
-      - path: Geometry/model:geo/model:bomb
+      - path: Group/Geometry/model:geo/model:belt
         weight: 0
-      - path: Geometry/model:geo/model:eye_L
+      - path: Group/Geometry/model:geo/model:bomb
         weight: 0
-      - path: Geometry/model:geo/model:eye_R
+      - path: Group/Geometry/model:geo/model:eye_L
         weight: 0
-      - path: Geometry/model:geo/model:eyebrow
+      - path: Group/Geometry/model:geo/model:eye_R
         weight: 0
-      - path: Geometry/model:geo/model:hair
+      - path: Group/Geometry/model:geo/model:eyebrow
         weight: 0
-      - path: Geometry/model:geo/model:lower_teeth
+      - path: Group/Geometry/model:geo/model:hair
         weight: 0
-      - path: Geometry/model:geo/model:necklace
+      - path: Group/Geometry/model:geo/model:lower_teeth
         weight: 0
-      - path: Geometry/model:geo/model:pyro_body
+      - path: Group/Geometry/model:geo/model:necklace
         weight: 0
-      - path: Geometry/model:geo/model:rocket
+      - path: Group/Geometry/model:geo/model:pyro_body
         weight: 0
-      - path: Geometry/model:geo/model:shoes
+      - path: Group/Geometry/model:geo/model:rocket
         weight: 0
-      - path: Geometry/model:geo/model:shorts
+      - path: Group/Geometry/model:geo/model:shoes
         weight: 0
-      - path: Geometry/model:geo/model:tongue
+      - path: Group/Geometry/model:geo/model:shorts
         weight: 0
-      - path: Geometry/model:geo/model:upper_teeth
+      - path: Group/Geometry/model:geo/model:tongue
         weight: 0
-      - path: Geometry/model:geo/model:wrist
+      - path: Group/Geometry/model:geo/model:upper_teeth
         weight: 0
-      - path: MotionSystem
-        weight: 0
-      - path: MotionSystem/MainSystem
-        weight: 0
-      - path: MotionSystem/MainSystem/Main
+      - path: Group/Geometry/model:geo/model:wrist
         weight: 0
       maskType: 1
-      maskSource: {fileID: 31900000, guid: 479536ebf12caa84389021cfffc74dea, type: 2}
+      maskSource: {fileID: 31900000, guid: cfda4aa68b30cfc4698a1f708e8b66f8, type: 2}
       additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
