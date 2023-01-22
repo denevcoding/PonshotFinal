@@ -79,74 +79,74 @@ public class RagdollController : PoncherComponentBase
     private void LateUpdate()
     {
         //Clear the get up animation controls so that we don't end up repeating the animations indefinitely
-        //m_poncherCharacter.GetAnimator().SetBool("GetUpFromBelly", false);
-        //m_poncherCharacter.GetAnimator().SetBool("GetUpFromBack", false);
+        poncherCharacter.GetAnimator().SetBool("GetUpFromBelly", false);
+        poncherCharacter.GetAnimator().SetBool("GetUpFromBack", false);
 
-        //if (state == RagdollState.blendToAnim)
-        //{
-        //    if (Time.time <= ragdollingEndTime + mecanimToGetUpTransitionTime)
-        //    {
-        //        //If we are waiting for Mecanim to start playing the get up animations, update the root of the mecanim
-        //        //character to the best match with the ragdoll
-        //        Vector3 animatedToRagdolled = ragdolledHipPosition - m_poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).position;
-        //        Vector3 newRootPosition = transform.position + animatedToRagdolled;
+        if (state == RagdollState.blendToAnim)
+        {
+            if (Time.time <= ragdollingEndTime + mecanimToGetUpTransitionTime)
+            {
+                //If we are waiting for Mecanim to start playing the get up animations, update the root of the mecanim
+                //character to the best match with the ragdoll
+                Vector3 animatedToRagdolled = ragdolledHipPosition - poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).position;
+                Vector3 newRootPosition = transform.position + animatedToRagdolled;
 
-        //        //Now cast a ray from the computed position downwards and find the highest hit that does not belong to the character 
-        //        RaycastHit[] hits = Physics.RaycastAll(new Ray(newRootPosition, Vector3.down));
-        //        newRootPosition.y = 0;
-        //        foreach (RaycastHit hit in hits)
-        //        {
-        //            if (!hit.transform.IsChildOf(transform))
-        //            {
-        //                newRootPosition.y = Mathf.Max(newRootPosition.y, hit.point.y);
-        //            }
-        //        }
-        //        transform.position = newRootPosition;
+                //Now cast a ray from the computed position downwards and find the highest hit that does not belong to the character 
+                RaycastHit[] hits = Physics.RaycastAll(new Ray(newRootPosition, Vector3.down));
+                newRootPosition.y = 0;
+                foreach (RaycastHit hit in hits)
+                {
+                    if (!hit.transform.IsChildOf(transform))
+                    {
+                        newRootPosition.y = Mathf.Max(newRootPosition.y, hit.point.y);
+                    }
+                }
+                transform.position = newRootPosition;
 
-        //        //Get body orientation in ground plane for both the ragdolled pose and the animated get up pose
-        //        Vector3 ragdolledDirection = ragdolledHeadPosition - ragdolledFeetPosition;
-        //        ragdolledDirection.y = 0;
+                //Get body orientation in ground plane for both the ragdolled pose and the animated get up pose
+                Vector3 ragdolledDirection = ragdolledHeadPosition - ragdolledFeetPosition;
+                ragdolledDirection.y = 0;
 
-        //        Vector3 meanFeetPosition = 0.5f * (m_poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.LeftFoot).position + m_poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.RightFoot).position);
-        //        Vector3 animatedDirection = m_poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Head).position - meanFeetPosition;
-        //        animatedDirection.y = 0;
+                Vector3 meanFeetPosition = 0.5f * (poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.LeftFoot).position + poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.RightFoot).position);
+                Vector3 animatedDirection = poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Head).position - meanFeetPosition;
+                animatedDirection.y = 0;
 
-        //        //Try to match the rotations. Note that we can only rotate around Y axis, as the animated characted must stay upright,
-        //        //hence setting the y components of the vectors to zero. 
-        //        transform.rotation *= Quaternion.FromToRotation(animatedDirection.normalized, ragdolledDirection.normalized);
-        //    }
+                //Try to match the rotations. Note that we can only rotate around Y axis, as the animated characted must stay upright,
+                //hence setting the y components of the vectors to zero. 
+                transform.rotation *= Quaternion.FromToRotation(animatedDirection.normalized, ragdolledDirection.normalized);
+            }
 
-        //    //compute the ragdoll blend amount in the range 0...1
-        //    float ragdollBlendAmount = 1.0f - (Time.time - ragdollingEndTime - mecanimToGetUpTransitionTime) / ragdollToMecanimBlendTime;
-        //    ragdollBlendAmount = Mathf.Clamp01(ragdollBlendAmount);
+            //compute the ragdoll blend amount in the range 0...1
+            float ragdollBlendAmount = 1.0f - (Time.time - ragdollingEndTime - mecanimToGetUpTransitionTime) / ragdollToMecanimBlendTime;
+            ragdollBlendAmount = Mathf.Clamp01(ragdollBlendAmount);
 
-        //    //In LateUpdate(), Mecanim has already updated the body pose according to the animations. 
-        //    //To enable smooth transitioning from a ragdoll to animation, we lerp the position of the hips 
-        //    //and slerp all the rotations towards the ones stored when ending the ragdolling
-        //    foreach (BodyPart b in bodyParts)
-        //    {
-        //        if (b.transform != transform)
-        //        { //this if is to prevent us from modifying the root of the character, only the actual body parts
-        //          //position is only interpolated for the hips
-        //            if (b.transform == m_poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips))
-        //                b.transform.position = UnityEngine.Vector3.Lerp(b.transform.position, b.storedPosition, ragdollBlendAmount);
-        //            //rotation is interpolated for all body parts
-        //            b.transform.rotation = Quaternion.Slerp(b.transform.rotation, b.storedRotation, ragdollBlendAmount);
-        //        }
-        //    }
+            //In LateUpdate(), Mecanim has already updated the body pose according to the animations. 
+            //To enable smooth transitioning from a ragdoll to animation, we lerp the position of the hips 
+            //and slerp all the rotations towards the ones stored when ending the ragdolling
+            foreach (BodyPart b in bodyParts)
+            {
+                if (b.transform != transform)
+                { //this if is to prevent us from modifying the root of the character, only the actual body parts
+                  //position is only interpolated for the hips
+                    if (b.transform == poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips))
+                        b.transform.position = UnityEngine.Vector3.Lerp(b.transform.position, b.storedPosition, ragdollBlendAmount);
+                    //rotation is interpolated for all body parts
+                    b.transform.rotation = Quaternion.Slerp(b.transform.rotation, b.storedRotation, ragdollBlendAmount);
+                }
+            }
 
-        //    //if the ragdoll blend amount has decreased to zero, move to animated state
-        //    if (ragdollBlendAmount == 0)
-        //    {
-        //        Vector3 poncherPos = m_poncherCharacter.transform.position;
-        //        poncherPos.z = 0;
-        //        m_poncherCharacter.transform.position = poncherPos;
-        //        state = RagdollState.animated;
-                
-        //        return;
-        //    }
+            //if the ragdoll blend amount has decreased to zero, move to animated state
+            if (ragdollBlendAmount == 0)
+            {
+                Vector3 poncherPos = poncherCharacter.transform.position;
+                poncherPos.z = 0;
+                poncherCharacter.transform.position = poncherPos;
+                state = RagdollState.animated;
 
-        //}
+                return;
+            }
+
+        }
 
     }
 
@@ -164,9 +164,12 @@ public class RagdollController : PoncherComponentBase
 
                     ragdollBones.Add(bone.gameObject);
 
-                    bone.gameObject.AddComponent<RagdollBone>().poncherCharacter = poncherCharacter;
+                    RagdollBone rgBone = bone.gameObject.AddComponent<RagdollBone>();
+                    rgBone.poncherCharacter = poncherCharacter;
                     bone.gameObject.layer = 11;
                     bone.useGravity = IsRagdoll;
+                    rgBone.boneRB = rgBone.gameObject.GetComponent<Rigidbody>();
+                    
 
                     BodyPart bodyPart = new BodyPart();
                     bodyPart.transform = bone.transform;
@@ -252,11 +255,9 @@ public class RagdollController : PoncherComponentBase
         {
             bone.GetComponent<Rigidbody>().isKinematic = !value;
             bone.GetComponent<Rigidbody>().useGravity = value;
-            //bone.GetComponent<Collider>().enabled = kinematic; 
+            bone.GetComponent<Collider>().enabled = value;
             //bone.GetComponent<Rigidbody>().velocity = velDir;
         }
-
-    
 
 
         //Deactivate character colldiers and rigidbodie

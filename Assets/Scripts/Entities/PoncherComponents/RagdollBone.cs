@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RagdollBone : PoncherComponentBase, IPoncheable
 {
-    Rigidbody boneRB;
+    public Rigidbody boneRB;
 
     private void Awake()
     {
@@ -13,8 +13,7 @@ public class RagdollBone : PoncherComponentBase, IPoncheable
     // Start is called before the first frame update
     void Start()
     {
-        
-        boneRB = GetComponent<Rigidbody>();
+        //boneRB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

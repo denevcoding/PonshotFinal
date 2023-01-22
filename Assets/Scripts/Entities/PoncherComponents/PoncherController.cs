@@ -64,8 +64,10 @@ public class PoncherController : PoncherComponentBase
 
         poncherActions = new PoncherInputActions();
         poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
-        poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().Jump;
-        poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
+        //poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().Jump;
+        //poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
+        poncherActions.PlayerGameplay.Ragdoll.started += SwitcBones;
+
         //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
     }
 
@@ -81,10 +83,23 @@ public class PoncherController : PoncherComponentBase
         
     }
 
+    public void SwitcBones(InputAction.CallbackContext context)
+    {
+        if (poncherCharacter.GetRagdollCtrl().IsRagdoll == true)
+        {
+            poncherCharacter.GetRagdollCtrl().SwitchBones(false);
+        }
+        else
+        {
+            poncherCharacter.GetRagdollCtrl().SwitchBones(true);
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
-        CalculateInputDirection();
+        //CalculateInputDirection();
       
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -173,15 +188,15 @@ public class PoncherController : PoncherComponentBase
 
     private void FixedUpdate()
     {
-        UpdateUprightForce();
+        //UpdateUprightForce();
 
-        if (!CheckBasePreconditions())
-            return;
+        //if (!CheckBasePreconditions())
+        //    return;
 
-        poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
+        //poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
 
-        if (inputDirection.magnitude != 0)
-            poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true); 
+        //if (inputDirection.magnitude != 0)
+        //    poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true); 
     }
 
    

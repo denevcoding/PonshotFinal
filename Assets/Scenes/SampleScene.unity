@@ -973,7 +973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &374845356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2967,6 +2967,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126041966}
   m_CullTransparentMesh: 1
+--- !u!1 &1196356088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8158079489810016374, guid: 4f0a0adb9db7b044ca8331159ada8d63,
+    type: 3}
+  m_PrefabInstance: {fileID: 9076507809707310703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1196356093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196356088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 68816254cfbe333469e27f503b370b72,
+    type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1196356094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196356088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0671dba158ee640aaf6e7ae287fff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  RideHeight: 0
+  RideSpringStrenght: 0
+  RideSpringDamper: 0
+  uprightForce: 0
+  uprightSpringDamper: 0
+  isStabilizing: 1
+  MaxSpeed: 0
+  Acceeleration: 0
+  AcelerationFactorFromDot:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MaxAccelForce: 0
+  MaxAcelerationForceFactorFromDot:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ForceScale: {x: 0, y: 0, z: 0}
+  GravityScaleDrop: 0
+  m_unitGoal: {x: 0, y: 0, z: 0}
+  m_goalVel: {x: 0, y: 0, z: 0}
+  inputDirection: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  flipForce: 0
 --- !u!1 &1214768061
 GameObject:
   m_ObjectHideFlags: 0
@@ -5640,7 +5718,7 @@ PrefabInstance:
     - target: {fileID: 9140550906079544066, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.42
+      value: -4.96
       objectReference: {fileID: 0}
     - target: {fileID: 9140550906079544066, guid: d009da5d9ed474444bd7deae582d48fc,
         type: 3}
@@ -5696,6 +5774,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3214636006612084918, guid: 4f0a0adb9db7b044ca8331159ada8d63,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1490642f26a8669459d6ed17e363e7c2, type: 2}
     - target: {fileID: 8158079489810016374, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
       propertyPath: m_Name
@@ -5834,7 +5917,7 @@ PrefabInstance:
     - target: {fileID: 9076507809495912975, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
       propertyPath: IsRagdoll
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9076507809500649098, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
