@@ -64,25 +64,25 @@ ModelImporter:
       - path: 
         weight: 1
       - path: GameSkeletonRoot
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L/GameSkeletonKneePart1_L
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L/GameSkeletonKneePart1_L/GameSkeletonAnkle_L
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_L/GameSkeletonHipPart1_L/GameSkeletonKnee_L/GameSkeletonKneePart1_L/GameSkeletonAnkle_L/GameSkeletonToes_L
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R
-        weight: 1
+        weight: 0
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R/GameSkeletonKnee_R
         weight: 1
       - path: GameSkeletonRoot/GameSkeletonRoot_M/GameSkeletonHip_R/GameSkeletonHipPart1_R/GameSkeletonKnee_R/GameSkeletonKneePart1_R
