@@ -158,11 +158,11 @@ public class PoncherCharacter : MonoBehaviour
         poncherCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
 
-        jumpComponent = GetComponent<JumpComponent>();
-        moveComponent = GetComponent<MoveComponent>();
-        poncherController = GetComponent<PoncherController>();
-        rollComponent = GetComponent<RollComponent>();
-        animManager = GetComponent<PoncherAnimManager>();
+        //jumpComponent = GetComponent<JumpComponent>();
+        //moveComponent = GetComponent<MoveComponent>();
+        //poncherController = GetComponent<PoncherController>();
+        //rollComponent = GetComponent<RollComponent>();
+        //animManager = GetComponent<PoncherAnimManager>();
 
         ragdollController = GetComponent<RagdollController>();
 
@@ -421,6 +421,10 @@ public class PoncherCharacter : MonoBehaviour
     }
 
     //Unity
+    public CapsuleCollider GetCollider()
+    {
+        return poncherCollider;
+    }
     public Rigidbody GetRigidbody()
     {
         return poncheRigidbodie;

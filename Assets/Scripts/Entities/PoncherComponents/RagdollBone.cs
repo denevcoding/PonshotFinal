@@ -37,10 +37,10 @@ public class RagdollBone : PoncherComponentBase, IPoncheable
 
     public void FixedUpdate()
     {
-        //if (m_poncherCharacter.GetRagdollCtrl().GetIsRagdolled())
+        //if (poncherCharacter.GetRagdollCtrl().GetIsRagdolled())
         //{
-        //    boneRB.AddForce(Physics.gravity * boneRB.mass);
+        //    boneRB.AddForce(Physics.gravity * 5 * boneRB.mass);
         //}
-        
+
     }
 }

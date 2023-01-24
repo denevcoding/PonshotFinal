@@ -12,6 +12,7 @@ public class RagdollController : PoncherComponentBase
     public PhysicMaterial BouncePxMat;
 
     public bool IsRagdoll;
+    public bool enableCollision;
 
       
 
@@ -55,7 +56,7 @@ public class RagdollController : PoncherComponentBase
     {
         ragdollBones = new List<GameObject>();
         joints = new List<CharacterJoint>();
-        
+
         FindBones();
         FindJoints();
     }
@@ -63,12 +64,12 @@ public class RagdollController : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
-        //IsRagdoll = false;
-       
-        SetWeight();
-        SetPhysixMaterial(BouncePxMat);
-        SetKinematicToPoncher(IsRagdoll);
-        //SwitchBones(false);
+        InitBones();
+
+        //SetWeight();
+        //SetPhysixMaterial(BouncePxMat);
+
+        SwitchBones(IsRagdoll);
     }
 
     // Update is called once per frame
@@ -163,14 +164,8 @@ public class RagdollController : PoncherComponentBase
                     bone.gameObject.tag = "RagdollBone";
 
                     ragdollBones.Add(bone.gameObject);
-
-                    RagdollBone rgBone = bone.gameObject.AddComponent<RagdollBone>();
-                    rgBone.poncherCharacter = poncherCharacter;
-                    bone.gameObject.layer = 11;
-                    bone.useGravity = IsRagdoll;
-                    rgBone.boneRB = rgBone.gameObject.GetComponent<Rigidbody>();
                     
-
+                    //fill body parts for animation porpuses
                     BodyPart bodyPart = new BodyPart();
                     bodyPart.transform = bone.transform;
                     bodyParts.Add(bodyPart);
@@ -181,6 +176,7 @@ public class RagdollController : PoncherComponentBase
 
         }
     }
+
     void FindJoints()
     {
         CharacterJoint[] jointsBackup = RootParent.GetComponentsInChildren<CharacterJoint>();
@@ -189,12 +185,24 @@ public class RagdollController : PoncherComponentBase
             foreach (CharacterJoint chJoint in jointsBackup)
             {
                 if (chJoint != null)
+                {
                     joints.Add(chJoint);
-
-
-                chJoint.enableCollision = true;
+                    chJoint.enableProjection = true;
+                    //chJoint.enableCollision = false;
+                }
+                
         
             }
+        }
+    }
+    void InitBones()
+    {
+        foreach (GameObject bone in ragdollBones)
+        {
+            RagdollBone rgBone = bone.gameObject.AddComponent<RagdollBone>();
+            rgBone.poncherCharacter = poncherCharacter;
+            bone.gameObject.layer = 11;
+            rgBone.boneRB = rgBone.gameObject.GetComponent<Rigidbody>();
         }
     }
 
@@ -204,14 +212,15 @@ public class RagdollController : PoncherComponentBase
 
         if (IsRagdoll)
         {
-            SetKinematicToPoncher(IsRagdoll);
+            ActivateRagdoll();
             state = RagdollState.ragdolled;
+
             Rigidbody hipBodie = poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
             hipBodie.constraints = RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
-            SetKinematicToPoncher(IsRagdoll);
+            DeactivateRagdoll();
             ragdollingEndTime = Time.time; //store the state change time
             state = RagdollState.blendToAnim;
 
@@ -240,33 +249,59 @@ public class RagdollController : PoncherComponentBase
     }
 
 
-    public void SetKinematicToPoncher(bool value)
+    public void ActivateRagdoll()
     {
         //Handles the phisic oproperties for the poncehr root character, not for the bones
-        poncherCharacter.GetAnimator().enabled = !value;
+        poncherCharacter.GetAnimator().enabled = false;  //Deactivate character colldiers and rigidbodie
+
+        poncherCharacter.GetRigidbody().isKinematic = true;
+        poncherCharacter.GetComponent<Collider>().enabled = false;
 
         //poncherCharacter.GetComponent<MoveComponent>().enabled = !value;
-
         //Vector3 velDir = poncherCharacter.GetComponent<Rigidbody>().velocity;
         //velDir *= 0.5f;
 
-
         foreach (GameObject bone in ragdollBones)
         {
-            bone.GetComponent<Rigidbody>().isKinematic = !value;
-            bone.GetComponent<Rigidbody>().useGravity = value;
-            bone.GetComponent<Collider>().enabled = value;
+            bone.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            bone.GetComponent<Rigidbody>().isKinematic = false;
+            bone.GetComponent<Collider>().enabled = true;
             //bone.GetComponent<Rigidbody>().velocity = velDir;
         }
 
+        int randomBone = Random.Range(0, ragdollBones.Count);
+        ragdollBones[randomBone].GetComponent<Rigidbody>().AddForce(Vector3.up * 800f, ForceMode.Impulse);
 
-        //Deactivate character colldiers and rigidbodie
-        //poncherCharacter.GetRigidbody().isKinematic = value;
-        //poncherCharacter.GetRigidbody().useGravity = !value;
-        //poncherCharacter.GetComponent<Collider>().enabled = !value;
+        ragdollBones[randomBone].GetComponent<Rigidbody>().AddForce(Vector3.right * 150f, ForceMode.Impulse);
+
 
 
     }
+
+    public void DeactivateRagdoll()
+    {
+
+
+        //Activate player components for player controller
+        poncherCharacter.GetRigidbody().isKinematic = false;
+        poncherCharacter.GetComponent<Collider>().enabled = true;
+
+        //poncherCharacter.GetComponent<MoveComponent>().enabled = !value;
+        //Vector3 velDir = poncherCharacter.GetComponent<Rigidbody>().velocity;
+        //velDir *= 0.5f;
+
+        foreach (GameObject bone in ragdollBones)
+        {
+            bone.GetComponent<Rigidbody>().isKinematic = true;
+            bone.GetComponent<Collider>().enabled= false;
+            //bone.GetComponent<Rigidbody>().velocity = velDir;
+        }
+
+        //Handles the phisic oproperties for the poncehr root character, not for the bones
+        poncherCharacter.GetAnimator().enabled = true;
+    }
+
+  
 
     
     //Function fir debug  mass
@@ -277,18 +312,18 @@ public class RagdollController : PoncherComponentBase
         {
             Rigidbody bodie = bone.GetComponent<Rigidbody>();
             //bodie.mass *= 4f;
+            bodie.interpolation = RigidbodyInterpolation.None;
             bodie.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
-            bodie.angularDrag = 0f;
-            bodie.angularDrag = 0f;
+            //bodie.angularDrag = 0f;
+            //bodie.angularDrag = 0f;
             //Debug.Log(bodie.gameObject.name + " " + bodie.mass);           
         }
 
         foreach (CharacterJoint joint in joints)
         {
-            joint.enableProjection = true;
-            joint.enableCollision = true;
-
+            //joint.enableProjection = false;
+            //joint.enableCollision = false;
         }
     }
     public void SetPhysixMaterial(PhysicMaterial pxMat)
