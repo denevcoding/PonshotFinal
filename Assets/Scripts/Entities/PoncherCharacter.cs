@@ -80,14 +80,14 @@ public class PoncherCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //isGrounded = IsGrounded();
-        //isWalled = checkIsWalled();
-        //HandleCoyoteTime();
+        isGrounded = IsGrounded();
+        isWalled = checkIsWalled();
+        HandleCoyoteTime();
 
-        //CorrectCorners();
+        CorrectCorners();
 
-        //LedgeDetection();
-        
+        LedgeDetection();
+
 
         //animator.SetBool("Grounded", isGrounded);
         //animator.SetBool("Walled", isWalled);
@@ -159,8 +159,8 @@ public class PoncherCharacter : MonoBehaviour
         animator = GetComponent<Animator>();
 
         //jumpComponent = GetComponent<JumpComponent>();
-        //moveComponent = GetComponent<MoveComponent>();
-        //poncherController = GetComponent<PoncherController>();
+        moveComponent = GetComponent<MoveComponent>();
+        poncherController = GetComponent<PoncherController>();
         //rollComponent = GetComponent<RollComponent>();
         //animManager = GetComponent<PoncherAnimManager>();
 
@@ -210,12 +210,12 @@ public class PoncherCharacter : MonoBehaviour
 
             Debug.DrawRay(rayPos, Vector3.down * (dist), Color.cyan, 0f);//Center 
 
-            if (Physics.Raycast(rayPos, Vector3.down, out hitCenter, dist + rayLenght, groundedLayerMask))
-            {
-                poncherController.FloatingCapsule(hitCenter);
-                return true;
+            //if (Physics.Raycast(rayPos, Vector3.down, out hitCenter, dist + rayLenght, groundedLayerMask))
+            //{
+            //    poncherController.FloatingCapsule(hitCenter);
+            //    return true;
 
-            }
+            //}
         }
         return false;
     }

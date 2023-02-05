@@ -99,7 +99,7 @@ public class PoncherController : PoncherComponentBase
     // Update is called once per frame
     void Update()
     {
-        //CalculateInputDirection();
+        CalculateInputDirection();
       
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -126,9 +126,9 @@ public class PoncherController : PoncherComponentBase
         float v = inputVector.y;
 
         ////adjust movement values if we're in the air or on the ground
-        //curAccel = (m_poncherCharacter.isGrounded) ? accel : airAccel;
-        //curDecel = (m_poncherCharacter.isGrounded) ? decel : airDecel;
-        //curRotateSpeed = (m_poncherCharacter.isGrounded) ? rotateSpeed : airRotateSpeed;
+        //curAccel = (poncherCharacter.isGrounded) ? accel : airAccel;
+        //curDecel = (poncherCharacter.isGrounded) ? decel : airDecel;
+        //curRotateSpeed = (poncherCharacter.isGrounded) ? rotateSpeed : airRotateSpeed;
 
 
 
@@ -154,34 +154,34 @@ public class PoncherController : PoncherComponentBase
 
 
         //Flipping capsule
-        if (Input.GetMouseButton(0))
-        {
-            if (!poncherCharacter.isGrounded)
-            {
-                //isStabilizing = false;
-                uprightForce = 0;
-                uprightSpringDamper = 0;
+        //if (Input.GetMouseButton(0))
+        //{
+        //    if (!poncherCharacter.isGrounded)
+        //    {
+        //        //isStabilizing = false;
+        //        uprightForce = 0;
+        //        uprightSpringDamper = 0;
 
-                Vector3 direction = inputDirection;
-                //direction.x = 0;
-                //direction.y = 0;
-                //direction.z = 0;
-                float inertia = poncherCharacter.GetRigidbody().inertiaTensor.z;
-                float torque = inertia * poncherCharacter.GetRigidbody().angularVelocity.magnitude;
-                poncherCharacter.GetRigidbody().AddRelativeTorque(Vector3.right * flipForce * inertia, ForceMode.VelocityChange);
-            }
-        }
-        else
-        {
-            if (! poncherCharacter.isGrounded)
-            {
-                uprightForce = 2;
-                uprightForce = 2;
-                uprightSpringDamper = 1.5f;
-                //isStabilizing = true;
-            }
+        //        Vector3 direction = inputDirection;
+        //        //direction.x = 0;
+        //        //direction.y = 0;
+        //        //direction.z = 0;
+        //        float inertia = poncherCharacter.GetRigidbody().inertiaTensor.z;
+        //        float torque = inertia * poncherCharacter.GetRigidbody().angularVelocity.magnitude;
+        //        poncherCharacter.GetRigidbody().AddRelativeTorque(Vector3.right * flipForce * inertia, ForceMode.VelocityChange);
+        //    }
+        //}
+        //else
+        //{
+        //    if (! poncherCharacter.isGrounded)
+        //    {
+        //        uprightForce = 2;
+        //        uprightForce = 2;
+        //        uprightSpringDamper = 1.5f;
+        //        //isStabilizing = true;
+        //    }
 
-        }
+        //}
     }
 
 
@@ -190,13 +190,13 @@ public class PoncherController : PoncherComponentBase
     {
         //UpdateUprightForce();
 
-        //if (!CheckBasePreconditions())
-        //    return;
+        if (!CheckBasePreconditions())
+            return;
 
-        //poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
+        poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
 
-        //if (inputDirection.magnitude != 0)
-        //    poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true); 
+        if (inputDirection.magnitude != 0)
+            poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true);
     }
 
    
