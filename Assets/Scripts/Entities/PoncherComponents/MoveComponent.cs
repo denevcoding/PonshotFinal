@@ -17,7 +17,7 @@ public class MoveComponent : PoncherComponentBase
     [Range(0f, 5f)]
     public float rotateSpeed, airRotateSpeed; //how fast to rotate on the ground, how fast to rotate in the air
 
-    Vector3 movingObjSpeed = Vector3.zero;
+    public Vector3 movingObjSpeed = Vector3.zero;
 
     //Movement Vectors
     [HideInInspector] public Vector3 m_currentSpeed;

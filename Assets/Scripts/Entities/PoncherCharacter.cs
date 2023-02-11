@@ -41,7 +41,12 @@ public class PoncherCharacter : MonoBehaviour
     [Header("Grounded Settings")]
     public bool isGrounded;
     public float rayLenght;
-    public int groundedLayerMask;
+    [Space(5)]
+    public LayerMask groundedLayerMask;
+    public float slope; //Currnet slope from the ground I am 
+    public Vector3 slopeNormal;
+    public float slopeLimit = 40; //maximum navigaton slope angle
+    public float slideAmount = 35; //Force to down on slope not navigable
     [Space(5)]
     public float coyoteTime;
     public float coyoteTimeCounter;
@@ -89,51 +94,51 @@ public class PoncherCharacter : MonoBehaviour
         LedgeDetection();
 
 
-        //animator.SetBool("Grounded", isGrounded);
-        //animator.SetBool("Walled", isWalled);
-        //animator.SetFloat("DistanceToTarget", moveComponent.m_DistanceToTarget);    
-        //animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
+        animator.SetBool("Grounded", isGrounded);
+        animator.SetBool("Walled", isWalled);
+        animator.SetFloat("DistanceToTarget", moveComponent.m_DistanceToTarget);
+        animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
 
         //if (!isGrounded)
-        //    animator.SetFloat("VelocityY", Mathf.Abs(poncheRigidbodie.velocity.y));
+        //    animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y));
+        //else        
+            animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
+
+        if (!isGrounded)
+            animator.SetFloat("LandingForce", Mathf.Abs(poncheRigidbodie.velocity.y));
 
 
 
+        if (isGrounded)
+        {
+            if (poncheRigidbodie.velocity.y < -1)
+            {
+                poncherState = PoncherState.Landing;
+            }
+
+            if (poncherState == PoncherState.Jumping)
+                return;
+
+            if (moveComponent.m_DistanceToTarget < 0.05f)
+            {
+                SetState(PoncherState.Idle);
+            }
+
+            if (moveComponent.m_DistanceToTarget > 0.05f)
+            {
+                SetState(PoncherState.Running);
+            }
 
 
 
-
-
-        //if (isGrounded)
-        //{
-        //    if (poncheRigidbodie.velocity.y < -1)
-        //    {
-        //        poncherState = PoncherState.Landing;
-        //    }
-
-        //    if (poncherState == PoncherState.Jumping)
-        //        return;
-
-        //    if (poncherController.m_DistanceToTarget < 0.05f)
-        //    {
-        //        SetState(PoncherState.Idle);
-        //    }
-
-        //    if (poncherController.m_DistanceToTarget > 0.05f)
-        //    {
-        //        SetState(PoncherState.Running);
-        //    }
-
-
-
-        //}
-        //else
-        //{
-        //    if (poncheRigidbodie.velocity.y < 0)
-        //    {                
-        //        poncherState = PoncherState.Falling;
-        //    }
-        //}
+        }
+        else
+        {
+            //if (poncheRigidbodie.velocity.y < 0)
+            //{
+            //    poncherState = PoncherState.Falling;
+            //}
+        }
 
 
     }
@@ -158,11 +163,11 @@ public class PoncherCharacter : MonoBehaviour
         poncherCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
 
-        //jumpComponent = GetComponent<JumpComponent>();
+        jumpComponent = GetComponent<JumpComponent>();
         moveComponent = GetComponent<MoveComponent>();
         poncherController = GetComponent<PoncherController>();
         //rollComponent = GetComponent<RollComponent>();
-        //animManager = GetComponent<PoncherAnimManager>();
+        animManager = GetComponent<PoncherAnimManager>();
 
         ragdollController = GetComponent<RagdollController>();
 
@@ -196,6 +201,7 @@ public class PoncherCharacter : MonoBehaviour
     //Ground Cheking
     public bool IsGrounded()
     {
+        //groundedLayerMask = LayerMask.NameToLayer("Obstacle");
         //get distance to ground, from centre of collider (where floorcheckers should be)
         float dist = GetComponent<CapsuleCollider>().bounds.extents.y;
         RaycastHit hitCenter;
@@ -208,15 +214,29 @@ public class PoncherCharacter : MonoBehaviour
             point *= i;
             Vector2 rayPos = new Vector2((transform.position.x + point), transform.position.y);          
 
-            Debug.DrawRay(rayPos, Vector3.down * (dist), Color.cyan, 0f);//Center 
+            Debug.DrawRay(rayPos, Vector3.down * rayLenght, Color.cyan, 0f);//Center          
+            bool hit = Physics.Raycast(rayPos, Vector3.down, out hitCenter, rayLenght , groundedLayerMask.value);
 
-            //if (Physics.Raycast(rayPos, Vector3.down, out hitCenter, dist + rayLenght, groundedLayerMask))
-            //{
-            //    poncherController.FloatingCapsule(hitCenter);
-            //    return true;
-
-            //}
+            if (hit)
+            {
+                if (!hitCenter.transform.GetComponent<Collider>().isTrigger)
+                {
+                    //slope control
+                    slope = Vector3.Angle(hitCenter.normal, Vector3.up);
+                    slopeNormal = hitCenter.normal;
+                    Debug.Log("Slope is: " + slope);
+                    if (slope > slopeLimit /*&& hit.transform.tag != "Pushable"*/)
+                    {
+                        float slideForce = slope;
+                        Vector3 slide = new Vector3(0f, -slideForce, 0f);
+                        GetRigidbody().AddForce(slide, ForceMode.Force);
+                    }
+                    return true;
+                }
+            }
+           
         }
+        moveComponent.movingObjSpeed = Vector3.zero;
         return false;
     }
 
@@ -373,9 +393,9 @@ public class PoncherCharacter : MonoBehaviour
         {
             //On the ground
             coyoteTimeCounter = coyoteTime;
-            GetComponent<PoncherController>().uprightForce = 50;
-            GetComponent<PoncherController>().uprightSpringDamper = 10;
-            GetComponent<PoncherController>().isStabilizing = true;
+            //GetComponent<PoncherController>().uprightForce = 50;
+            //GetComponent<PoncherController>().uprightSpringDamper = 10;
+            //GetComponent<PoncherController>().isStabilizing = true;
         }
         else
         {
@@ -418,6 +438,11 @@ public class PoncherCharacter : MonoBehaviour
     public RagdollController GetRagdollCtrl()
     {
         return ragdollController;
+    }
+
+    public PoncherController GetController()
+    {
+        return poncherController;
     }
 
     //Unity

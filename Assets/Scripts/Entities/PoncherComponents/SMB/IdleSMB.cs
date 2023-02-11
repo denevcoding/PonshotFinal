@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class IdleSMB : BaseSMB
 {
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-     
-
+    {     
         poncherCharacter.SetState(PoncherState.Idle);
     }
 

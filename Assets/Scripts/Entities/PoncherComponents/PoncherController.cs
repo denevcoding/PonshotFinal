@@ -34,7 +34,7 @@ public class PoncherController : PoncherComponentBase
     [Header("Inputs and Directions")]
     public Vector3 inputDirection;
     public Vector3 moveDirection;
-    PoncherInputActions poncherActions;
+    public PoncherInputActions poncherActions;
     [Header("Input Properties")]
     PlayerInput poncherInput;
     public float flipForce;
@@ -64,7 +64,9 @@ public class PoncherController : PoncherComponentBase
 
         poncherActions = new PoncherInputActions();
         poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
-        //poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().Jump;
+        poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().Jump;
+        poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().Jump;
+
         //poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
         poncherActions.PlayerGameplay.Ragdoll.started += SwitcBones;
 
@@ -73,7 +75,7 @@ public class PoncherController : PoncherComponentBase
 
     private void PeayerInputOnActionTriggered(InputAction.CallbackContext context)
     {
-
+        
         //Debug.Log(context);
     }
 
