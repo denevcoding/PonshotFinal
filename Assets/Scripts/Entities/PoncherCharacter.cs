@@ -66,6 +66,7 @@ public class PoncherCharacter : MonoBehaviour
     public bool canRotate;
 
     [Header("Corner Correction")]
+    public bool upObstacle;
     public float rayCornerLenght;
     public float rayOffset;
     public float fixForce;
@@ -258,32 +259,40 @@ public class PoncherCharacter : MonoBehaviour
           
         if (GetRigidbody().velocity.y > 0)
         {
-
             Vector2 currVelocity = Vector2.zero;
             
             //Right
             if (right && !left)
             {
-
+               
                 //currVelocity.x = 0f;
                 //currVelocity.y = GetRigidbody().velocity.y;
                 //GetRigidbody().velocity = currVelocity;
                 //rayRight
                 transform.position += new Vector3(-fixForce, 0);
-                //GetRigidbody().AddForce(-Vector3.right * fixForce * Time.deltaTime, ForceMode.Acceleration);
+                //GetRigidbody().AddForce(-Vector3.right * fixForce * Time.deltaTime, ForceMode.Force);
                 //GetRigidbody().MovePosition(transform.position += new Vector3(-fixForce, 0f));
 
             }//Left 
             else if (left && !right)
-            {
+            {                
                 //currVelocity.x = 0f;
                 //currVelocity.y = GetRigidbody().velocity.y;
                 //GetRigidbody().velocity = currVelocity;
                 transform.position += new Vector3(fixForce, 0);
-                //GetRigidbody().AddForce(Vector3.right * fixForce * Time.deltaTime, ForceMode.Acceleration);
+                //GetRigidbody().AddForce(Vector3.right * fixForce * Time.deltaTime, ForceMode.Force);
                 //GetRigidbody().MovePosition(transform.position += new Vector3(fixForce, 0f));
             }
 
+        }
+
+        if (left && right)
+        {
+            upObstacle = true;
+        }
+        else
+        {
+            upObstacle = false;
         }
 
     }

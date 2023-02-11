@@ -32,15 +32,22 @@ public class JumpComponent : PoncherComponentBase
         //if (poncherCharacter.GetState() != PoncherState.Jumping)
         //    return;
 
+  
+
         if (poncherCharacter.isGrounded)
         {
             timeMaxHigh = 0;
+            canJump = true;
         }
+
+        if (!canJump)
+            return;
 
         jumpPressed = poncherCharacter.GetController().poncherActions.PlayerGameplay.Jump.ReadValue<float>() > 0;
 
         Vector3 velocity = poncherCharacter.GetRigidbody().velocity;
-        if (jumpPressed && timeMaxHigh < maxJumpHighTime)
+
+        if (jumpPressed && timeMaxHigh < maxJumpHighTime && !poncherCharacter.upObstacle)   
         {
             timeMaxHigh += Time.deltaTime;      
             velocity = new Vector3(velocity.x, jumpForce.y, velocity.z);
@@ -48,6 +55,10 @@ public class JumpComponent : PoncherComponentBase
 
             //poncherCharacter.GetRigidbody().AddRelativeForce(jumpForce, ForceMode.VelocityChange);
             Debug.Log("Jumping");
+        }
+        else
+        {
+            canJump = false;
         }
 
         //if (!jumpPressed || velocity.y < 0)
