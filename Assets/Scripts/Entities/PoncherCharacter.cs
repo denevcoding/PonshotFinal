@@ -112,11 +112,11 @@ public class PoncherCharacter : MonoBehaviour
 
             if (direction < 0)
             {
-                animator.SetFloat("XVelocity", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
+                animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
             }
             else
             {
-                animator.SetFloat("XVelocity", Math.Abs(GetComponent<Rigidbody>().velocity.x));
+                animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x));
             }
             
         }

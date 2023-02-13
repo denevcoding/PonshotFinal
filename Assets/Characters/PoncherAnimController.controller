@@ -596,9 +596,27 @@ BlendTree:
   m_Name: mvoe Locmotion
   m_Childs:
   - serializedVersion: 2
+    m_Motion: {fileID: 2804389836546021861, guid: 659da2c831215744fa0cb6ed5adb705d,
+      type: 3}
+    m_Threshold: -7
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: DistanceToTarget
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -950286362127446235, guid: 3b54741d85293a04f92752f5f9440aec,
+      type: 3}
+    m_Threshold: -0.05
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: DistanceToTarget
+    m_Mirror: 0
+  - serializedVersion: 2
     m_Motion: {fileID: 2667949614841947897, guid: 59a98349cfaa77b419f7fde74efdd7f3,
       type: 3}
-    m_Threshold: 0.5
+    m_Threshold: 0.05
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -615,7 +633,7 @@ BlendTree:
     m_Mirror: 0
   m_BlendParameter: VelocityX
   m_BlendParameterY: VelocityX
-  m_MinThreshold: 0.5
+  m_MinThreshold: -7
   m_MaxThreshold: 7
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
