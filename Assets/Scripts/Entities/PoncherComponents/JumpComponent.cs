@@ -52,12 +52,14 @@ public class JumpComponent : PoncherComponentBase
             timeMaxHigh += Time.deltaTime;      
             velocity = new Vector3(velocity.x, jumpForce.y, velocity.z);
             poncherCharacter.GetRigidbody().velocity = velocity;
-
+            poncherCharacter.GetAnimator().SetBool("Jumping", true);
+           
             //poncherCharacter.GetRigidbody().AddRelativeForce(jumpForce, ForceMode.VelocityChange);
             Debug.Log("Jumping");
         }
         else
         {
+            poncherCharacter.GetAnimator().SetBool("Jumping", false);
             canJump = false;
         }
 

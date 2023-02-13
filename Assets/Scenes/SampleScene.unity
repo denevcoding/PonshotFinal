@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
-  jumpForce: {x: 0, y: 12, z: 0}
+  jumpForce: {x: 0, y: 15, z: 0}
   canJump: 0
   jumpPressed: 0
   maxJumpHighTime: 0.23
@@ -1203,7 +1203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144968152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: -1.3102121, z: -1.91}
+  m_LocalPosition: {x: 5.05, y: -1.3102121, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1642,9 +1642,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 87.7
-  field of view: 12.5
+  field of view: 19
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 6.3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1668,7 +1668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 2.3, z: -42.63}
+  m_LocalPosition: {x: -1.5, y: 2.3, z: -48.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1965,8 +1965,10 @@ MonoBehaviour:
   wallAngleTreshold: 0
   wallNormal: {x: 0, y: 0, z: 0}
   isSidescroller: 1
+  isRotBlocked: 0
   canMove: 0
   canRotate: 0
+  rotToVel: 0
   upObstacle: 0
   rayCornerLenght: 0
   rayOffset: 0
@@ -5935,7 +5937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366344573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43, y: -1.3102121, z: 0.92}
+  m_LocalPosition: {x: 5.34, y: -1.3102121, z: 0.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8492,7 +8494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144643735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.314343, y: -1.3102121, z: -1.91}
+  m_LocalPosition: {x: -14.95, y: -1.3102121, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9132,7 +9134,7 @@ PrefabInstance:
     - target: {fileID: 8826073122516431564, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.8
+      value: -11.28
       objectReference: {fileID: 0}
     - target: {fileID: 8826073122516431564, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
@@ -9227,7 +9229,7 @@ PrefabInstance:
     - target: {fileID: 9076507809495912974, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
       propertyPath: rayCornerLenght
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9076507809495912974, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}

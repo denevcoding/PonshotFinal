@@ -197,8 +197,20 @@ public class PoncherController : PoncherComponentBase
 
         poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
 
-        if (inputDirection.magnitude != 0)
-            poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true);
+        if (poncherCharacter.rotToVel == false)
+        {
+            if (poncherCharacter.GetMoveComponent().GetCurRotSpeed() != 0 && inputDirection.magnitude != 0)
+            {
+                poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true);
+            }
+        }
+        else
+        {
+            poncherCharacter.GetMoveComponent().RotateVelocity(poncherCharacter.GetMoveComponent().GetCurRotSpeed(), true);
+        }
+
+       
+            
     }
 
    
@@ -298,6 +310,13 @@ public class PoncherController : PoncherComponentBase
     #endregion
 
 
+
+    #region Getters Setters
+    public Vector3 GetInputDirection()
+    {
+        return inputDirection;
+    }
+    #endregion
 
 
 }

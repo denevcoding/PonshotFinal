@@ -168,4 +168,15 @@ public class MoveComponent : PoncherComponentBase
         //accel = m_poncherCharacter.m_poncherInfo.accel;
     }
 
+
+
+
+
+    #region Getter Setters
+    public float GetCurRotSpeed()
+    {
+        return curRotateSpeed;
+    }
+    #endregion
+
 }

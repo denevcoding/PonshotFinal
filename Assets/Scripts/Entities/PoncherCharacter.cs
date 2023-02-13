@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum PoncherState
 {
@@ -62,8 +63,10 @@ public class PoncherCharacter : MonoBehaviour
     [Header("Movement - Locomotion")]
     public bool isSidescroller = true;
     [Space(10)]
+    public bool isRotBlocked;
     public bool canMove;
     public bool canRotate;
+    public bool rotToVel;
 
     [Header("Corner Correction")]
     public bool upObstacle;
@@ -89,16 +92,36 @@ public class PoncherCharacter : MonoBehaviour
         isGrounded = IsGrounded();
         isWalled = checkIsWalled();
         HandleCoyoteTime();
-
         CorrectCorners();
-
         LedgeDetection();
 
 
         animator.SetBool("Grounded", isGrounded);
         animator.SetBool("Walled", isWalled);
         animator.SetFloat("DistanceToTarget", moveComponent.m_DistanceToTarget);
-        animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
+
+
+        //Handle blocked rotation, for flips and running backwards
+        if (!isRotBlocked)
+        {
+            animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
+        }
+        else
+        {
+            float direction = Vector3.Dot(poncherController.GetInputDirection(), transform.forward);
+
+            if (direction < 0)
+            {
+                animator.SetFloat("XVelocity", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
+            }
+            else
+            {
+                animator.SetFloat("XVelocity", Math.Abs(GetComponent<Rigidbody>().velocity.x));
+            }
+            
+        }
+
+       
 
         //if (!isGrounded)
         //    animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y));
@@ -189,8 +212,11 @@ public class PoncherCharacter : MonoBehaviour
         poncherState = PoncherState.Idle;
         groundedLayerMask = LayerMask.GetMask("Obstacle");
 
+        //Init Movement Properties
         canMove = true;
         canRotate = true;
+        rotToVel = false;
+        isRotBlocked = false;
     }
     #endregion
 
