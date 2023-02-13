@@ -62,6 +62,15 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""L1"",
+                    ""type"": ""Button"",
+                    ""id"": ""4bd02301-ab0f-496c-8398-8e96d3443fc6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,28 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Ragdoll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7766a416-e58d-429d-95a6-fd7a888cba86"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""L1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95631644-b593-4bcd-859c-f4b89740f895"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""L1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -275,6 +306,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         m_PlayerGameplay_Jump = m_PlayerGameplay.FindAction("Jump", throwIfNotFound: true);
         m_PlayerGameplay_Roll = m_PlayerGameplay.FindAction("Roll", throwIfNotFound: true);
         m_PlayerGameplay_Ragdoll = m_PlayerGameplay.FindAction("Ragdoll", throwIfNotFound: true);
+        m_PlayerGameplay_L1 = m_PlayerGameplay.FindAction("L1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,6 +370,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerGameplay_Jump;
     private readonly InputAction m_PlayerGameplay_Roll;
     private readonly InputAction m_PlayerGameplay_Ragdoll;
+    private readonly InputAction m_PlayerGameplay_L1;
     public struct PlayerGameplayActions
     {
         private @PoncherInputActions m_Wrapper;
@@ -346,6 +379,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerGameplay_Jump;
         public InputAction @Roll => m_Wrapper.m_PlayerGameplay_Roll;
         public InputAction @Ragdoll => m_Wrapper.m_PlayerGameplay_Ragdoll;
+        public InputAction @L1 => m_Wrapper.m_PlayerGameplay_L1;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -367,6 +401,9 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 @Ragdoll.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRagdoll;
                 @Ragdoll.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRagdoll;
                 @Ragdoll.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRagdoll;
+                @L1.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnL1;
+                @L1.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnL1;
+                @L1.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnL1;
             }
             m_Wrapper.m_PlayerGameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -383,6 +420,9 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 @Ragdoll.started += instance.OnRagdoll;
                 @Ragdoll.performed += instance.OnRagdoll;
                 @Ragdoll.canceled += instance.OnRagdoll;
+                @L1.started += instance.OnL1;
+                @L1.performed += instance.OnL1;
+                @L1.canceled += instance.OnL1;
             }
         }
     }
@@ -411,5 +451,6 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnRagdoll(InputAction.CallbackContext context);
+        void OnL1(InputAction.CallbackContext context);
     }
 }

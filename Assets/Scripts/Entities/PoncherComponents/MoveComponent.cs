@@ -123,9 +123,22 @@ public class MoveComponent : PoncherComponentBase
         //Un número mayor o menor a este hará que mire hacia el otro lado al voltear
         lookDir.z = 0;
 
+        Vector3 towardDir = lookDir - characterPos;
 
-        //inputDirection = lookDir - characterPos;
-        //float direction = Vector3.Dot(inputDirection, transform.forward);
+        
+        //Handle turn 180 when change direction drastically
+        float direction = Vector3.Dot(towardDir, transform.forward);
+        if (poncherCharacter.canRotate && !poncherCharacter.isRotBlocked)
+            poncherCharacter.GetAnimator().SetFloat("changeDirection", direction);
+        else
+            poncherCharacter.GetAnimator().SetFloat("ChangeDirection", 0.01f);
+
+        direction = 0;
+
+        if (poncherCharacter.isRotBlocked)
+            towardDir *= -1;
+        
+
 
         //if (canRotate)
         //{
@@ -148,7 +161,7 @@ public class MoveComponent : PoncherComponentBase
         //    return;
 
         float turnSpee = curRotateSpeed *= 1.6f;
-        Quaternion dirQ = Quaternion.LookRotation(lookDir);
+        Quaternion dirQ = Quaternion.LookRotation(towardDir);
         Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, turnSpee * Time.deltaTime);
         poncherCharacter.GetRigidbody().MoveRotation(slerp);
     }

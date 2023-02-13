@@ -64,10 +64,17 @@ public class PoncherController : PoncherComponentBase
 
         poncherActions = new PoncherInputActions();
         poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
-        poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().Jump;
-        poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().Jump;
+
+        //Left Shoulder L1 Bindings
+        poncherActions.PlayerGameplay.L1.performed += LeftShoulder;
+        poncherActions.PlayerGameplay.L1.canceled += LeftShoulder;
+
+        //poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().Jump;
+        //poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().Jump;
 
         //poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
+
+        // Y or Tringle Button
         poncherActions.PlayerGameplay.Ragdoll.started += SwitcBones;
 
         //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
@@ -85,18 +92,7 @@ public class PoncherController : PoncherComponentBase
         
     }
 
-    public void SwitcBones(InputAction.CallbackContext context)
-    {
-        if (poncherCharacter.GetRagdollCtrl().IsRagdoll == true)
-        {
-            poncherCharacter.GetRagdollCtrl().SwitchBones(false);
-        }
-        else
-        {
-            poncherCharacter.GetRagdollCtrl().SwitchBones(true);
-        }
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -119,9 +115,36 @@ public class PoncherController : PoncherComponentBase
     }
 
 
+   
+
+
+
+    private void FixedUpdate()
+    {
+        //UpdateUprightForce();
+
+        if (!CheckBasePreconditions())
+            return;
+
+        poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
+
+        if (poncherCharacter.rotToVel == false)
+        {
+            if (poncherCharacter.GetMoveComponent().GetCurRotSpeed() != 0 && inputDirection.magnitude != 0)
+            {
+                poncherCharacter.GetMoveComponent().RotateToDirection(moveDirection, true);
+            }
+        }
+        else
+        {
+            poncherCharacter.GetMoveComponent().RotateVelocity(poncherCharacter.GetMoveComponent().GetCurRotSpeed(), true);
+        }
+            
+    }
+
     void CalculateInputDirection()
     {
-       
+
         Vector3 inputVector = poncherActions.PlayerGameplay.Movement.ReadValue<Vector2>();
 
         float h = inputVector.x;
@@ -187,35 +210,31 @@ public class PoncherController : PoncherComponentBase
     }
 
 
-
-    private void FixedUpdate()
+    public void LeftShoulder(InputAction.CallbackContext context)
     {
-        //UpdateUprightForce();
+        //Pressed
+        if (context.performed)        
+            poncherCharacter.isRotBlocked = true;        
 
-        if (!CheckBasePreconditions())
-            return;
+        //Release
+        if (context.canceled)        
+            poncherCharacter.isRotBlocked = false;        
 
-        poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
+    }
 
-        if (poncherCharacter.rotToVel == false)
+
+    public void SwitcBones(InputAction.CallbackContext context)
+    {
+        if (poncherCharacter.GetRagdollCtrl().IsRagdoll == true)
         {
-            if (poncherCharacter.GetMoveComponent().GetCurRotSpeed() != 0 && inputDirection.magnitude != 0)
-            {
-                poncherCharacter.GetMoveComponent().RotateToDirection(inputDirection, true);
-            }
+            poncherCharacter.GetRagdollCtrl().SwitchBones(false);
         }
         else
         {
-            poncherCharacter.GetMoveComponent().RotateVelocity(poncherCharacter.GetMoveComponent().GetCurRotSpeed(), true);
+            poncherCharacter.GetRagdollCtrl().SwitchBones(true);
         }
 
-       
-            
     }
-
-   
-
-
 
 
     #region Floating Capsule Methods
