@@ -231,6 +231,7 @@ public class RagdollController : PoncherComponentBase
         {
             ActivateRagdoll();
             state = RagdollState.ragdolled;
+            poncherCharacter.SetState(PoncherState.Stumbled);
             Rigidbody hipBodie = poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
             hipBodie.constraints = RigidbodyConstraints.FreezePositionZ;
         }
@@ -264,6 +265,8 @@ public class RagdollController : PoncherComponentBase
             {
                 poncherCharacter.GetAnimator().SetBool("GetUpFromBelly", true);
             }
+
+            poncherCharacter.SetState(PoncherState.Idle);
         }
     }
 

@@ -44,8 +44,8 @@ ModelImporter:
       name: jump_running
       takeName: jump_running
       internalID: 0
-      firstFrame: 4.1
-      lastFrame: 13.3
+      firstFrame: 2.2
+      lastFrame: 11.8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
