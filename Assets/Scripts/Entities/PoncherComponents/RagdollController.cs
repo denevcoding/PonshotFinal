@@ -14,6 +14,9 @@ public class RagdollController : PoncherComponentBase
     public bool IsRagdoll;
     public bool enableCollision;
 
+    [Header("Getting up validations")]
+    public bool hipGrounded;
+
       
 
     //Possible states of the ragdoll
@@ -69,12 +72,20 @@ public class RagdollController : PoncherComponentBase
         //SetWeight();
         //SetPhysixMaterial(BouncePxMat);
 
+
         SwitchBones(IsRagdoll);
+
+        poncherCharacter.GetAnimator().SetBool("GetUpFromBack", false);        
+        poncherCharacter.GetAnimator().SetBool("GetUpFromBelly", false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsRagdoll)
+            return;
+
+        hipGrounded = HipGrounded();
     }
 
     private void LateUpdate()
@@ -151,6 +162,7 @@ public class RagdollController : PoncherComponentBase
 
     }
 
+    #region Inititalization
     void FindBones()
     {
         Rigidbody[] bones = RootParent.GetComponentsInChildren<Rigidbody>();
@@ -205,6 +217,11 @@ public class RagdollController : PoncherComponentBase
             rgBone.boneRB = rgBone.gameObject.GetComponent<Rigidbody>();
         }
     }
+    #endregion
+
+
+
+    #region Runtime Operations
 
     public void SwitchBones(bool isRagdoll)
     {
@@ -214,13 +231,13 @@ public class RagdollController : PoncherComponentBase
         {
             ActivateRagdoll();
             state = RagdollState.ragdolled;
-
             Rigidbody hipBodie = poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
             hipBodie.constraints = RigidbodyConstraints.FreezePositionZ;
         }
         else
-        {
+        {          
             DeactivateRagdoll();
+
             ragdollingEndTime = Time.time; //store the state change time
             state = RagdollState.blendToAnim;
 
@@ -236,6 +253,8 @@ public class RagdollController : PoncherComponentBase
             ragdolledHeadPosition = poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Head).position;
             ragdolledHipPosition = poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).position;
 
+            Debug.Log(poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).forward.y);
+            poncherCharacter.GetAnimator().SetFloat("HipY", poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).forward.y);
             //Initiate the get up animation
             if (poncherCharacter.GetAnimator().GetBoneTransform(HumanBodyBones.Hips).forward.y > 0) //hip hips forward vector pointing upwards, initiate the get up from back animation
             {
@@ -280,12 +299,6 @@ public class RagdollController : PoncherComponentBase
 
     public void DeactivateRagdoll()
     {
-
-
-        //Activate player components for player controller
-        poncherCharacter.GetRigidbody().isKinematic = false;
-        poncherCharacter.GetComponent<Collider>().enabled = true;
-
         //poncherCharacter.GetComponent<MoveComponent>().enabled = !value;
         //Vector3 velDir = poncherCharacter.GetComponent<Rigidbody>().velocity;
         //velDir *= 0.5f;
@@ -293,18 +306,43 @@ public class RagdollController : PoncherComponentBase
         foreach (GameObject bone in ragdollBones)
         {
             bone.GetComponent<Rigidbody>().isKinematic = true;
-            bone.GetComponent<Collider>().enabled= false;
+            bone.GetComponent<Collider>().enabled = false;
             //bone.GetComponent<Rigidbody>().velocity = velDir;
         }
+
+
+        //Activate player components for player controller
+        poncherCharacter.GetRigidbody().isKinematic = false;
+        poncherCharacter.GetComponent<Collider>().enabled = true;
 
         //Handles the phisic oproperties for the poncehr root character, not for the bones
         poncherCharacter.GetAnimator().enabled = true;
     }
 
-  
 
-    
+  
+   
+
+    #endregion
+
+
     //Function fir debug  mass
+    public void AddForceToBones(Vector3 force, float forceMultiplier, Vector3 position, ForceMode forceMode) 
+    {
+        foreach (GameObject bone in ragdollBones)
+        {
+            Rigidbody boneRB = bone.GetComponent<Rigidbody>();          
+            boneRB.AddForce(force * forceMultiplier, forceMode);
+            //boneRB.AddForceAtPosition(force * forceMultiplier, position, ForceMode.VelocityChange);
+            //boneRB.AddExplosionForce(forceMultiplier, position, 5f, 0.5f, forceMode);
+        }
+    }
+
+
+
+
+
+
     public void SetWeight()
     {
         //TODO:: Depending the type of the bone 
@@ -337,22 +375,37 @@ public class RagdollController : PoncherComponentBase
     }
 
 
-    public void AddForceToBones(Vector3 force, float forceMultiplier, Vector3 position, ForceMode forceMode) 
+
+    public bool HipGrounded()
     {
-        foreach (GameObject bone in ragdollBones)
+        LayerMask groundMask = LayerMask.GetMask("Obstacle");
+        RaycastHit hitCenter;
+      
+        //float point = 0f;
+        //point = RootParent.GetComponent<Collider>().bounds.size.x;
+        
+        Vector2 rayPos = new Vector2((RootParent.position.x), RootParent.position.y);
+
+        Debug.DrawRay(rayPos, Vector3.down * 0.5f, Color.cyan, 0f);//Center          
+        bool hit = Physics.Raycast(rayPos, Vector3.down, out hitCenter, 0.5f, groundMask.value);
+
+        if (hit)
         {
-            Rigidbody boneRB = bone.GetComponent<Rigidbody>();          
-            boneRB.AddForce(force * forceMultiplier, forceMode);
-            //boneRB.AddForceAtPosition(force * forceMultiplier, position, ForceMode.VelocityChange);
-            //boneRB.AddExplosionForce(forceMultiplier, position, 5f, 0.5f, forceMode);
+            if (!hitCenter.transform.GetComponent<Collider>().isTrigger)
+            {
+                return true;
+            }                
         }
+
+        return false;
     }
 
+    #region Getter Setters
     //Getters Stters
     public bool GetIsRagdolled()
     {
         return state != RagdollState.animated;
     }
     public void SetIsRagdolled(bool ragdolled) { }
-
+    #endregion
 }

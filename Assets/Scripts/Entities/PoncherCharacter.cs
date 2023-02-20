@@ -17,7 +17,8 @@ public enum PoncherState
     Stumbled = 9,
     Hanging = 10,
     WallJumping = 11,
-    WallSliding = 12
+    WallSliding = 12,
+    GettingUp =13
 
 }
 
@@ -427,7 +428,7 @@ public class PoncherCharacter : MonoBehaviour
         if (isGrounded)
         {
             //On the ground
-            coyoteTimeCounter = coyoteTime;
+            coyoteTimeCounter = 0;
             //GetComponent<PoncherController>().uprightForce = 50;
             //GetComponent<PoncherController>().uprightSpringDamper = 10;
             //GetComponent<PoncherController>().isStabilizing = true;
@@ -435,7 +436,7 @@ public class PoncherCharacter : MonoBehaviour
         else
         {
             //Falling or in the air
-            coyoteTimeCounter -= Time.deltaTime;
+            coyoteTimeCounter += Time.deltaTime;
         }
     }
 

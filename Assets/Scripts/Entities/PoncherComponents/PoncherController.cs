@@ -39,7 +39,8 @@ public class PoncherController : PoncherComponentBase
     PlayerInput poncherInput;
     public float flipForce;
 
-
+    [Space(10)]
+    public Queue<InputAction.CallbackContext> inputBuffer;
 
 
     //public Vector3 currentAngVel;
@@ -60,7 +61,9 @@ public class PoncherController : PoncherComponentBase
     private void Awake()
     {
         poncherInput = GetComponent<PlayerInput>();
-        poncherInput.onActionTriggered += PeayerInputOnActionTriggered;
+        poncherInput.onActionTriggered += PlayerInputOnActionTriggered;
+
+        inputBuffer = new Queue<InputAction.CallbackContext>();
 
         poncherActions = new PoncherInputActions();
         poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
@@ -69,8 +72,9 @@ public class PoncherController : PoncherComponentBase
         poncherActions.PlayerGameplay.L1.performed += LeftShoulder;
         poncherActions.PlayerGameplay.L1.canceled += LeftShoulder;
 
-        //poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().Jump;
-        //poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().Jump;
+        poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().JumpWithPressed;
+        //poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().JumpWithPressed;
+        poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().JumpWithPressed;
 
         //poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
 
@@ -80,10 +84,33 @@ public class PoncherController : PoncherComponentBase
         //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
     }
 
-    private void PeayerInputOnActionTriggered(InputAction.CallbackContext context)
+    private void PlayerInputOnActionTriggered(InputAction.CallbackContext context)
     {
-        
-        //Debug.Log(context);
+        Debug.Log(context.action.name);
+        //if (poncherActions.FindAction(context.action.name))
+        //{
+
+        //}
+        //if (poncherActions.FindBinding(context))
+        //{
+
+        //}
+        //InputAction a = poncherActions.FindAction(context.action.ToString());
+        //int holi = 0;
+        //Debug.Log(a.ToString());
+
+        //poncherActions.Contains(context.action);
+        //poncherActions.
+        if (context.action.name == poncherActions.PlayerGameplay.Jump.name)
+        {
+            if (context.started)
+            {
+                AddActionToBuffer(context);
+                
+            }
+           
+        }
+        ////Debug.Log(context);
     }
 
     // Start is called before the first frame update
@@ -111,6 +138,12 @@ public class PoncherController : PoncherComponentBase
             //poncherInput.SwitchCurrentActionMap("UI"); // C# events
             poncherActions.PlayerGameplay.Enable();
             //Disable the other current map manually when we have a c# class
+        }
+
+        if (poncherCharacter.isGrounded)
+        {
+            Debug.Log(inputBuffer.Count);
+            ExecuteInputBuffer();
         }
     }
 
@@ -140,6 +173,30 @@ public class PoncherController : PoncherComponentBase
             poncherCharacter.GetMoveComponent().RotateVelocity(poncherCharacter.GetMoveComponent().GetCurRotSpeed(), true);
         }
             
+    }
+
+    public void AddActionToBuffer(InputAction.CallbackContext action)
+    {
+        inputBuffer.Enqueue(action);
+        Invoke("CleanAction", 0.3f);
+    }
+    public void ExecuteInputBuffer()
+    {
+        if (inputBuffer.Count > 0)
+        {
+            if (inputBuffer.Peek().action.name == poncherActions.PlayerGameplay.Jump.name)
+            {                
+                GetComponent<JumpComponent>().JumpWithPressed(inputBuffer.Peek());
+                inputBuffer.Dequeue();
+            }
+        }
+    }
+    public void CleanAction()
+    {
+        if (inputBuffer.Count >0)
+        {
+            inputBuffer.Dequeue();
+        }      
     }
 
     void CalculateInputDirection()
@@ -227,7 +284,12 @@ public class PoncherController : PoncherComponentBase
     {
         if (poncherCharacter.GetRagdollCtrl().IsRagdoll == true)
         {
-            poncherCharacter.GetRagdollCtrl().SwitchBones(false);
+            RagdollController RG = poncherCharacter.GetRagdollCtrl();
+
+            if (RG.HipGrounded() && RG.RootParent.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.5f)
+            {
+                poncherCharacter.GetRagdollCtrl().SwitchBones(false);
+            }           
         }
         else
         {

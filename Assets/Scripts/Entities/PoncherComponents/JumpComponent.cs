@@ -30,25 +30,19 @@ public class JumpComponent : PoncherComponentBase
     {
         //Early Exit if I am not in this skill
         //if (poncherCharacter.GetState() != PoncherState.Jumping)
-        //    return;
-
-  
-
-        if (poncherCharacter.isGrounded)
-        {
-            timeMaxHigh = 0;
-            canJump = true;
-        }
+        //    return;  
+      
 
         if (!canJump)
             return;
 
-        jumpPressed = poncherCharacter.GetController().poncherActions.PlayerGameplay.Jump.ReadValue<float>() > 0;
+       // jumpPressed = poncherCharacter.GetController().poncherActions.PlayerGameplay.Jump.ReadValue<float>() > 0;
 
         Vector3 velocity = poncherCharacter.GetRigidbody().velocity;
 
         if (jumpPressed && timeMaxHigh < maxJumpHighTime && !poncherCharacter.upObstacle)   
         {
+
             timeMaxHigh += Time.deltaTime;      
             velocity = new Vector3(velocity.x, jumpForce.y, velocity.z);
             poncherCharacter.GetRigidbody().velocity = velocity;
@@ -79,6 +73,31 @@ public class JumpComponent : PoncherComponentBase
         //Early Exit if I am not in this skill
         if (poncherCharacter.GetState() != PoncherState.Jumping)
             return;
+    }
+
+
+    public void JumpWithPressed(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+           //poncherCharacter.GetController().AddActionToBuffer(context.action); 
+        }
+
+        //Pressed
+        if (context.performed)
+        {
+            if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
+            {
+                timeMaxHigh = 0;
+                jumpPressed = true;
+                canJump = true;
+            }      
+        }
+
+        //Release
+        if (context.canceled)
+            jumpPressed = false;
+
     }
 
 
