@@ -17,6 +17,8 @@ public class PoncherComponentBase : MonoBehaviour
         if (poncherCharacter.GetState() == PoncherState.Stumbled)
             return false;
 
+           if (poncherCharacter.GetState() == PoncherState.Stumbled)
+            return false;
         return true;
     }
 
