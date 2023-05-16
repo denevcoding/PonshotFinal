@@ -14,7 +14,7 @@ public class JumpSMB : BaseSMB
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        poncherCharacter.GetComponent<JumpComponent>().EndJump();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -41,6 +41,7 @@ public class PoncherController : PoncherComponentBase
 
     [Space(10)]
     public Queue<InputAction.CallbackContext> inputBuffer;
+    public float jumpBufferTime;
 
 
     //public Vector3 currentAngVel;
@@ -103,12 +104,11 @@ public class PoncherController : PoncherComponentBase
         //poncherActions.
         if (context.action.name == poncherActions.PlayerGameplay.Jump.name)
         {
-            if (context.started)
+            if (context.started && !poncherCharacter.IsGrounded())
             {
                 AddActionToBuffer(context);
-                
             }
-           
+            
         }
         ////Debug.Log(context);
     }
@@ -116,7 +116,7 @@ public class PoncherController : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
    
@@ -159,7 +159,7 @@ public class PoncherController : PoncherComponentBase
         if (!CheckBasePreconditions())
             return;
 
-        poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
+        //poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
 
         if (poncherCharacter.rotToVel == false)
         {
@@ -172,28 +172,32 @@ public class PoncherController : PoncherComponentBase
         {
             poncherCharacter.GetMoveComponent().RotateVelocity(poncherCharacter.GetMoveComponent().GetCurRotSpeed(), true);
         }
-            
+
     }
 
     public void AddActionToBuffer(InputAction.CallbackContext action)
     {
-        inputBuffer.Enqueue(action);
-        Invoke("CleanAction", 0.3f);
+        if (action.started)
+        {
+            inputBuffer.Enqueue(action);
+            Invoke("CleanAction", jumpBufferTime);
+        }
     }
     public void ExecuteInputBuffer()
     {
         if (inputBuffer.Count > 0)
         {
             if (inputBuffer.Peek().action.name == poncherActions.PlayerGameplay.Jump.name)
-            {                
-                GetComponent<JumpComponent>().JumpWithPressed(inputBuffer.Peek());
+            {             
+                GetComponent<JumpComponent>().Jump(/*inputBuffer.Peek()*/);
                 inputBuffer.Dequeue();
             }
         }
     }
+
     public void CleanAction()
     {
-        if (inputBuffer.Count >0)
+        if (inputBuffer.Count > 0)
         {
             inputBuffer.Dequeue();
         }      
@@ -230,7 +234,7 @@ public class PoncherController : PoncherComponentBase
 
         moveDirection = transform.position + inputDirection;
 
-        Debug.DrawRay(transform.position, moveDirection, Color.green);
+        //Debug.DrawRay(transform.position, moveDirection, Color.green);
         Debug.DrawRay(transform.position, inputDirection * 2f, Color.red);
 
 

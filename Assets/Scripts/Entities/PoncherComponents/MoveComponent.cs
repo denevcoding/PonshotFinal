@@ -26,6 +26,12 @@ public class MoveComponent : PoncherComponentBase
     public Vector3 currentAngVel;
 
 
+    //[Header("CelesteStyle movement")]
+
+    private void Awake()
+    {
+        
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +50,7 @@ public class MoveComponent : PoncherComponentBase
 
     private void FixedUpdate()
     {
-        ManageSpeed(curDecel, + movingObjSpeed.magnitude, true);
+        //ManageSpeed(curDecel, + movingObjSpeed.magnitude, true);
         currentAngVel = poncherCharacter.GetRigidbody().angularVelocity;
     }
 

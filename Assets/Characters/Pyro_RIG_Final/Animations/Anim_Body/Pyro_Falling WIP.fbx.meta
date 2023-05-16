@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 105bb44a2a32ec4429a0e22b03d36ebd
+guid: 0484c0c913b7ef84783f49e3bdec9959
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 688352758357962829
-    second: jump_complete
+      74: -145651655250238994
+    second: Falling WIP
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,26 +22,22 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'GameSkeletonHipPart1_L'
-      : rotation error = 4.303160 deg\n\t'GameSkeletonKneePart1_L' : rotation error
-      = 1.116816 deg\n"
+      : rotation error = 11.983522 deg\n\t'GameSkeletonKneePart1_L' : rotation error
+      = 0.507523 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'jump_complete' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+    animationImportWarnings: "\nClip 'Jump_wip' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'GameSkeletonJawJoint_M' has translation
+      animation that will be discarded.\n\t'GameSkeletonScapula_R' has translation
       animation that will be discarded.\n\t'GameSkeletonScapula_R' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'GameSkeletonShoulderPart1_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonElbow_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonWrist_R'
-      has scale animation that will be discarded.\n\t'GameSkeletonIndexFinger1_R'
+      transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonIndexFinger1_R'
       has translation animation that will be discarded.\n\t'GameSkeletonRingFinger1_R'
       has translation animation that will be discarded.\n\t'GameSkeletonPinkyFinger1_R'
       has translation animation that will be discarded.\n\t'GameSkeletonScapula_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonShoulderPart1_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonElbow_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonElbowPart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonWrist_L'
-      has scale animation that will be discarded.\n\t'GameSkeletonIndexFinger1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonScapula_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonIndexFinger1_L'
       has translation animation that will be discarded.\n\t'GameSkeletonRingFinger1_L'
       has translation animation that will be discarded.\n\t'GameSkeletonPinkyFinger1_L'
       has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
@@ -70,11 +66,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: jump_complete
-      takeName: jump_complete
+      name: Falling WIP
+      takeName: Jump_wip
       internalID: 0
-      firstFrame: 14.700001
-      lastFrame: 28.600002
+      firstFrame: 17.7
+      lastFrame: 22.9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

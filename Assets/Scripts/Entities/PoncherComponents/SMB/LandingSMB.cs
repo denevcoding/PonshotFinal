@@ -5,10 +5,10 @@ using UnityEngine;
 public class LandingSMB : BaseSMB
 {
     public RollType rollType;
-
     float defaultAccel;
     public float acelerationAffect;
-    
+    public bool cancelJump;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         poncherCharacter.SetState(PoncherState.Landing);
@@ -16,21 +16,25 @@ public class LandingSMB : BaseSMB
 
         poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
 
-        defaultAccel = poncherCharacter.GetMoveComponent().accel;
-        poncherCharacter.GetMoveComponent().SetGroundAccel(acelerationAffect);
+        defaultAccel = poncherCharacter.GetComponent<MovementComp>().moveSpeed;
+        poncherCharacter.GetComponent<MovementComp>().moveSpeed = acelerationAffect;
+
+
+        poncherCharacter.GetComponent<JumpComponent>().canJump = !cancelJump;
 
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        poncherCharacter.GetMoveComponent().SetGroundAccel(defaultAccel);
-
-        poncherCharacter.GetAnimator().SetInteger("RollType", (int) RollType.standRoll);
+        poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
+        poncherCharacter.GetComponent<MovementComp>().moveSpeed = defaultAccel;
+        poncherCharacter.GetComponent<JumpComponent>().RestoreJump();
+  
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //movementComponent.SetGroundAccel(0);
+
     }
 
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -67,8 +67,8 @@ ModelImporter:
       name: Jump_test
       takeName: Jump_test
       internalID: 0
-      firstFrame: 1
-      lastFrame: 19
+      firstFrame: 3.8
+      lastFrame: 9.7
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

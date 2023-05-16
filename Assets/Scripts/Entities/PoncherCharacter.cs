@@ -93,13 +93,13 @@ public class PoncherCharacter : MonoBehaviour
         isGrounded = IsGrounded();
         isWalled = checkIsWalled();
         HandleCoyoteTime();
-        CorrectCorners();
-        LedgeDetection();
+
+        //CorrectCorners();
+        //LedgeDetection();
 
 
         animator.SetBool("Grounded", isGrounded);
         animator.SetBool("Walled", isWalled);
-        animator.SetFloat("DistanceToTarget", moveComponent.m_DistanceToTarget);
 
 
         //Handle blocked rotation, for flips and running backwards
@@ -124,46 +124,15 @@ public class PoncherCharacter : MonoBehaviour
 
        
 
-        //if (!isGrounded)
-        //    animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y));
-        //else        
-            animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
+ 
+       animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
 
         if (!isGrounded)
             animator.SetFloat("LandingForce", Mathf.Abs(poncheRigidbodie.velocity.y));
 
 
 
-        if (isGrounded)
-        {
-            if (poncheRigidbodie.velocity.y < -1)
-            {
-                poncherState = PoncherState.Landing;
-            }
 
-            if (poncherState == PoncherState.Jumping)
-                return;
-
-            if (moveComponent.m_DistanceToTarget < 0.05f)
-            {
-                SetState(PoncherState.Idle);
-            }
-
-            if (moveComponent.m_DistanceToTarget > 0.05f)
-            {
-                SetState(PoncherState.Running);
-            }
-
-
-
-        }
-        else
-        {
-            //if (poncheRigidbodie.velocity.y < 0)
-            //{
-            //    poncherState = PoncherState.Falling;
-            //}
-        }
 
 
     }
@@ -252,7 +221,7 @@ public class PoncherCharacter : MonoBehaviour
                     //slope control
                     slope = Vector3.Angle(hitCenter.normal, Vector3.up);
                     slopeNormal = hitCenter.normal;
-                    Debug.Log("Slope is: " + slope);
+                    //Debug.Log("Slope is: " + slope);
                     if (slope > slopeLimit /*&& hit.transform.tag != "Pushable"*/)
                     {
                         float slideForce = slope;

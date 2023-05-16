@@ -14,6 +14,8 @@ public class JumpComponent : PoncherComponentBase
     public float maxJumpHighTime;
     public float timeMaxHigh;
 
+    public float jumpCutMultiplier;
+
     [Header("Falling multipliers")]
     public float fallMultiplier;
     public float lowJumpMultiplier;
@@ -31,31 +33,36 @@ public class JumpComponent : PoncherComponentBase
         //Early Exit if I am not in this skill
         //if (poncherCharacter.GetState() != PoncherState.Jumping)
         //    return;  
+
+
+        //if (!canJump)
+        //    return;
       
 
-        if (!canJump)
-            return;
+        //canJump = false;
 
-       // jumpPressed = poncherCharacter.GetController().poncherActions.PlayerGameplay.Jump.ReadValue<float>() > 0;
+        // jumpPressed = poncherCharacter.GetController().poncherActions.PlayerGameplay.Jump.ReadValue<float>() > 0;
 
-        Vector3 velocity = poncherCharacter.GetRigidbody().velocity;
+        // Vector3 velocity = poncherCharacter.GetRigidbody().velocity;
 
-        if (jumpPressed && timeMaxHigh < maxJumpHighTime && !poncherCharacter.upObstacle)   
-        {
+        //if (jumpPressed /*timeMaxHigh < maxJumpHighTime && !poncherCharacter.upObstacle*/)   
+        //{
 
-            timeMaxHigh += Time.deltaTime;      
-            velocity = new Vector3(velocity.x, jumpForce.y, velocity.z);
-            poncherCharacter.GetRigidbody().velocity = velocity;
-            poncherCharacter.GetAnimator().SetBool("Jumping", true);
+        //    //timeMaxHigh += Time.deltaTime;   
+            
+        //    //velocity = new Vector3(velocity.x, jumpForce.y, velocity.z);
+        //    //poncherCharacter.GetRigidbody().velocity = velocity;
+
+
+            
            
-            //poncherCharacter.GetRigidbody().AddRelativeForce(jumpForce, ForceMode.VelocityChange);
-            Debug.Log("Jumping");
-        }
-        else
-        {
-            poncherCharacter.GetAnimator().SetBool("Jumping", false);
-            canJump = false;
-        }
+        //    //poncherCharacter.GetRigidbody().AddRelativeForce(jumpForce, ForceMode.VelocityChange);
+        //    Debug.Log("Jumping");
+        //}
+        //else
+        //{
+           
+        //}
 
         //if (!jumpPressed || velocity.y < 0)
         //{
@@ -70,9 +77,16 @@ public class JumpComponent : PoncherComponentBase
 
     private void FixedUpdate()
     {
+        if (poncherCharacter.GetRigidbody().velocity.y < 0)
+        {
+            GetComponent<MovementComp>().gravityScale = 1.0f * 1.5f;
+        }
+
         //Early Exit if I am not in this skill
         if (poncherCharacter.GetState() != PoncherState.Jumping)
             return;
+
+        //EndJump();
     }
 
 
@@ -80,78 +94,58 @@ public class JumpComponent : PoncherComponentBase
     {
         if (context.started)
         {
-           //poncherCharacter.GetController().AddActionToBuffer(context.action); 
-        }
-
-        //Pressed
-        if (context.performed)
-        {
-            if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
+            if (canJump)
             {
-                timeMaxHigh = 0;
-                jumpPressed = true;
-                canJump = true;
-            }      
+                Jump();
+            }       
+            //jumpPressed = true;
+            //poncherCharacter.GetController().AddActionToBuffer(context.action); 
         }
 
         //Release
         if (context.canceled)
-            jumpPressed = false;
+        {       
+            if (poncherCharacter.GetRigidbody().velocity.y > 0 /*&& poncherCharacter.GetState() == PoncherState.Jumping*/)
+            {
+                poncherCharacter.GetRigidbody().AddForce(Vector2.down * poncherCharacter.GetRigidbody().velocity.y * (1 -jumpCutMultiplier), ForceMode.Impulse);
+            }
+
+            
+
+            if (poncherCharacter.GetController().inputBuffer.Count > 0)
+            {
+                poncherCharacter.GetController().inputBuffer.Dequeue();
+            }
+            //jumpPressed = false;
+
+        }
+            
 
     }
 
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Jump()
     {
-        //if (context.performed)
-        //{
-        //    jumpPressed = true;
-        //}
-        //if (context.canceled)
-        //{
-        //    jumpPressed = false;
-        //}
-        
-        //if (context.started)
-        //{
-        //    if (CheckBasePreconditions() == false)
-        //        return;
-
-        //    if (canJump == false)
-        //        return;
-
-        //    if (poncherCharacter.GetState() == PoncherState.Jumping)
-        //        return;
-
-        //    if (poncherCharacter.coyoteTimeCounter < 0)
-        //        return;
-        //}
-
+        if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
+        {
+            poncherCharacter.GetRigidbody().AddForce(jumpForce.y * Vector2.up, ForceMode.Impulse);
+            poncherCharacter.GetAnimator().SetBool("Jumping", true);
+        }
        
+    }
 
-        //button is being pressed
-        //if (context.performed)
-        //{
-        //    Debug.Log("saltando....");
-        //}
-
-
-        //poncherCharacter.GetAnimator().SetBool("Jumping", true);
-        ////Debug.Log("salto");
-        //poncherCharacter.coyoteTimeCounter = 0;
-
-        //poncherCharacter.GetRigidbody().AddRelativeForce(jumpForce, ForceMode.Impulse);
-        //Gamepad gamepad = Gamepad.current;
-        //poncherCharacter.GetAnimator().SetBool("Jumping", false);
-        //gamepad.SetMotorSpeeds(0.5f, 0.8f);
+    public void RestoreJump()
+    {
+        canJump = true;
     }
 
     public void EndJump()
     {
-        if (poncherCharacter.GetRigidbody().velocity.y > -3 || poncherCharacter.isGrounded || poncherCharacter.isWalled)
-        {
-            poncherCharacter.GetAnimator().SetBool("Jumping", false);
-        }
+        poncherCharacter.GetAnimator().SetBool("Jumping", false);
+        //if (poncherCharacter.GetRigidbody().velocity.y > -4 || poncherCharacter.isGrounded || poncherCharacter.isWalled)
+        //{
+            
+        //}
 
     }
 }
