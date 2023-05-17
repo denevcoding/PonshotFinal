@@ -104,7 +104,7 @@ public class PoncherController : PoncherComponentBase
         //poncherActions.
         if (context.action.name == poncherActions.PlayerGameplay.Jump.name)
         {
-            if (context.started && !poncherCharacter.IsGrounded())
+            if (context.started && !(poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime))
             {
                 AddActionToBuffer(context);
             }
@@ -140,7 +140,7 @@ public class PoncherController : PoncherComponentBase
             //Disable the other current map manually when we have a c# class
         }
 
-        if (poncherCharacter.isGrounded)
+        if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
         {
             Debug.Log(inputBuffer.Count);
             ExecuteInputBuffer();

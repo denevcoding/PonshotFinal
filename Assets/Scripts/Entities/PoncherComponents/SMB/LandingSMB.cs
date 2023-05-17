@@ -8,6 +8,7 @@ public class LandingSMB : BaseSMB
     float defaultAccel;
     public float acelerationAffect;
     public bool cancelJump;
+    public bool canRotate;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,7 +20,7 @@ public class LandingSMB : BaseSMB
         defaultAccel = poncherCharacter.GetComponent<MovementComp>().moveSpeed;
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = acelerationAffect;
 
-
+        poncherCharacter.canRotate = canRotate;
         poncherCharacter.GetComponent<JumpComponent>().canJump = !cancelJump;
 
     }
@@ -29,7 +30,8 @@ public class LandingSMB : BaseSMB
         poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = defaultAccel;
         poncherCharacter.GetComponent<JumpComponent>().RestoreJump();
-  
+        poncherCharacter.canRotate = true;
+
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

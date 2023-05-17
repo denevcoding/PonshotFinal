@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 5f54a1f83e667704c969f8a1eeb0ee5a
+guid: 31b464c4d3eb7c648ac56987a320361c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -145651655250238994
-    second: Jump_wip
+      74: -7899798341224527031
+    second: Wall_Jump
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,37 +22,20 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'GameSkeletonHipPart1_L'
-      : rotation error = 11.983522 deg\n\t'GameSkeletonKneePart1_L' : rotation error
-      = 0.507523 deg\n"
+      : rotation error = 20.795486 deg\n\t'GameSkeletonKneePart1_L' : rotation error
+      = 17.518827 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Jump_wip' has import animation warnings that
+    animationImportWarnings: "\nClip 'Wall_Jump' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'GameSkeletonJawJoint_M' has translation
-      animation that will be discarded.\n\t'GameSkeletonScapula_R' has translation
-      animation that will be discarded.\n\t'GameSkeletonScapula_R' is inbetween humanoid
+      to improve retargeting quality.\n\t'GameSkeletonScapula_R' is inbetween humanoid
       transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonIndexFinger1_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonRingFinger1_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonPinkyFinger1_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonScapula_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonScapula_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonScapula_L'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonIndexFinger1_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonRingFinger1_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonPinkyFinger1_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKnee_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonAnkle_R'
-      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKnee_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
-      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonAnkle_L'
-      has translation animation that will be discarded.\n"
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -66,11 +49,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump_wip
-      takeName: Jump_wip
+      name: Wall_Jump
+      takeName: Wall_Jump
       internalID: 0
-      firstFrame: 8.4
-      lastFrame: 11.9
+      firstFrame: 6.6000004
+      lastFrame: 11.4
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -79,7 +62,7 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -365,7 +348,7 @@ ModelImporter:
         weight: 0
       maskType: 1
       maskSource: {fileID: 31900000, guid: d89290837b4b51e468ee338db0cb97be, type: 2}
-      additiveReferencePoseFrame: 0.96
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

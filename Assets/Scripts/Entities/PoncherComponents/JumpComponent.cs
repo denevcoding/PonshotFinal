@@ -104,18 +104,18 @@ public class JumpComponent : PoncherComponentBase
 
         //Release
         if (context.canceled)
-        {       
-            if (poncherCharacter.GetRigidbody().velocity.y > 0 /*&& poncherCharacter.GetState() == PoncherState.Jumping*/)
-            {
-                poncherCharacter.GetRigidbody().AddForce(Vector2.down * poncherCharacter.GetRigidbody().velocity.y * (1 -jumpCutMultiplier), ForceMode.Impulse);
-            }
-
-            
-
+        {
             if (poncherCharacter.GetController().inputBuffer.Count > 0)
             {
                 poncherCharacter.GetController().inputBuffer.Dequeue();
             }
+
+            if (poncherCharacter.GetRigidbody().velocity.y > 0 /*&& poncherCharacter.GetState() == PoncherState.Jumping*/)
+            {
+                poncherCharacter.GetRigidbody().AddForce(Vector2.down * poncherCharacter.GetRigidbody().velocity.y * (1 -jumpCutMultiplier), ForceMode.Impulse);
+            }          
+
+           
             //jumpPressed = false;
 
         }

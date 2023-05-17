@@ -43,6 +43,7 @@ public class PoncherCharacter : MonoBehaviour
     [Header("Grounded Settings")]
     public bool isGrounded;
     public float rayLenght;
+    public float boxOffset;
     [Space(5)]
     public LayerMask groundedLayerMask;
     public float slope; //Currnet slope from the ground I am 
@@ -191,6 +192,18 @@ public class PoncherCharacter : MonoBehaviour
     #endregion
 
 
+    public void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.red;
+        //float dist = GetComponent<CapsuleCollider>().bounds.extents.y;
+        //Vector2 boxPos = new Vector2(transform.position.x, transform.position.y - boxOffset);
+        //Vector3 size = GetComponent<CapsuleCollider>().bounds.size;
+        //size.y = 0.2f;
+        //size.x = 0.2f;
+        //size.z = 0.2f;
+
+        //Gizmos.DrawWireCube(boxPos, size);
+    }
 
 
 
@@ -202,17 +215,22 @@ public class PoncherCharacter : MonoBehaviour
         //get distance to ground, from centre of collider (where floorcheckers should be)
         float dist = GetComponent<CapsuleCollider>().bounds.extents.y;
         RaycastHit hitCenter;
+    
+        float point = 0f;
+        point = GetComponent<CapsuleCollider>().bounds.size.x;
+        //point /= 3;
+        //point *= i;
+        Vector2 rayPos = new Vector2(transform.position.x, transform.position.y);          
 
-        for (int i = -1; i < 2; i++)
-        {
-            float point = 0f;
-            point = GetComponent<CapsuleCollider>().bounds.size.x;
-            point /= 3;
-            point *= i;
-            Vector2 rayPos = new Vector2((transform.position.x + point), transform.position.y);          
 
-            Debug.DrawRay(rayPos, Vector3.down * rayLenght, Color.cyan, 0f);//Center          
-            bool hit = Physics.Raycast(rayPos, Vector3.down, out hitCenter, rayLenght , groundedLayerMask.value);
+         //Debug.DrawRay(rayPos, Vector3.down * rayLenght, Color.cyan, 0f);//Center
+
+        //Physics.BoxCast(rayPos, GetComponent<CapsuleCollider>().bounds.size, Quaternion.identity, 0f, groundedLayerMask.value);
+
+          bool hit = Physics.Raycast(rayPos, Vector3.down, out hitCenter, rayLenght , groundedLayerMask.value);
+
+        //bool box = Physics.BoxCast(rayPos, new Vector3(0.2f, 0.2f, 0.2f), Vector3.down, out hitCenter, Quaternion.identity, rayLenght, groundedLayerMask.value);
+        //Debug.Log(box);
 
             if (hit)
             {
@@ -232,7 +250,7 @@ public class PoncherCharacter : MonoBehaviour
                 }
             }
            
-        }
+        
         moveComponent.movingObjSpeed = Vector3.zero;
         return false;
     }
