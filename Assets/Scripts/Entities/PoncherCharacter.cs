@@ -110,26 +110,45 @@ public class PoncherCharacter : MonoBehaviour
         }
         else
         {
-            float direction = Vector3.Dot(poncherController.GetInputDirection(), transform.forward);
+            
 
-            if (direction < 0)
+            if (poncherController.GetInputDirection().magnitude > 0)
             {
-                animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
+                float direction = Vector3.Dot(poncherController.GetInputDirection(), transform.forward);
+                if (direction < 0)
+                {
+                    animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
+                }
+                else
+                {
+                    animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x));
+                }
             }
             else
             {
-                animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x));
+                animator.SetFloat("VelocityX", 0f);
             }
+
+         
             
         }
 
-       
 
- 
-       animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
 
-        if (!isGrounded)
+
+        if (!IsGrounded())
+        {
+            animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
+        }
+        else
+        {
             animator.SetFloat("LandingForce", Mathf.Abs(poncheRigidbodie.velocity.y));
+            animator.SetFloat("VelocityY", 0f);
+        }
+      
+
+      
+           
 
 
 
@@ -412,7 +431,7 @@ public class PoncherCharacter : MonoBehaviour
 
     void HandleCoyoteTime()
     {
-        if (isGrounded)
+        if (isGrounded || isWalled)
         {
             //On the ground
             coyoteTimeCounter = 0;

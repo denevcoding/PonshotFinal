@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 109f833c9f02edc41b30b7f2ab51cad9
+guid: 9cb98039998881a409e08196421bb889
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -7899798341224527031
-    second: Wall_Jump
+      74: -4097938052040770646
+    second: Jump_distance
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,11 +22,11 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'GameSkeletonHipPart1_L'
-      : rotation error = 20.795486 deg\n\t'GameSkeletonKneePart1_L' : rotation error
-      = 17.518827 deg\n"
+      : rotation error = 0.207217 deg\n\t'GameSkeletonKneePart1_L' : rotation error
+      = 5.720522 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Wall_Jump' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+    animationImportWarnings: "\nClip 'Jump_distance' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'GameSkeletonScapula_R' is inbetween humanoid
       transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonScapula_L'
@@ -49,11 +49,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Wall_Jump
-      takeName: Wall_Jump
+      name: Jump_distance
+      takeName: Jump_distance
       internalID: 0
-      firstFrame: 14.300001
-      lastFrame: 24.3
+      firstFrame: 0
+      lastFrame: 12.1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -65,7 +65,7 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

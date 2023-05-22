@@ -414,7 +414,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4242365937686949076, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: a902abfd2c30fba4b9c593edbf6af24d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1206,7 +1206,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -121645736829765418, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 38c799bae52e75f4e9b036d3e755ea4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1357,7 +1357,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -121645736829765418, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 38c799bae52e75f4e9b036d3e755ea4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3590,7 +3590,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -121645736829765418, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 38c799bae52e75f4e9b036d3e755ea4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3790,7 +3790,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8516684225122214109, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 1c28f435dde908241aa394b781eb0148, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4005,7 +4005,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4242365937686949076, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 1c28f435dde908241aa394b781eb0148, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4362,7 +4362,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -121645736829765418, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 38c799bae52e75f4e9b036d3e755ea4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5178,7 +5178,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5966873249860857231, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: a902abfd2c30fba4b9c593edbf6af24d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5359,7 +5359,10 @@ GameObject:
   - component: {fileID: 9076507809495912974}
   - component: {fileID: 1196356094}
   - component: {fileID: 1956481293303678352}
+  - component: {fileID: 139597773}
   - component: {fileID: 9076507809495912975}
+  - component: {fileID: 139597762}
+  - component: {fileID: 139597763}
   m_Layer: 0
   m_Name: RMo_Pyrobito_Final
   m_TagString: Untagged
@@ -5394,7 +5397,7 @@ Animator:
   m_GameObject: {fileID: 8158079489810016374}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1490642f26a8669459d6ed17e363e7c2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 85c5d4de7857e364283e583844a00ec0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5423,9 +5426,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 88
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &1196356100
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5433,7 +5436,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8158079489810016374}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cbffde96568dd37428ef040ed07484d1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.46337676
@@ -5484,23 +5487,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherState: 0
-  animator: {fileID: 0}
-  isGrounded: 0
-  rayLenght: 0
-  groundedLayerMask: 0
-  coyoteTime: 0
+  animator: {fileID: 3214636006612084918}
+  isGrounded: 1
+  rayLenght: 1.1
+  boxOffset: 1
+  groundedLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  slope: 0
+  slopeNormal: {x: 0, y: 0, z: 0}
+  slopeLimit: 40
+  slideAmount: 35
+  coyoteTime: 0.1
   coyoteTimeCounter: 0
   isWalled: 0
   isStiking: 0
-  wallRayLenght: 0
-  wallAngleTreshold: 0
+  wallRayLenght: 1
+  wallAngleTreshold: 45
   wallNormal: {x: 0, y: 0, z: 0}
   isSidescroller: 1
-  canMove: 0
-  canRotate: 0
-  rayCornerLenght: 0
-  rayOffset: 0
-  fixForce: 0
+  isRotBlocked: 0
+  canMove: 1
+  canRotate: 1
+  rotToVel: 0
+  upObstacle: 0
+  rayCornerLenght: 0.5
+  rayOffset: 0.5
+  fixForce: 0.09
 --- !u!114 &1196356094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5517,31 +5530,68 @@ MonoBehaviour:
   RideHeight: 0
   RideSpringStrenght: 0
   RideSpringDamper: 0
-  uprightForce: 0
-  uprightSpringDamper: 0
+  uprightForce: 50
+  uprightSpringDamper: 10
   isStabilizing: 1
-  MaxSpeed: 0
-  Acceeleration: 0
+  MaxSpeed: 8
+  Acceeleration: 200
   AcelerationFactorFromDot:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0083351135
+      value: 0.99765015
+      inSlope: -0.9785821
+      outSlope: -0.9785821
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9916687
+      value: 0.035377502
+      inSlope: -0.9785821
+      outSlope: -0.9785821
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MaxAccelForce: 0
+  MaxAccelForce: 150
   MaxAcelerationForceFactorFromDot:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0083351135
+      value: 0.9952698
+      inSlope: -1.0300438
+      outSlope: -1.0300438
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9791565
+      value: -0.0047187805
+      inSlope: -1.0300438
+      outSlope: -1.0300438
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ForceScale: {x: 0, y: 0, z: 0}
-  GravityScaleDrop: 0
+  ForceScale: {x: 1, y: 0, z: 1}
+  GravityScaleDrop: 10
   m_unitGoal: {x: 0, y: 0, z: 0}
   m_goalVel: {x: 0, y: 0, z: 0}
   inputDirection: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
-  flipForce: 0
+  flipForce: 0.1
+  jumpBufferTime: 0.15
 --- !u!114 &1956481293303678352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5555,16 +5605,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
-  accel: 0
-  decel: 0
-  airAccel: 0
-  airDecel: 0
-  maxSpeed: 0
-  rotateSpeed: 0
-  airRotateSpeed: 0
-  m_currentSpeed: {x: 0, y: 0, z: 0}
-  m_DistanceToTarget: 0
+  accel: 115
+  decel: 5
+  airAccel: 30
+  airDecel: 2
+  maxSpeed: 150
+  rotateSpeed: 5
+  airRotateSpeed: 4.35
+  movingObjSpeed: {x: 0, y: 0, z: 0}
+  m_currentSpeed: {x: -6.096155e-36, y: 0, z: 0}
+  m_DistanceToTarget: 0.000000056189037
   currentAngVel: {x: 0, y: 0, z: 0}
+--- !u!114 &139597773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f34e3e806794354ba78ba9ab8f66d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  moveSpeed: 10
+  acceleration: 7
+  deceleration: 0
+  velPower: 0.9
+  frictionAmount: 0.2
+  gravityScale: 1
 --- !u!114 &9076507809495912975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5582,7 +5652,45 @@ MonoBehaviour:
   BouncePxMat: {fileID: 0}
   IsRagdoll: 0
   enableCollision: 0
+  hipGrounded: 0
   ragdollToMecanimBlendTime: 0.5
+--- !u!114 &139597762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042e0a4f48c6b8944bccefd598be8df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  jumpForce: {x: 0, y: 20, z: 0}
+  canJump: 0
+  jumpPressed: 0
+  maxJumpHighTime: 0.2
+  timeMaxHigh: 0
+  jumpCutMultiplier: 0.7
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
+--- !u!114 &139597763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc558acaf353c744ac8c08a1dfd56f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  currentAnimation: {fileID: 0}
+  isRootMotion: 0
+  VelocityHash: 0
 --- !u!1 &8389736482605597895
 GameObject:
   m_ObjectHideFlags: 0
@@ -5728,7 +5836,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -121645736829765418, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 38c799bae52e75f4e9b036d3e755ea4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5819,7 +5927,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8516684225122214109, guid: 2846baa870a91cd479f9c2490cd7302d, type: 3}
+  - {fileID: 2100000, guid: 1c28f435dde908241aa394b781eb0148, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

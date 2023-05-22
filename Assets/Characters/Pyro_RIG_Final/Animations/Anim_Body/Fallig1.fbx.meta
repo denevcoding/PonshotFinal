@@ -73,7 +73,7 @@ ModelImporter:
       name: Falling
       takeName: jump_complete
       internalID: 0
-      firstFrame: 20.7
+      firstFrame: 23.1
       lastFrame: 33.6
       wrapMode: 0
       orientationOffsetY: 0
@@ -90,7 +90,7 @@ ModelImporter:
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []

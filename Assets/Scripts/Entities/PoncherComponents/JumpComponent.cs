@@ -7,6 +7,8 @@ public class JumpComponent : PoncherComponentBase
 {
     [Header("Jump Properties")]
     public Vector3 jumpForce;
+    public Vector3 wallJumpForce;
+    public float wallJumpXForce;
     public bool canJump;
 
     public bool jumpPressed;
@@ -128,8 +130,23 @@ public class JumpComponent : PoncherComponentBase
     {
         if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
         {
-            poncherCharacter.GetRigidbody().AddForce(jumpForce.y * Vector2.up, ForceMode.Impulse);
-            poncherCharacter.GetAnimator().SetBool("Jumping", true);
+            if (poncherCharacter.isWalled)
+            {
+                poncherCharacter.GetRigidbody().AddForce(wallJumpForce.y * Vector2.up, ForceMode.Impulse);
+                poncherCharacter.GetRigidbody().AddForce(wallJumpForce.x * poncherCharacter.wallNormal, ForceMode.Impulse);
+                //poncherCharacter.GetRigidbody().AddForce((Vector2.right * -1) * poncherCharacter.GetRigidbody().velocity.x * (1 - 0.5f), ForceMode.Impulse);
+                poncherCharacter.GetAnimator().SetInteger("JumpType", 1);
+                poncherCharacter.GetAnimator().SetBool("Jumping", true);
+            }
+            else
+            {
+                //Normal Jump
+                poncherCharacter.GetRigidbody().AddForce(jumpForce.y * Vector2.up, ForceMode.Impulse);
+                poncherCharacter.GetRigidbody().AddForce((Vector2.right * -1) * poncherCharacter.GetRigidbody().velocity.x * (1 - 0.5f), ForceMode.Impulse);
+                poncherCharacter.GetAnimator().SetInteger("JumpType", 0);
+                poncherCharacter.GetAnimator().SetBool("Jumping", true);
+            }
+          
         }
        
     }
