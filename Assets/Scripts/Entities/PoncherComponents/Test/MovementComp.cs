@@ -50,6 +50,8 @@ public class MovementComp : PoncherComponentBase
 
     public void FixedUpdate()
     {
+        poncherCharacter.GetRigidbody().WakeUp();
+
         ApplyGravity();
 
 

@@ -53,6 +53,7 @@ public class PoncherCharacter : MonoBehaviour
     [Space(5)]
     public float coyoteTime;
     public float coyoteTimeCounter;
+    private float landingForce = 0;
 
     [Header("Walled Settings")]
     public bool isWalled;
@@ -91,16 +92,7 @@ public class PoncherCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = IsGrounded();
-        isWalled = checkIsWalled();
-        HandleCoyoteTime();
-
-        //CorrectCorners();
-        //LedgeDetection();
-
-
-        animator.SetBool("Grounded", isGrounded);
-        animator.SetBool("Walled", isWalled);
+  
 
 
         //Handle blocked rotation, for flips and running backwards
@@ -110,8 +102,6 @@ public class PoncherCharacter : MonoBehaviour
         }
         else
         {
-            
-
             if (poncherController.GetInputDirection().magnitude > 0)
             {
                 float direction = Vector3.Dot(poncherController.GetInputDirection(), transform.forward);
@@ -128,30 +118,7 @@ public class PoncherCharacter : MonoBehaviour
             {
                 animator.SetFloat("VelocityX", 0f);
             }
-
-         
-            
         }
-
-
-
-
-        if (!IsGrounded())
-        {
-            animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
-        }
-        else
-        {
-            animator.SetFloat("LandingForce", Mathf.Abs(poncheRigidbodie.velocity.y));
-            animator.SetFloat("VelocityY", 0f);
-        }
-      
-
-      
-           
-
-
-
 
 
 
@@ -159,7 +126,33 @@ public class PoncherCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        isGrounded = IsGrounded();
+        //isWalled = checkIsWalled();
+
+        HandleCoyoteTime();
+
+        //CorrectCorners();
+        //LedgeDetection();
+
+
+        animator.SetBool("Grounded", isGrounded);
+        //animator.SetBool("Walled", isWalled);
+
         //Debug.DrawRay(transform.position, poncheRigidbodie.velocity);
+        if (!isGrounded)
+        {
+            landingForce = Mathf.Abs(Mathf.Round(GetComponent<Rigidbody>().velocity.y));
+            GetAnimator().SetFloat("LandingForce", landingForce);
+            animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
+        }
+        else
+        {
+            animator.SetFloat("VelocityY", 0f);
+        }
+
+       
+        
     }
 
 
@@ -373,7 +366,7 @@ public class PoncherCharacter : MonoBehaviour
                     if (dot > 0)
                     {   //Stiking                  
 
-                        if (isGrounded == false && GetRigidbody().velocity.y < 0)
+                        if (isGrounded == false /*&& GetRigidbody().velocity.y < 0*/)
                         {
                             if (GetState() != PoncherState.WallJumping)
                             {
@@ -403,26 +396,51 @@ public class PoncherCharacter : MonoBehaviour
     }
 
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    foreach (ContactPoint contact in collision.contacts)
-    //    {
-    //        Debug.DrawRay(contact.point, contact.normal * 2f, Color.white, 0f);
-    //        if (contact.normal.y < 0.1f)
-    //        {
-    //            isWalled = true;
-    //        }
-    //    }
-    //    //Debug.DrawRay(collision., Vector3.up * (dist), Color.cyan, 0f);
-    //}
+    private void OnCollisionStay(Collision collision)
+    {
+        float angle = Vector3.Angle(collision.GetContact(0).normal, Vector3.up);
+        wallNormal = collision.GetContact(0).normal;
 
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (isWalled == true)
-    //    {
-    //        isWalled = false;
-    //    }
-    //}
+        if (angle > wallAngleTreshold)
+        {// In front of a wall                   
+
+            isWalled = true;
+
+
+            float dot = Vector3.Dot(GetController().inputDirection, transform.forward);
+            //Debug.Log("DOT "+ dot);
+            if (dot > 0)
+            {   //Stiking                  
+
+                if (GetState() != PoncherState.WallJumping && GetRigidbody().velocity.y < -1)
+                {
+                    //isStiking = true;
+                    //SetState(PoncherState.WallSliding);
+
+                    Vector3 newVel = GetRigidbody().velocity;
+                    Vector3 slide = new Vector3(0f, newVel.y * -5f, 0f);
+                    GetRigidbody().AddForce(slide, ForceMode.Acceleration);
+                    animator.SetBool("Walled", true);
+                }                
+            }
+            else
+            {
+                animator.SetBool("Walled", false);
+            }
+        }
+
+       
+        //Debug.DrawRay(collision., Vector3.up * (dist), Color.cyan, 0f);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (isWalled == true)
+        {
+            isWalled = false;
+            animator.SetBool("Walled", false);
+        }
+    }
 
 
 
@@ -431,7 +449,7 @@ public class PoncherCharacter : MonoBehaviour
 
     void HandleCoyoteTime()
     {
-        if (isGrounded || isWalled)
+        if (isGrounded || poncherState == PoncherState.WallSliding)
         {
             //On the ground
             coyoteTimeCounter = 0;

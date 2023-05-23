@@ -52,8 +52,8 @@ ModelImporter:
       name: Wall_Jump
       takeName: Wall_Jump
       internalID: 0
-      firstFrame: 14.300001
-      lastFrame: 24.3
+      firstFrame: 14
+      lastFrame: 21.9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -62,10 +62,10 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

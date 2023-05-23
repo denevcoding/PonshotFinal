@@ -105,8 +105,8 @@ ModelImporter:
       name: falling_to_landing
       takeName: falling_to_landing
       internalID: 0
-      firstFrame: 6.8
-      lastFrame: 26
+      firstFrame: 9
+      lastFrame: 20.5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0.95
@@ -115,7 +115,7 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1

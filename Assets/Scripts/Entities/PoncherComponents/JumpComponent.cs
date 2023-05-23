@@ -130,7 +130,7 @@ public class JumpComponent : PoncherComponentBase
     {
         if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
         {
-            if (poncherCharacter.isWalled)
+            if (poncherCharacter.GetState() == PoncherState.WallSliding)
             {
                 poncherCharacter.GetRigidbody().AddForce(wallJumpForce.y * Vector2.up, ForceMode.Impulse);
                 poncherCharacter.GetRigidbody().AddForce(wallJumpForce.x * poncherCharacter.wallNormal, ForceMode.Impulse);
