@@ -71,6 +71,15 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""R1"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f6770f6-dd02-4bc9-872a-49cc5b31a092"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,17 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""L1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d35bb72f-8fb5-463b-83d9-43baa674f289"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""R1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -307,6 +327,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         m_PlayerGameplay_Roll = m_PlayerGameplay.FindAction("Roll", throwIfNotFound: true);
         m_PlayerGameplay_Ragdoll = m_PlayerGameplay.FindAction("Ragdoll", throwIfNotFound: true);
         m_PlayerGameplay_L1 = m_PlayerGameplay.FindAction("L1", throwIfNotFound: true);
+        m_PlayerGameplay_R1 = m_PlayerGameplay.FindAction("R1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -371,6 +392,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerGameplay_Roll;
     private readonly InputAction m_PlayerGameplay_Ragdoll;
     private readonly InputAction m_PlayerGameplay_L1;
+    private readonly InputAction m_PlayerGameplay_R1;
     public struct PlayerGameplayActions
     {
         private @PoncherInputActions m_Wrapper;
@@ -380,6 +402,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         public InputAction @Roll => m_Wrapper.m_PlayerGameplay_Roll;
         public InputAction @Ragdoll => m_Wrapper.m_PlayerGameplay_Ragdoll;
         public InputAction @L1 => m_Wrapper.m_PlayerGameplay_L1;
+        public InputAction @R1 => m_Wrapper.m_PlayerGameplay_R1;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -404,6 +427,9 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 @L1.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnL1;
                 @L1.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnL1;
                 @L1.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnL1;
+                @R1.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnR1;
+                @R1.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnR1;
+                @R1.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnR1;
             }
             m_Wrapper.m_PlayerGameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -423,6 +449,9 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 @L1.started += instance.OnL1;
                 @L1.performed += instance.OnL1;
                 @L1.canceled += instance.OnL1;
+                @R1.started += instance.OnR1;
+                @R1.performed += instance.OnR1;
+                @R1.canceled += instance.OnR1;
             }
         }
     }
@@ -452,5 +481,6 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnRagdoll(InputAction.CallbackContext context);
         void OnL1(InputAction.CallbackContext context);
+        void OnR1(InputAction.CallbackContext context);
     }
 }
