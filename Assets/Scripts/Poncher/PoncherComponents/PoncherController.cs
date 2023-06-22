@@ -73,6 +73,11 @@ public class PoncherController : PoncherComponentBase
         poncherActions.PlayerGameplay.L1.performed += LeftShoulder;
         poncherActions.PlayerGameplay.L1.canceled += LeftShoulder;
 
+
+        //Roll bindings
+        poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
+        
+
         poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().JumpWithPressed;
         //poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().JumpWithPressed;
         poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().JumpWithPressed;
@@ -84,6 +89,8 @@ public class PoncherController : PoncherComponentBase
 
         //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
     }
+
+
 
     private void PlayerInputOnActionTriggered(InputAction.CallbackContext context)
     {
@@ -116,7 +123,7 @@ public class PoncherController : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
 
    

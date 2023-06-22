@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class RollSMB : BaseSMB
 {
+    public RollType RollType;
+    //public bool canMove;
+    //public bool canRotate;
+    //public bool useRootMotion;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         poncherCharacter.SetState(PoncherState.Rolling);
+        poncherCharacter.GetRoll().SetRollType(RollType);
 
         poncherCharacter.canMove = false;
         poncherCharacter.canRotate = false;

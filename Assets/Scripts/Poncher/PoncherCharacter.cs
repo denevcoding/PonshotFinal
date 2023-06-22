@@ -173,7 +173,7 @@ public class PoncherCharacter : MonoBehaviour
         jumpComponent = GetComponent<JumpComponent>();
         moveComponent = GetComponent<MoveComponent>();
         poncherController = GetComponent<PoncherController>();
-        //rollComponent = GetComponent<RollComponent>();
+        rollComponent = GetComponent<RollComponent>();
         animManager = GetComponent<PoncherAnimManager>();
 
         ragdollController = GetComponent<RagdollController>();
@@ -478,6 +478,11 @@ public class PoncherCharacter : MonoBehaviour
     public void SetState(PoncherState state)
     {
         poncherState = state;
+    }
+
+    public float GetLandingForce()
+    {
+        return landingForce;
     }
 
 

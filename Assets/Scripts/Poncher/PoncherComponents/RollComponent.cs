@@ -12,7 +12,7 @@ public enum RollType
 public class RollComponent : PoncherComponentBase
 {
     //Roll Settings
-    public RollType rollType;
+    public RollType rollType; //Handled from anim state SMB
     public bool canRoll;
 
 
@@ -47,7 +47,16 @@ public class RollComponent : PoncherComponentBase
         if (!canRoll)
             return;
 
-        poncherCharacter.GetAnimator().SetTrigger("Roll");
+      
+       poncherCharacter.GetAnimator().SetTrigger("Roll");
 
+    }
+
+
+
+    public void SetRollType(RollType type)
+    {
+        poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
+        rollType = type;
     }
 }

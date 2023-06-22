@@ -41,7 +41,10 @@ public class PoncherAnimManager : PoncherComponentBase
     // Update is called once per frame
     void Update()
     {
-        
+        if (!poncherCharacter.isGrounded && isRootMotion)
+        {
+            DeactivateRootmotion();
+        }
     }
 
     public override void Initcomponent()
@@ -66,19 +69,59 @@ public class PoncherAnimManager : PoncherComponentBase
             return;
 
         Vector3 tempPosition = transform.position;
-        tempPosition += poncherCharacter.GetAnimator().deltaPosition;
+
+        if (!poncherCharacter.isWalled)        
+            tempPosition += poncherCharacter.GetAnimator().deltaPosition;
+        else
+        {
+            DeactivateRootmotion();
+        }
+     
         tempPosition.z = 0;
-        transform.position = tempPosition;
+        poncherCharacter.GetRigidbody().MovePosition(tempPosition);
         //transform.forward = animator.deltaRotation * transform.forward;
     }
+
+    
 
 
     public void ActivateRootMotion()
     {
-        isRootMotion = true;
+        //poncherCharacter.GetRigidbody().interpolation = RigidbodyInterpolation.None;
+        isRootMotion = true;     
+        //poncherCharacter.canMove = false;
     }
     public void DeactivateRootmotion()
     {
+       //poncherCharacter.GetRigidbody().interpolation = RigidbodyInterpolation.Interpolate;
         isRootMotion = false;
+        //poncherCharacter.canMove = true;
     }
+
+
+
+    //Called from anim event
+    public void CancelRoll()
+    {
+        poncherCharacter.GetRoll().canRoll = false;
+    }
+
+
+    public void SwitchMovement(int restore)
+    {
+        if (restore == 0)
+        {
+            poncherCharacter.canRotate = false;
+            poncherCharacter.canMove = false;
+        }
+        else
+        {
+            DeactivateRootmotion();
+            poncherCharacter.canRotate = true;
+            poncherCharacter.canMove = true;
+        }
+
+    }
+
+
 }

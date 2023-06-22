@@ -5490,6 +5490,7 @@ GameObject:
   - component: {fileID: 1196356100}
   - component: {fileID: 1196356093}
   - component: {fileID: 9076507809495912974}
+  - component: {fileID: 6508315963516702669}
   - component: {fileID: 1196356094}
   - component: {fileID: 1956481293303678352}
   - component: {fileID: 139597773}
@@ -5498,7 +5499,6 @@ GameObject:
   - component: {fileID: 139597763}
   - component: {fileID: 1507751851}
   - component: {fileID: 1507751852}
-  - component: {fileID: 6508315963516702669}
   m_Layer: 0
   m_Name: RMo_Pyrobito_Final
   m_TagString: Untagged
@@ -5651,6 +5651,29 @@ MonoBehaviour:
   rayCornerLenght: 0.5
   rayOffset: 0.5
   fixForce: 0.09
+--- !u!114 &6508315963516702669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071988bfca549624b9f7979d1736843f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  ObjectOnHand: {fileID: 0}
+  DetectionRadius: 0
+  picking: 0
+  Throwing: 0
+  LaunchPressedTimeTreshhold: 0
+  ShootMinForce: 0
+  ShoothMaxForce: 0
+  chargeMultiplierFactor: 0
+  LeftHandSocket: {fileID: 0}
+  RighHandSocket: {fileID: 0}
 --- !u!114 &1196356094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5983,29 +6006,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 800132594}
     m_Active: 1
   m_Effectors: []
---- !u!114 &6508315963516702669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 071988bfca549624b9f7979d1736843f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poncherCharacter: {fileID: 0}
-  ObjectOnHand: {fileID: 0}
-  DetectionRadius: 0
-  picking: 0
-  Throwing: 0
-  LaunchPressedTimeTreshhold: 0
-  ShootMinForce: 0
-  ShoothMaxForce: 0
-  chargeMultiplierFactor: 0
-  LeftHandSocket: {fileID: 0}
-  RighHandSocket: {fileID: 0}
 --- !u!1 &8389736482605597895
 GameObject:
   m_ObjectHideFlags: 0

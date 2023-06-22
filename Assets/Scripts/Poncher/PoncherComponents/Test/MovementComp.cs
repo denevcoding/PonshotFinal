@@ -38,7 +38,7 @@ public class MovementComp : PoncherComponentBase
     // Update is called once per frame
     void Update()
     {
-        poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(poncherCharacter.GetController().inputDirection.x));
+
 
 
         //adjust movement values if we're in the air or on the ground
@@ -50,10 +50,14 @@ public class MovementComp : PoncherComponentBase
 
     public void FixedUpdate()
     {
+        poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(poncherCharacter.GetController().inputDirection.x));
         poncherCharacter.GetRigidbody().WakeUp();
 
         ApplyGravity();
 
+
+        if (!poncherCharacter.canMove)
+            return;
 
         float targetSpeed = poncherCharacter.GetController().GetInputDirection().x * currMovSpeed;
 
