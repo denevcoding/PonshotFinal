@@ -5,6 +5,7 @@ using UnityEngine;
 public class LandingSMB : BaseSMB
 {
     public RollType rollType;
+    public bool overrideRoll;
     float defaultAccel;
     public float acelerationAffect;
     public bool cancelJump;
@@ -14,8 +15,16 @@ public class LandingSMB : BaseSMB
     {
         poncherCharacter.SetState(PoncherState.Landing);
 
-
-        poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
+        if (poncherCharacter.isRotBlocked && !overrideRoll)
+        {
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
+        }
+        else
+        {
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
+        }
+        
+        
 
         defaultAccel = poncherCharacter.GetComponent<MovementComp>().moveSpeed;
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = acelerationAffect;
@@ -27,7 +36,9 @@ public class LandingSMB : BaseSMB
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
+        if (!poncherCharacter.isRotBlocked)
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
+
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = defaultAccel;
         poncherCharacter.GetComponent<JumpComponent>().RestoreJump();
         poncherCharacter.canRotate = true;

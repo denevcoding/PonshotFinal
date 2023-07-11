@@ -1354,9 +1354,9 @@ GameObject:
   - component: {fileID: 281067647}
   - component: {fileID: 281067646}
   - component: {fileID: 281067645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Standard Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2030,6 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   RideHeight: 0
   RideSpringStrenght: 0
   RideSpringDamper: 0
@@ -2273,6 +2274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   jumpForce: {x: 0, y: 10, z: 0}
   wallJumpForce: {x: 0, y: 0, z: 0}
   wallJumpXForce: 0
@@ -5457,6 +5459,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271052400}
   m_CullTransparentMesh: 1
+--- !u!4 &1272740970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2659569735449717514, guid: 4f0a0adb9db7b044ca8331159ada8d63,
+    type: 3}
+  m_PrefabInstance: {fileID: 9076507809707310703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1309090873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5674,6 +5682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   rollType: 0
   canRoll: 0
 --- !u!1 &1366344573
@@ -6212,6 +6221,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435571508}
   m_CullTransparentMesh: 1
+--- !u!4 &1498979016 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5895023071293733850, guid: 4f0a0adb9db7b044ca8331159ada8d63,
+    type: 3}
+  m_PrefabInstance: {fileID: 9076507809707310703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1558496735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8911,13 +8926,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6508315963516702669, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
+      propertyPath: LeftHandSocket
+      value: 
+      objectReference: {fileID: 1498979016}
+    - target: {fileID: 6508315963516702669, guid: 4f0a0adb9db7b044ca8331159ada8d63,
+        type: 3}
+      propertyPath: RighHandSocket
+      value: 
+      objectReference: {fileID: 1272740970}
+    - target: {fileID: 6508315963516702669, guid: 4f0a0adb9db7b044ca8331159ada8d63,
+        type: 3}
       propertyPath: ShoothMaxForce
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6508315963516702669, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}
       propertyPath: DetectionRadius
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6508315963516702669, guid: 4f0a0adb9db7b044ca8331159ada8d63,
         type: 3}

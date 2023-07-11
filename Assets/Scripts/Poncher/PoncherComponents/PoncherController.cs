@@ -73,6 +73,11 @@ public class PoncherController : PoncherComponentBase
         poncherActions.PlayerGameplay.L1.performed += LeftShoulder;
         poncherActions.PlayerGameplay.L1.canceled += LeftShoulder;
 
+        //right Bumper
+        poncherActions.PlayerGameplay.R1.started += GetComponent<PickThrowComponent>().PickDrop;
+        //poncherActions.PlayerGameplay.R1.performed += RightBumper;
+        poncherActions.PlayerGameplay.R1.canceled += GetComponent<PickThrowComponent>().PickDrop;
+
 
         //Roll bindings
         poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
@@ -182,6 +187,7 @@ public class PoncherController : PoncherComponentBase
 
     }
 
+    #region Input Buffer
     public void AddActionToBuffer(InputAction.CallbackContext action)
     {
         if (action.started)
@@ -276,6 +282,10 @@ public class PoncherController : PoncherComponentBase
 
         //}
     }
+    #endregion
+
+
+
 
 
     public void LeftShoulder(InputAction.CallbackContext context)
@@ -289,6 +299,18 @@ public class PoncherController : PoncherComponentBase
             poncherCharacter.isRotBlocked = false;        
 
     }
+
+    public void RightBumper(InputAction.CallbackContext context) 
+    {
+        if (context.started)
+        {
+
+        }
+    }
+
+
+
+
 
 
     public void SwitcBones(InputAction.CallbackContext context)

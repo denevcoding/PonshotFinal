@@ -78,7 +78,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""id"": ""3f6770f6-dd02-4bc9-872a-49cc5b31a092"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 }
             ],

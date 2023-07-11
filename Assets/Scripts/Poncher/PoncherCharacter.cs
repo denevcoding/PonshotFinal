@@ -36,6 +36,7 @@ public class PoncherCharacter : MonoBehaviour
     private MoveComponent moveComponent;
     private PoncherController poncherController;
     private RollComponent rollComponent;
+    private PickThrowComponent pickThrow;
     private PoncherAnimManager animManager;
 
     private RagdollController ragdollController;

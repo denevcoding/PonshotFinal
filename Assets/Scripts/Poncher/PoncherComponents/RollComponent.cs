@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public enum RollType
 {
     standRoll = 0,
-    safetyRoll = 1
+    safetyRoll = 1,
+    backRoll =2
+
 }
 
 public class RollComponent : PoncherComponentBase
@@ -47,8 +49,15 @@ public class RollComponent : PoncherComponentBase
         if (!canRoll)
             return;
 
-      
-       poncherCharacter.GetAnimator().SetTrigger("Roll");
+
+        if (poncherCharacter.isRotBlocked && poncherCharacter.GetState() != PoncherState.Landing)        
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
+        else        
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
+        
+        
+        
+        poncherCharacter.GetAnimator().SetTrigger("Roll");
 
     }
 

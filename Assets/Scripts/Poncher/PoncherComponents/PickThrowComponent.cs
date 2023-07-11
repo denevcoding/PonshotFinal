@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickThrowComponent : PoncherComponentBase
 {
     private Vector3 offset;
 
+    public bool canPick;
     public GameObject ObjectOnHand;
 
     [Header("Picking Settings")]
@@ -36,7 +38,7 @@ public class PickThrowComponent : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
-        
+        canPick = true;
     }
 
     // Update is called once per frame
@@ -68,6 +70,9 @@ public class PickThrowComponent : PoncherComponentBase
         if (CheckComponentPreconditions() == false)
             return false;
 
+        if (!canPick)
+            return false;
+
         if (ObjectOnHand)
             return false;
 
@@ -87,23 +92,32 @@ public class PickThrowComponent : PoncherComponentBase
 
 
 
-    public void Pick()
+    public void PickDrop(InputAction.CallbackContext context)
     {
-        picking = true;
-        if (PreconditionsToPick() == false)
-            return;
-
-        Collider[] hitColliders = Physics.OverlapSphere(GetSpherePos(), DetectionRadius);
-        
-        foreach (var hitCollider in hitColliders)
+        if (context.started)
         {
-            IPickeable pickeable = hitCollider.gameObject.GetComponent<IPickeable>();
+            picking = true;
+            if (PreconditionsToPick() == false)
+                return;
 
-            if (pickeable != null)                       
-                ObjectOnHand = pickeable.Picked(this.poncherCharacter, LeftHandSocket);            
+            Collider[] hitColliders = Physics.OverlapSphere(GetSpherePos(), DetectionRadius);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                IPickeable pickeable = hitCollider.gameObject.GetComponent<IPickeable>();
+
+                if (pickeable != null)
+                    ObjectOnHand = pickeable.Picked(this.poncherCharacter, LeftHandSocket);
+            }
         }
-    }
 
+        if (context.canceled)
+        {
+            picking = false;
+        }
+
+       
+    }
 
     //Called on was presed
     public void SetLaunchSettings()

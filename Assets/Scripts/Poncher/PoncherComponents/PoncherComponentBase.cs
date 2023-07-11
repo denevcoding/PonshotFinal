@@ -8,6 +8,8 @@ public class PoncherComponentBase : MonoBehaviour
 
     public PoncherCharacter poncherCharacter; //Init from poncher character character
 
+    public bool isPressed;
+
     public virtual bool CheckBasePreconditions()
     {
         if (poncherCharacter.GetState() == PoncherState.Ponched)
