@@ -11,6 +11,8 @@ public class JumpComponent : PoncherComponentBase
     public float wallJumpXForce;
     public bool canJump;
 
+    public bool canDoubleJump;
+
     public bool jumpPressed;
 
     public float maxJumpHighTime;

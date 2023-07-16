@@ -43,7 +43,7 @@ public class PoncherAnimManager : PoncherComponentBase
     {
         if (!poncherCharacter.isGrounded && isRootMotion)
         {
-            DeactivateRootmotion();
+            //DeactivateRootmotion();
         }
     }
 

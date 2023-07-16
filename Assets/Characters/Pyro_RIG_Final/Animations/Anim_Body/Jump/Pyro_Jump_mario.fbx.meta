@@ -69,7 +69,7 @@ ModelImporter:
       name: Jump_mario
       takeName: Jump_mario
       internalID: 0
-      firstFrame: 18.1
+      firstFrame: 16.1
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 9.7
