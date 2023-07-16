@@ -430,6 +430,11 @@ public class PoncherController : PoncherComponentBase
     {
         return inputDirection;
     }
+
+    public PoncherInputActions GetPoncherActions()
+    {
+        return poncherActions;
+    }
     #endregion
 
 

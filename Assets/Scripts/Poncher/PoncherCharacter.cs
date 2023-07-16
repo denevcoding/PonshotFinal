@@ -41,6 +41,9 @@ public class PoncherCharacter : MonoBehaviour
 
     private RagdollController ragdollController;
 
+    [Header("Aimer Data")]
+    public PoncherGUI poncherGUI;
+
     [Header("Grounded Settings")]
     public bool isGrounded;
     public float rayLenght;
@@ -82,6 +85,7 @@ public class PoncherCharacter : MonoBehaviour
     private void Awake()
     {
         InitPoncherComponents();
+        poncherGUI.InitPoncheGUI(this);
     }
 
     // Start is called before the first frame update
@@ -93,9 +97,6 @@ public class PoncherCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-  
-
-
         //Handle blocked rotation, for flips and running backwards
         if (!isRotBlocked)
         {
@@ -486,6 +487,13 @@ public class PoncherCharacter : MonoBehaviour
         return landingForce;
     }
 
+    public Vector3 GetPoncherCenteredPosition()
+    {
+        Vector3 FixedPosition = transform.position;
+        float offsetY = GetCollider().bounds.size.y / 2;
+        //FixedPosition.y -= offsetY;
+        return FixedPosition;
+    }
 
 
     //Poncher Components

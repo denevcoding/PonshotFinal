@@ -105,7 +105,7 @@ ModelImporter:
       name: falling_to_landing
       takeName: falling_to_landing
       internalID: 0
-      firstFrame: 9
+      firstFrame: 8.8
       lastFrame: 20.5
       wrapMode: 0
       orientationOffsetY: 0

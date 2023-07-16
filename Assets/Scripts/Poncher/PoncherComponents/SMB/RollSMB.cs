@@ -14,6 +14,7 @@ public class RollSMB : BaseSMB
         poncherCharacter.SetState(PoncherState.Rolling);
         poncherCharacter.GetRoll().SetRollType(RollType);
 
+        poncherCharacter.GetRigidbody().velocity = Vector3.zero;
         poncherCharacter.canMove = false;
         poncherCharacter.canRotate = false;
         poncherCharacter.GetAnimManager().ActivateRootMotion();

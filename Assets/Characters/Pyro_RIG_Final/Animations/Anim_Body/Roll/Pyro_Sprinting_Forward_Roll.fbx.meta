@@ -53,11 +53,11 @@ ModelImporter:
       name: Sprinting_Forward_Roll
       takeName: Sprinting_Forward_Roll
       internalID: 0
-      firstFrame: 5.2
+      firstFrame: 0
       lastFrame: 26.2
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0.5
+      level: 0.2
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -74,7 +74,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6985428
+      - time: 0.6845022
         functionName: SwitchMovement
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 7bc558acaf353c744ac8c08a1dfd56f0,
