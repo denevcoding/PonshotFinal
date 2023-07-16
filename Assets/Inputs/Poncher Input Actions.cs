@@ -80,6 +80,15 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightTrigger"",
+                    ""type"": ""Button"",
+                    ""id"": ""c482fbf8-0a52-4d25-b864-83c2f5878ae6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,6 +300,17 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""R1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d490ba4-7973-4324-bddc-8365783cc098"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RightTrigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -328,6 +348,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         m_PlayerGameplay_Ragdoll = m_PlayerGameplay.FindAction("Ragdoll", throwIfNotFound: true);
         m_PlayerGameplay_L1 = m_PlayerGameplay.FindAction("L1", throwIfNotFound: true);
         m_PlayerGameplay_R1 = m_PlayerGameplay.FindAction("R1", throwIfNotFound: true);
+        m_PlayerGameplay_RightTrigger = m_PlayerGameplay.FindAction("RightTrigger", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -393,6 +414,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerGameplay_Ragdoll;
     private readonly InputAction m_PlayerGameplay_L1;
     private readonly InputAction m_PlayerGameplay_R1;
+    private readonly InputAction m_PlayerGameplay_RightTrigger;
     public struct PlayerGameplayActions
     {
         private @PoncherInputActions m_Wrapper;
@@ -403,6 +425,7 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         public InputAction @Ragdoll => m_Wrapper.m_PlayerGameplay_Ragdoll;
         public InputAction @L1 => m_Wrapper.m_PlayerGameplay_L1;
         public InputAction @R1 => m_Wrapper.m_PlayerGameplay_R1;
+        public InputAction @RightTrigger => m_Wrapper.m_PlayerGameplay_RightTrigger;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -430,6 +453,9 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 @R1.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnR1;
                 @R1.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnR1;
                 @R1.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnR1;
+                @RightTrigger.started -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRightTrigger;
+                @RightTrigger.performed -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRightTrigger;
+                @RightTrigger.canceled -= m_Wrapper.m_PlayerGameplayActionsCallbackInterface.OnRightTrigger;
             }
             m_Wrapper.m_PlayerGameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -452,6 +478,9 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
                 @R1.started += instance.OnR1;
                 @R1.performed += instance.OnR1;
                 @R1.canceled += instance.OnR1;
+                @RightTrigger.started += instance.OnRightTrigger;
+                @RightTrigger.performed += instance.OnRightTrigger;
+                @RightTrigger.canceled += instance.OnRightTrigger;
             }
         }
     }
@@ -482,5 +511,6 @@ public partial class @PoncherInputActions : IInputActionCollection2, IDisposable
         void OnRagdoll(InputAction.CallbackContext context);
         void OnL1(InputAction.CallbackContext context);
         void OnR1(InputAction.CallbackContext context);
+        void OnRightTrigger(InputAction.CallbackContext context);
     }
 }

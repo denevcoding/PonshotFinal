@@ -36,7 +36,7 @@ public class PoncherCharacter : MonoBehaviour
     private MoveComponent moveComponent;
     private PoncherController poncherController;
     private RollComponent rollComponent;
-    private PickThrowComponent pickThrow;
+    private PickThrowComponent pickThrowComponent;
     private PoncherAnimManager animManager;
 
     private RagdollController ragdollController;
@@ -124,6 +124,11 @@ public class PoncherCharacter : MonoBehaviour
 
 
 
+        if (IsGrounded() && !checkIsWalled())
+        {
+            jumpComponent.canDoubleJump = true;
+        }
+
     }
 
     private void FixedUpdate()
@@ -177,6 +182,8 @@ public class PoncherCharacter : MonoBehaviour
         poncherController = GetComponent<PoncherController>();
         rollComponent = GetComponent<RollComponent>();
         animManager = GetComponent<PoncherAnimManager>();
+        pickThrowComponent = GetComponent<PickThrowComponent>();
+
 
         ragdollController = GetComponent<RagdollController>();
 
@@ -493,6 +500,13 @@ public class PoncherCharacter : MonoBehaviour
         float offsetY = GetCollider().bounds.size.y / 2;
         //FixedPosition.y -= offsetY;
         return FixedPosition;
+    }
+
+
+
+    public PoncherGUI GetponcherGUI()
+    {
+        return poncherGUI;
     }
 
 

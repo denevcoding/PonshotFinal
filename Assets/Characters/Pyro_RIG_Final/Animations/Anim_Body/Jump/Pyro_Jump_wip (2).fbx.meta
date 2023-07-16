@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -145651655250238994
-    second: Jump_wip
+    second: double Jump
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -66,11 +66,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump_wip
+      name: double Jump
       takeName: Jump_wip
       internalID: 0
-      firstFrame: 5.9
-      lastFrame: 11.9
+      firstFrame: 4
+      lastFrame: 14.6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

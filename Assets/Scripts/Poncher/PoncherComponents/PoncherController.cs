@@ -87,6 +87,9 @@ public class PoncherController : PoncherComponentBase
         //poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().JumpWithPressed;
         poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().JumpWithPressed;
 
+        poncherActions.PlayerGameplay.RightTrigger.started += GetComponent<PickThrowComponent>().ThrowLaunch;
+        poncherActions.PlayerGameplay.RightTrigger.canceled += GetComponent<PickThrowComponent>().ThrowLaunch;
+
         //poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
 
         // Y or Tringle Button

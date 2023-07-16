@@ -88,6 +88,12 @@ public class ShootPointer : MonoBehaviour
 
     }
 
+    public void InitSlider(float minValue, float maxValue)
+    {
+        chargeArrow.minValue = minValue;
+        chargeArrow.maxValue = maxValue;
+    }
+
 
     //Getters Setters
     public float GetXAxis()

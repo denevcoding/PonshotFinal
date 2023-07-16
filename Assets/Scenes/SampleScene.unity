@@ -979,7 +979,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29062
+  m_Name: pb_Mesh30170
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1143,7 +1143,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28750
+  m_Name: pb_Mesh29828
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 55
   m_WholeNumbers: 0
-  m_Value: 55
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2327,9 +2327,11 @@ MonoBehaviour:
   poncherCharacter: {fileID: 0}
   isPressed: 0
   jumpForce: {x: 0, y: 10, z: 0}
+  doubleJumpForce: {x: 0, y: 0, z: 0}
   wallJumpForce: {x: 0, y: 0, z: 0}
   wallJumpXForce: 0
   canJump: 0
+  canDoubleJump: 0
   jumpPressed: 0
   maxJumpHighTime: 0
   timeMaxHigh: 0
@@ -2342,7 +2344,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28916
+  m_Name: pb_Mesh30018
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2743,7 +2745,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28640
+  m_Name: pb_Mesh29712
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3858,7 +3860,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29020
+  m_Name: pb_Mesh30128
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6853,7 +6855,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28836
+  m_Name: pb_Mesh29938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9430,6 +9432,10 @@ PrefabInstance:
     - target: {fileID: 139597762, guid: 4f0a0adb9db7b044ca8331159ada8d63, type: 3}
       propertyPath: jumpForce.y
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 139597762, guid: 4f0a0adb9db7b044ca8331159ada8d63, type: 3}
+      propertyPath: doubleJumpForce.y
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 139597773, guid: 4f0a0adb9db7b044ca8331159ada8d63, type: 3}
       propertyPath: airAccel

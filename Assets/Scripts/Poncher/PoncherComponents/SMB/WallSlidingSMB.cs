@@ -9,7 +9,7 @@ public class WallSlidingSMB : BaseSMB
         //pkComponent = poncherCharacter.GetParkourComponent();
         //pkComponent.canFlip = false;
 
-        poncherCharacter.SetState(PoncherState.WallSliding);
+        poncherCharacter.SetState(PoncherState.WallSliding);       
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
