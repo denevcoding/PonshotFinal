@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: cfdaa0c1cae75764b88764d874086ffe
+guid: c2f132171e0eb244d969dfad84fe6edd
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -1438366218020931773
-    second: Sprinting_Forward_Roll
+      74: 8872777739230543458
+    second: BackRoll
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,17 +22,20 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'GameSkeletonHipPart1_L'
-      : rotation error = 9.504635 deg\n\t'GameSkeletonKneePart1_L' : rotation error
-      = 8.144552 deg\n"
+      : rotation error = 5.754214 deg\n\t'GameSkeletonKneePart1_L' : rotation error
+      = 0.250643 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Sprinting_Forward_Roll' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'GameSkeletonJawJoint_M' has
-      translation animation that will be discarded.\n\t'GameSkeletonScapula_R' is
-      inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
+    animationImportWarnings: "\nClip 'BackRoll' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'GameSkeletonHead_M' has translation animation
+      that will be discarded.\n\t'GameSkeletonScapula_R' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonScapula_L'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonIndexFinger1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonRingFinger1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonPinkyFinger1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
@@ -50,14 +53,14 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Sprinting_Forward_Roll
-      takeName: Sprinting_Forward_Roll
+      name: BackRoll
+      takeName: BackRoll
       internalID: 0
-      firstFrame: 0
-      lastFrame: 26.2
+      firstFrame: 2
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0.8
+      level: 1
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -68,13 +71,13 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6845022
+      - time: 0.77152884
         functionName: SwitchMovement
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 7bc558acaf353c744ac8c08a1dfd56f0,

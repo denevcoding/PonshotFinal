@@ -38,9 +38,6 @@ public class MovementComp : PoncherComponentBase
     // Update is called once per frame
     void Update()
     {
-
-
-
         //adjust movement values if we're in the air or on the ground
         currMovSpeed = (poncherCharacter.isGrounded) ? moveSpeed : airMoveSpeed;
         currAccel = (poncherCharacter.isGrounded) ? acceleration : airAccel;

@@ -21,11 +21,12 @@ public class PickThrowComponent : PoncherComponentBase
     public float ShoothMaxForce;
     public float chargeMultiplierFactor;
 
-    private float maxChargeTime = 0.75f;
+    private bool hasFired;
+    private float maxChargeTime = 0.7f;
     private float chargeSpeed;
 
     private float timerPressed = 0;
-    private float CurrentLaunchForce;
+    [SerializeField]private float CurrentLaunchForce;
 
 
     //Sockets
@@ -47,6 +48,7 @@ public class PickThrowComponent : PoncherComponentBase
     void Start()
     {
         canPick = true;
+        hasFired = false;
 
         chargeSpeed = (ShoothMaxForce - ShootMinForce) / maxChargeTime;
         //TODO:: init from poncher GUI with poncher character DATa scriptable Object
@@ -91,27 +93,24 @@ public class PickThrowComponent : PoncherComponentBase
 
         return true;
     }
-    private bool PreconditionsToThrow()
-    {
-        if (CheckComponentPreconditions() == false)
-            return false;
-
-        if (ObjectOnHand == null)
-            return false;
-
-        return true;
-    }
-    
-
 
 
     public void PickDrop(InputAction.CallbackContext context)
     {
         if (context.started)
         {
+            if (Charging)
+            {
+                Charging = false;
+                ResetLaunch();
+            }               
+
             picking = true;
+
             if (PreconditionsToPick() == false)
                 return;
+
+          
 
             Collider[] hitColliders = Physics.OverlapSphere(GetSpherePos(), DetectionRadius);
 
@@ -130,97 +129,74 @@ public class PickThrowComponent : PoncherComponentBase
         }       
     }
 
+
+    private bool PreconditionsToThrow()
+    {
+        if (ObjectOnHand == null)
+            return false;
+
+        return true;
+    }
     public void ThrowLaunch(InputAction.CallbackContext context)
     {
+        if (CheckComponentPreconditions() == false)
+            return;
+
         if (context.started)
         {
-            if (PreconditionsToThrow() == false)
-                return;
             Charging = true;
-
-            //Debug.Log("Stetting Launch");
-            CurrentLaunchForce = ShootMinForce;
-            poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = CurrentLaunchForce;
+            hasFired = false;
+           // CurrentLaunchForce = ShootMinForce;
+            poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;            
+   
         }
 
         if (context.canceled)
         {
             Charging = false;
 
-            if (ObjectOnHand)
+            if (!hasFired)
             {
-                //Launch();
-                poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;
+                Launch();
             }
+           
         }
     }
 
-    //Called on was presed
-    //public void SetLaunchSettings()
-    //{  
-    //    if (PreconditionsToThrow() == false)
-    //        return;
-    //    Charging = true;
-
-    //    //Debug.Log("Stetting Launch");
-    //    CurrentLaunchForce = ShootMinForce;
-
-    //    //Iniciar voz de carga
-    //}
-
+ 
 
     //Called on is preseed
     public void Charge() 
     {
-        //poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;
-
-        if (CurrentLaunchForce >= ShoothMaxForce && ObjectOnHand != null && Charging)
+        if (Charging && CurrentLaunchForce >= ShoothMaxForce && !hasFired)
         {
-            //CurrentLaunchForce = ShoothMaxForce;
+            CurrentLaunchForce = ShoothMaxForce;
             //Launch();
-        }
-        
-        if (Charging && ObjectOnHand != null)
+        }     
+        else if (Charging && !hasFired)
         {
             CurrentLaunchForce += chargeSpeed * Time.deltaTime;
             poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = CurrentLaunchForce;
+            //Launch();
         }
-
-    
-
-        
-        
-        //timerPressed += Time.deltaTime;
-
-        //if (timerPressed > LaunchPressedTimeTreshhold)
-        ////{            
-        //    float multiplier = chargeMultiplierFactor;
-        //    CurrentLaunchForce += multiplier * Time.deltaTime;
-
-        //if (CurrentLaunchForce > m_poncherCharacter.GetPoncherInfo().maxShootForce)
-        //    CurrentLaunchForce = m_poncherCharacter.GetPoncherInfo().maxShootForce;
-
-        //m_poncherCharacter.GetPoncherGUI().shooterPointer.chargeArrow.value = CurrentLaunchForce;
- 
-
-        //}
     }
 
     //Called on release
     public void Launch()
     {
+        hasFired = true;
 
-        IPickeable objectToLaunch = ObjectOnHand.GetComponent<IPickeable>();
+        if (ObjectOnHand)
+        {
+            IPickeable objectToLaunch = ObjectOnHand.GetComponent<IPickeable>();
 
-        //Transform shooterAim = m_poncherCharacter.GetPoncherGUI().shooterPointer.aimer.transform;
-        //float axisX = m_poncherCharacter.GetPoncherGUI().shooterPointer.GetComponent<ShootPointer>().GetXAxis();
+            Transform shooterAim = poncherCharacter.GetponcherGUI().shooterPointer.aimer.transform;
+            float axisX = poncherCharacter.GetponcherGUI().shooterPointer.GetComponent<ShootPointer>().GetXAxis();
 
-        //objectToLaunch.Throwed(CurrentLaunchForce, axisX, shooterAim);
-
-
-        // m_poncherCharacter.GetPoncherGUI().shooterPointer.chargeArrow.value = 0;
-        poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = 0;
-
+            Debug.Log("Shoot force " + CurrentLaunchForce);
+            objectToLaunch.Throwed(CurrentLaunchForce, axisX, shooterAim);
+            ObjectOnHand = null;
+        }
 
         ResetLaunch();
     }
@@ -228,8 +204,9 @@ public class PickThrowComponent : PoncherComponentBase
     public void ResetLaunch() 
     {
         CurrentLaunchForce = ShootMinForce;
+        poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = CurrentLaunchForce;
         //timerPressed = 0f;
-        ObjectOnHand = null;
+        
     }
 
 

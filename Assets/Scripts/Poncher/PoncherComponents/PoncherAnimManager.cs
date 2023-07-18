@@ -41,10 +41,12 @@ public class PoncherAnimManager : PoncherComponentBase
     // Update is called once per frame
     void Update()
     {
-        if (!poncherCharacter.isGrounded && isRootMotion)
-        {
-            //DeactivateRootmotion();
-        }
+        //Validate preconditions
+
+        //if (!poncherCharacter.isGrounded && isRootMotion)
+        //{
+        //    SwitchMovement(1);
+        //}
     }
 
     public override void Initcomponent()
@@ -71,12 +73,18 @@ public class PoncherAnimManager : PoncherComponentBase
         Vector3 tempPosition = transform.position;
 
         if (!poncherCharacter.isWalled)        
-            tempPosition += poncherCharacter.GetAnimator().deltaPosition;
+            tempPosition.x += poncherCharacter.GetAnimator().deltaPosition.x;
         else
         {
-            DeactivateRootmotion();
+            DeactivateRootmotion();           
         }
-     
+
+        if (!poncherCharacter.IsGrounded())
+        {
+            tempPosition.y += -5f * Time.deltaTime;
+        }
+
+
         tempPosition.z = 0;
         poncherCharacter.GetRigidbody().MovePosition(tempPosition);
         //transform.forward = animator.deltaRotation * transform.forward;

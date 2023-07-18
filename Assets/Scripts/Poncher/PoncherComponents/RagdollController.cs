@@ -214,7 +214,12 @@ public class RagdollController : PoncherComponentBase
             RagdollBone rgBone = bone.gameObject.AddComponent<RagdollBone>();
             rgBone.poncherCharacter = poncherCharacter;
             bone.gameObject.layer = 11;
+            rgBone.boneColldier = rgBone.gameObject.GetComponent<Collider>();
             rgBone.boneRB = rgBone.gameObject.GetComponent<Rigidbody>();
+
+            rgBone.boneRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            rgBone.boneRB.interpolation = RigidbodyInterpolation.Interpolate;
+
         }
     }
     #endregion
@@ -287,7 +292,8 @@ public class RagdollController : PoncherComponentBase
         {
             bone.GetComponent<Rigidbody>().velocity = Vector3.zero;
             bone.GetComponent<Rigidbody>().isKinematic = false;
-            bone.GetComponent<Collider>().enabled = true;
+            //bone.GetComponent<Collider>().isTrigger = false;
+            //bone.GetComponent<Collider>().enabled = true;
             //bone.GetComponent<Rigidbody>().velocity = velDir;
         }
 
@@ -309,7 +315,8 @@ public class RagdollController : PoncherComponentBase
         foreach (GameObject bone in ragdollBones)
         {
             bone.GetComponent<Rigidbody>().isKinematic = true;
-            bone.GetComponent<Collider>().enabled = false;
+            //bone.GetComponent<Collider>().isTrigger = true;
+            //bone.GetComponent<Collider>().enabled = false;
             //bone.GetComponent<Rigidbody>().velocity = velDir;
         }
 
@@ -410,5 +417,7 @@ public class RagdollController : PoncherComponentBase
         return state != RagdollState.animated;
     }
     public void SetIsRagdolled(bool ragdolled) { }
+
+   
     #endregion
 }

@@ -24,6 +24,8 @@ public class PoncherBall : MonoBehaviour, IPickeable
     private SphereCollider BallCollider;
     private BallAudioManager ballAudio;
 
+    private TrailRenderer trail;
+
     private ObjectPool objectPool;
 
     private float ballVelocitie; //Actual magnitud from velocity Vector
@@ -34,9 +36,12 @@ public class PoncherBall : MonoBehaviour, IPickeable
     {
         BallRB = GetComponent<Rigidbody>();
         BallCollider = GetComponent<SphereCollider>();
-        ballAudio = GetComponent<BallAudioManager>();        
+        ballAudio = GetComponent<BallAudioManager>();
+        trail = GetComponent<TrailRenderer>();
 
         gameObject.name = BallData.BallName;
+
+        trail.emitting = false;
 
         //rigid Bodie Inits
         BallRB.drag = BallData.LinearDrag;
@@ -64,10 +69,23 @@ public class PoncherBall : MonoBehaviour, IPickeable
         if (BallRB == null)
             return;
 
+        if (ballState == BallState.Grabbed)
+            return;
+
         ballVelocitie = BallRB.velocity.magnitude;
 
         if (ballVelocitie >= BallData.SpeedToPunch)
+        {
             ballState = BallState.Punching;
+            trail.emitting = true;
+            Physics.IgnoreLayerCollision(3,7, true);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(3, 7, false);
+            trail.emitting = false;
+        }
+           
     }
 
 
@@ -138,6 +156,11 @@ public class PoncherBall : MonoBehaviour, IPickeable
     #region Physix Events
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log(collision.gameObject.name);
+
+     
+
+
         //Material detection to change the type of the sound
         float bounceForce = collision.relativeVelocity.magnitude / 30;
 
@@ -158,14 +181,21 @@ public class PoncherBall : MonoBehaviour, IPickeable
                 poncheable.Ponched(collision.GetContact(0).normal, collision.GetContact(0).point, collision.relativeVelocity.magnitude);
                 //hitClip = BallData.poncherHitsClips[0];
                 //reproducir sonido de golpe a jugador
-            }           
-
+            }
             //Sonido de golpe duro
-
         }
+        else
+        {
+            //if (collision.gameObject.tag == "RagdollBone")
+            //{
+            //    Debug.Log("Hitting a ball");
 
-
+            //    Vector3 dir = this.transform.position - collision.gameObject.transform.position;
+            //    BallRB.AddForce(dir * 3f, ForceMode.Impulse);
+            //}
+        }
     }
+
     #endregion
 
 

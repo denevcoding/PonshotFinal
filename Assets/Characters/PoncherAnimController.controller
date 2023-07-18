@@ -142,9 +142,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.016848836
+  m_TransitionDuration: 0.022592926
   m_TransitionOffset: 0
-  m_ExitTime: 0.000000001286211
+  m_ExitTime: 0
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -267,12 +267,13 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Macaco
-  m_Speed: 2.3
+  m_Name: BackRoll
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 168702059041476100}
   - {fileID: 128654166903609103}
+  - {fileID: 3725807061817833940}
   m_StateMachineBehaviours:
   - {fileID: 7751585736146746746}
   m_Position: {x: 50, y: 50, z: 0}
@@ -283,7 +284,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 8270269070264259806, guid: 8a00b7a5d9842564cacd0469e58147fa,
+  m_Motion: {fileID: 8872777739230543458, guid: c2f132171e0eb244d969dfad84fe6edd,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -571,9 +572,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01989158
+  m_TransitionDuration: 0.045708474
   m_TransitionOffset: 0
-  m_ExitTime: 1.9884698e-10
+  m_ExitTime: 0.0000000025781073
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -612,9 +613,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.06816174
+  m_TransitionDuration: 0.119856656
   m_TransitionOffset: 0
-  m_ExitTime: 0.0009387461
+  m_ExitTime: 0.00093874463
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -661,6 +662,7 @@ AnimatorStateMachine:
     second:
     - {fileID: -5486893288089392095}
     - {fileID: -5284941962502725228}
+    - {fileID: -3983274823342696083}
   - first: {fileID: 352826097491953859}
     second:
     - {fileID: -1406730715772023019}
@@ -1041,6 +1043,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
   RollType: 0
+--- !u!1109 &-3983274823342696083
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Jumping
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 352826097491953859}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
+--- !u!1101 &-3939989777415878262
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Jumping
+    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: JumpType
+    m_EventTreshold: 2
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -7188706205041447040}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.1559493
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!114 &-3820119761532893928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1693,9 +1740,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.20672646
+  m_TransitionDuration: 0.09643769
   m_TransitionOffset: 0
-  m_ExitTime: 0.5886323
+  m_ExitTime: 0.58863235
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1796,7 +1843,7 @@ AnimatorStateMachine:
     m_Position: {x: 380, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7188706205041447040}
-    m_Position: {x: 960, y: 120, z: 0}
+    m_Position: {x: 950, y: 150, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
@@ -1947,6 +1994,7 @@ AnimatorState:
   - {fileID: 2310650787845789056}
   - {fileID: 3495938439584030782}
   - {fileID: 9164623929729988230}
+  - {fileID: -3939989777415878262}
   m_StateMachineBehaviours:
   - {fileID: -3820119761532893928}
   m_Position: {x: 50, y: 50, z: 0}
@@ -1978,7 +2026,7 @@ AnimatorStateMachine:
     m_Position: {x: 260, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7962485263413409266}
-    m_Position: {x: 280, y: 190, z: 0}
+    m_Position: {x: 260, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8296896693179431417}
     m_Position: {x: 260, y: 20, z: 0}
@@ -2268,8 +2316,8 @@ AnimatorStateTransition:
   m_IsExit: 1
   serializedVersion: 3
   m_TransitionDuration: 0.12985149
-  m_TransitionOffset: 0.0029875592
-  m_ExitTime: 0.612391
+  m_TransitionOffset: 0
+  m_ExitTime: 0.0017037182
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2335,9 +2383,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.120936394
-  m_TransitionOffset: 0.00000023677434
-  m_ExitTime: 0.6974531
+  m_TransitionDuration: 0.15286854
+  m_TransitionOffset: 0.0024947121
+  m_ExitTime: 0.5943351
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2373,6 +2421,31 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
+--- !u!1101 &3725807061817833940
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Jumping
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 1
+  serializedVersion: 3
+  m_TransitionDuration: 0.04632851
+  m_TransitionOffset: 0.001823101
+  m_ExitTime: 0.0016945367
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &3808340858520988744
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -102,7 +102,8 @@ public class PoncherController : PoncherComponentBase
 
     private void PlayerInputOnActionTriggered(InputAction.CallbackContext context)
     {
-        Debug.Log(context.action.name);
+        //Debug.Log(context.action.name);
+        
         //if (poncherActions.FindAction(context.action.name))
         //{
 
@@ -157,7 +158,7 @@ public class PoncherController : PoncherComponentBase
 
         if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
         {
-            Debug.Log(inputBuffer.Count);
+            //Debug.Log(inputBuffer.Count);
             ExecuteInputBuffer();
         }
     }
@@ -328,6 +329,24 @@ public class PoncherController : PoncherComponentBase
             }           
         }
         else
+        {
+            poncherCharacter.GetRagdollCtrl().SwitchBones(true);
+        }
+
+    }
+
+    public void SwitcBones()
+    {
+        //if (poncherCharacter.GetRagdollCtrl().IsRagdoll == true)
+        //{
+        //    RagdollController RG = poncherCharacter.GetRagdollCtrl();
+
+        //    if (RG.HipGrounded() && RG.RootParent.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.5f)
+        //    {
+        //        poncherCharacter.GetRagdollCtrl().SwitchBones(false);
+        //    }
+        //}
+        if (poncherCharacter.GetRagdollCtrl().IsRagdoll == true)
         {
             poncherCharacter.GetRagdollCtrl().SwitchBones(true);
         }

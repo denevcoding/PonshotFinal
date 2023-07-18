@@ -5,6 +5,7 @@ using UnityEngine;
 public class RagdollBone : PoncherComponentBase, IPoncheable
 {
     public Rigidbody boneRB;
+    public Collider boneColldier;
 
     private void Awake()
     {
@@ -43,4 +44,6 @@ public class RagdollBone : PoncherComponentBase, IPoncheable
         //}
 
     }
+
+
 }

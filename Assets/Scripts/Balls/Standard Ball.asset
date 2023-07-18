@@ -17,7 +17,7 @@ MonoBehaviour:
   PhyxMat: {fileID: 13400000, guid: 2021bda02b4ca0b4aa5c56aa9c571910, type: 2}
   LinearDrag: 0.05
   AngularDrag: 0.05
-  SpeedToPunch: 30
+  SpeedToPunch: 15
   wallBouncesClips:
   - {fileID: 8300000, guid: e102baf096a4d794ca788dc79abaf514, type: 3}
   poncherHitsClips: []

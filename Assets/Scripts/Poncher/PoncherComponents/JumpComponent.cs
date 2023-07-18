@@ -103,7 +103,7 @@ public class JumpComponent : PoncherComponentBase
         {
             if (canJump)
             {
-                if (poncherCharacter.GetState() == PoncherState.Jumping && canDoubleJump)
+                if (poncherCharacter.GetState() == PoncherState.Jumping && !poncherCharacter.checkIsWalled() && canDoubleJump)
                 {
                     DoubleJump();
                 }
