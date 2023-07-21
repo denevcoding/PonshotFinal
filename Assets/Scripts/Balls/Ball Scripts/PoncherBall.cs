@@ -177,8 +177,8 @@ public class PoncherBall : MonoBehaviour, IPickeable
             if (poncheable != null)
             {
                 //BallRB.velocity = Vector3.zero;
-                BallRB.AddForce(collision.GetContact(0).normal * -1 * 1.5f, ForceMode.Impulse);
-                poncheable.Ponched(collision.GetContact(0).normal, collision.GetContact(0).point, collision.relativeVelocity.magnitude);
+                //BallRB.AddForce(collision.GetContact(0).normal * 1 * 1.5f, ForceMode.Impulse);
+                poncheable.Ponched(collision.relativeVelocity.normalized, collision.GetContact(0).point, (collision.relativeVelocity.magnitude) * 10);
                 //hitClip = BallData.poncherHitsClips[0];
                 //reproducir sonido de golpe a jugador
             }

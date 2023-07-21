@@ -6,6 +6,7 @@ public class RagdollBone : PoncherComponentBase, IPoncheable
 {
     public Rigidbody boneRB;
     public Collider boneColldier;
+    public CharacterJoint bonejoint;
 
     private void Awake()
     {
@@ -30,10 +31,10 @@ public class RagdollBone : PoncherComponentBase, IPoncheable
             return;
 
         ragControl.SwitchBones(true);
-        boneRB.AddForce(dir * collMagnitude * 3f * -1, ForceMode.Impulse);
+        boneRB.AddForce((dir * collMagnitude) * -1, ForceMode.Impulse);
         //boneRB.AddTorque(dir * collMagnitude * -1, ForceMode.Impulse);
         //Vector3 force = new Vector3(1f, 1f, 0f);
-        ragControl.AddForceToBones(dir * -1, collMagnitude / 3f, position, ForceMode.Impulse);
+        //ragControl.AddForceToBones(dir * -1, collMagnitude / 3f, position, ForceMode.Impulse);
     }
 
     public void FixedUpdate()

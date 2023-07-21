@@ -214,11 +214,22 @@ public class RagdollController : PoncherComponentBase
             RagdollBone rgBone = bone.gameObject.AddComponent<RagdollBone>();
             rgBone.poncherCharacter = poncherCharacter;
             bone.gameObject.layer = 11;
+            
             rgBone.boneColldier = rgBone.gameObject.GetComponent<Collider>();
+            
             rgBone.boneRB = rgBone.gameObject.GetComponent<Rigidbody>();
-
             rgBone.boneRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
             rgBone.boneRB.interpolation = RigidbodyInterpolation.Interpolate;
+
+            if (rgBone.GetComponent<CharacterJoint>())
+            {
+                rgBone.bonejoint = rgBone.GetComponent<CharacterJoint>();
+                rgBone.bonejoint.enableProjection = true;
+                rgBone.bonejoint.projectionDistance = 0.2f;
+            }
+            
+
+
 
         }
     }
@@ -298,9 +309,9 @@ public class RagdollController : PoncherComponentBase
         }
 
         int randomBone = Random.Range(0, ragdollBones.Count);
-        ragdollBones[randomBone].GetComponent<Rigidbody>().AddForce(Vector3.up * 800f, ForceMode.Impulse);
+        //ragdollBones[randomBone].GetComponent<Rigidbody>().AddForce(Vector3.up * 800f, ForceMode.Impulse);
 
-        ragdollBones[randomBone].GetComponent<Rigidbody>().AddForce(Vector3.right * 150f, ForceMode.Impulse);
+        //ragdollBones[randomBone].GetComponent<Rigidbody>().AddForce(Vector3.right * 150f, ForceMode.Impulse);
 
 
 
