@@ -80,7 +80,7 @@ public class PoncherController : PoncherComponentBase
 
 
         //Roll bindings
-        poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
+        poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().FlipRoll;
         
 
         poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().JumpWithPressed;

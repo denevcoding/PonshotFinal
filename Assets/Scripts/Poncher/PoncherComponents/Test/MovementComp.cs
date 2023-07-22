@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MovementComp : PoncherComponentBase
 {
     [Header("Movement Properties")]
@@ -65,7 +66,7 @@ public class MovementComp : PoncherComponentBase
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
 
         poncherCharacter.GetRigidbody().AddForce(movement * Vector2.right);
-
+ 
 
 
         if (poncherCharacter.IsGrounded() && Mathf.Abs(poncherCharacter.GetController().inputDirection.magnitude) < 0.01f)
