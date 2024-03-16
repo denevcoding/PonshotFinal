@@ -291,6 +291,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player UI",
+            "id": "59fc7a72-9819-4de2-9a82-95c852ab3925",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "d7a249eb-d578-47c8-9c0b-63d83491d3d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7523bd7c-257d-4113-931f-ffc31b88a849",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
