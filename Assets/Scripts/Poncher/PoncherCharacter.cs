@@ -85,7 +85,10 @@ public class PoncherCharacter : MonoBehaviour
     private void Awake()
     {
         InitPoncherComponents();
-        poncherGUI.InitPoncheGUI(this);
+        if (poncherGUI)        
+            poncherGUI.InitPoncheGUI(this);
+        
+     
     }
 
     // Start is called before the first frame update

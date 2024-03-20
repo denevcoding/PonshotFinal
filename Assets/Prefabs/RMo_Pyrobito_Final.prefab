@@ -5526,7 +5526,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &3214636006612084918
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5549,7 +5549,8 @@ Animator:
     animation clip 'Disgust'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &1196356099
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5625,6 +5626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poncherState: 0
   animator: {fileID: 3214636006612084918}
+  poncherGUI: {fileID: 0}
   isGrounded: 1
   rayLenght: 1.1
   boxOffset: 1
@@ -5658,20 +5660,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 071988bfca549624b9f7979d1736843f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
+  canPick: 0
   ObjectOnHand: {fileID: 0}
   DetectionRadius: 0
   picking: 0
-  Throwing: 0
+  Charging: 0
   LaunchPressedTimeTreshhold: 0
   ShootMinForce: 0
   ShoothMaxForce: 0
   chargeMultiplierFactor: 0
+  CurrentLaunchForce: 0
   LeftHandSocket: {fileID: 0}
   RighHandSocket: {fileID: 0}
 --- !u!114 &1196356094
@@ -5687,6 +5692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   RideHeight: 0
   RideSpringStrenght: 0
   RideSpringDamper: 0
@@ -5765,6 +5771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   accel: 115
   decel: 5
   airAccel: 30
@@ -5789,6 +5796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   moveSpeed: 10
   acceleration: 7
   deceleration: 6.5
@@ -5811,6 +5819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   RootParent: {fileID: 4587006867672472566}
   BouncePxMat: {fileID: 0}
   IsRagdoll: 0
@@ -5830,10 +5839,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   jumpForce: {x: 0, y: 20, z: 0}
+  doubleJumpForce: {x: 0, y: 0, z: 0}
   wallJumpForce: {x: 15, y: 20, z: 0}
   wallJumpXForce: 15
   canJump: 0
+  canDoubleJump: 0
   jumpPressed: 0
   maxJumpHighTime: 0.2
   timeMaxHigh: 0
@@ -5853,6 +5865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
+  isPressed: 0
   currentAnimation: {fileID: 0}
   isRootMotion: 0
   VelocityHash: 0

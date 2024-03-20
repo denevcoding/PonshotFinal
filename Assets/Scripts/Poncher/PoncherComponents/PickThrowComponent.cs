@@ -52,7 +52,11 @@ public class PickThrowComponent : PoncherComponentBase
 
         chargeSpeed = (ShoothMaxForce - ShootMinForce) / maxChargeTime;
         //TODO:: init from poncher GUI with poncher character DATa scriptable Object
-        poncherCharacter.GetponcherGUI().shooterPointer.InitSlider(ShootMinForce, ShoothMaxForce);
+
+        if (poncherCharacter.GetponcherGUI())        
+            poncherCharacter.GetponcherGUI().shooterPointer.InitSlider(ShootMinForce, ShoothMaxForce);
+        
+        
 
     }
 

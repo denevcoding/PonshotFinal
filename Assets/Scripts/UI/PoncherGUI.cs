@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PoncherGUI : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class PoncherGUI : MonoBehaviour
     public ShootPointer shooterPointer;
     public GameObject indicatorPoncher;
 
+    private PlayerInput m_inputComponent;
+
+
+    private void Awake()
+    {
+        m_inputComponent = GetComponent<PlayerInput>();
+        shooterPointer.InitAimer(this);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,4 +50,12 @@ public class PoncherGUI : MonoBehaviour
             offset = transform.position - ownerPoncher.GetPoncherCenteredPosition();
         }
     }
+
+
+    #region Getters Setters
+    public PlayerInput GetInputcomp()
+    {
+        return m_inputComponent;
+    }
+    #endregion
 }
