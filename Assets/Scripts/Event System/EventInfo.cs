@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Events
 {
-    public enum EV_EventType
+    public enum PS_EventType
     {
         //Debug,
         App,           //Event throwed for Game
@@ -18,16 +18,13 @@ namespace Events
 
     public class EventInfo
     {
-        // Start is called before the first frame update
-        void Start()
+        public PS_EventType Type;
+        public string info;
+
+        public EventInfo(PS_EventType type, string info)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            Type = type;
+            this.info = info;
         }
     }
 }
