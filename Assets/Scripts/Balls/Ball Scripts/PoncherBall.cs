@@ -158,8 +158,7 @@ public class PoncherBall : PonshotEntity, IPickeable
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
-        RecycleBall();
-       
+        RecycleBall();       
 
         return;
 

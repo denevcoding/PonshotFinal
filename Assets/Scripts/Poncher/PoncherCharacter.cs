@@ -87,15 +87,14 @@ public class PoncherCharacter : PonshotEntity
     {
         InitPoncherComponents();
         if (poncherGUI)        
-            poncherGUI.InitPoncheGUI(this);
-        
+            poncherGUI.InitPoncheGUI(this);        
      
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        InitPoncher();
+        InitPoncherInGameplay();
     }
 
     // Update is called once per frame
@@ -146,7 +145,6 @@ public class PoncherCharacter : PonshotEntity
         //CorrectCorners();
         //LedgeDetection();
 
-
         animator.SetBool("Grounded", isGrounded);
         //animator.SetBool("Walled", isWalled);
 
@@ -161,9 +159,6 @@ public class PoncherCharacter : PonshotEntity
         {
             animator.SetFloat("VelocityY", 0f);
         }
-
-       
-        
     }
 
 
@@ -202,7 +197,7 @@ public class PoncherCharacter : PonshotEntity
     }
 
    
-    void InitPoncher() //possible inititialize from PlayerManager
+    void InitPoncherInGameplay() //possible inititialize from PlayerManager
     {
         //Initialization for Gameplay Character porpuses
         poncherState = PoncherState.Idle;
