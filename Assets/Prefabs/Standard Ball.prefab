@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallData: {fileID: 11400000, guid: 915e0dab86c066d4795377f68b270b84, type: 2}
   ballState: 0
-  poncherOwner: {fileID: 0}
+  Owner: {fileID: 0}
   BounceVFX: {fileID: 1111967542504238, guid: 2af62e007e49ad74d86015f473830182, type: 3}
 --- !u!114 &1522289804311034415
 MonoBehaviour:

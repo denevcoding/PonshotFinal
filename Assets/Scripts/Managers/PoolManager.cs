@@ -100,7 +100,7 @@ namespace Components
                 return;
 
             PoolKeyInfo pki = new PoolKeyInfo();
-            pki.prefab = (GameObject)pei.src;
+            pki.prefab = (GameObject)pei.src; 
             pki.size = 1;
             poolLists.Add(pki);
             CreatePool(pki);
@@ -146,7 +146,6 @@ namespace Components
         {
             int index = (int)pei.src;
             GameObject go = PoolsDictionary[pei.key][index];
-
             freeObjectsDict[pei.key].Enqueue(index);
             go.SetActive(false);
         }

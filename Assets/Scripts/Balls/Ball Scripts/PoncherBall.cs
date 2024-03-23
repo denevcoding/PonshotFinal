@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Events;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +12,12 @@ public enum BallState
     Inactive
 }
 
-public class PoncherBall : MonoBehaviour, IPickeable
+public class PoncherBall : PonshotEntity, IPickeable
 {
     public BallInfoSB BallData;
     public BallState ballState;
 
-    public PoncherCharacter poncherOwner; // If some Poncher has this Ball
+    public PonshotEntity Owner; // If some Poncher has this Ball
 
     public GameObject BounceVFX;
 
@@ -97,13 +98,13 @@ public class PoncherBall : MonoBehaviour, IPickeable
         return true;
     }
 
-    public GameObject Picked(PoncherCharacter owner, Transform socket)
+    public GameObject Picked(PonshotEntity owner, Transform socket)
     {
         if (CheckPreconditionsToPicked() == false)
             return null;
 
         SwitchBall(true);
-        poncherOwner = owner;
+        Owner = owner;
         socketOwner = socket;
         ballState = BallState.Grabbed;
         return this.gameObject;
@@ -157,8 +158,10 @@ public class PoncherBall : MonoBehaviour, IPickeable
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
+        RecycleBall();
+       
 
-     
+        return;
 
 
         //Material detection to change the type of the sound
@@ -203,6 +206,20 @@ public class PoncherBall : MonoBehaviour, IPickeable
     {
         BallRB.velocity = Vector3.zero;
     }
+
+
+
+    void RecycleBall()
+    {
+        PoolInfo pInfo = GetComponent<PoolInfo>();
+        PoolEventInfo poolEi = new PoolEventInfo(PS_EventType.Pooler, "Recycling Ball", PoolInfoType.Recycle, pInfo.objectName, pInfo.Id);
+        EventManager.EM.DispatchEvent(poolEi);
+
+        this.gameObject.SetActive(false);
+
+    }
+
+
 
     #region Getters Setters
     public Rigidbody GetRB()

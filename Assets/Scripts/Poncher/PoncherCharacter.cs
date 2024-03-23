@@ -22,7 +22,8 @@ public enum PoncherState
 
 }
 
-public class PoncherCharacter : MonoBehaviour
+
+public class PoncherCharacter : PonshotEntity
 {
     [SerializeField]private PoncherState poncherState;
 

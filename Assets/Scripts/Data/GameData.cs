@@ -30,6 +30,10 @@ namespace Data
 
         public Dictionary<int, PlayerInput> Players = new Dictionary<int, PlayerInput>();
 
+        [Header("Ponchers Prefabs")]
+        //Players Settings
+        public GameObject[] CharacterPrefabs;
+
         public static GameData Instance
         {
             get
