@@ -61,39 +61,39 @@ public class PoncherController : PoncherComponentBase
 
     private void Awake()
     {
-        poncherInput = GetComponent<PlayerInput>();
-        poncherInput.onActionTriggered += PlayerInputOnActionTriggered;
+        //poncherInput = GetComponent<PlayerInput>();
+        //poncherInput.onActionTriggered += PlayerInputOnActionTriggered;
 
-        inputBuffer = new Queue<InputAction.CallbackContext>();
+       // inputBuffer = new Queue<InputAction.CallbackContext>();
 
-        poncherActions = new PoncherInputActions();
-        poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
+        //poncherActions = new PoncherInputActions();
+        //poncherActions.PlayerGameplay.Enable();// Actiovating buttons for gameplay We can switch to UI or anything else
 
-        //Left Shoulder L1 Bindings
-        poncherActions.PlayerGameplay.L1.performed += LeftShoulder;
-        poncherActions.PlayerGameplay.L1.canceled += LeftShoulder;
+        ////Left Shoulder L1 Bindings
+        //poncherActions.PlayerGameplay.L1.performed += LeftShoulder;
+        //poncherActions.PlayerGameplay.L1.canceled += LeftShoulder;
 
-        //right Bumper
-        poncherActions.PlayerGameplay.R1.started += GetComponent<PickThrowComponent>().PickDrop;
-        //poncherActions.PlayerGameplay.R1.performed += RightBumper;
-        poncherActions.PlayerGameplay.R1.canceled += GetComponent<PickThrowComponent>().PickDrop;
+        ////right Bumper
+        //poncherActions.PlayerGameplay.R1.started += GetComponent<PickThrowComponent>().PickDrop;
+        ////poncherActions.PlayerGameplay.R1.performed += RightBumper;
+        //poncherActions.PlayerGameplay.R1.canceled += GetComponent<PickThrowComponent>().PickDrop;
 
 
-        //Roll bindings
-        //poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().FlipRoll;
+        ////Roll bindings
+        ////poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().FlipRoll;
         
 
-        poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().JumpWithPressed;
-        //poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().JumpWithPressed;
-        poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().JumpWithPressed;
+        //poncherActions.PlayerGameplay.Jump.started += GetComponent<JumpComponent>().JumpWithPressed;
+        ////poncherActions.PlayerGameplay.Jump.performed += GetComponent<JumpComponent>().JumpWithPressed;
+        //poncherActions.PlayerGameplay.Jump.canceled += GetComponent<JumpComponent>().JumpWithPressed;
 
-        poncherActions.PlayerGameplay.RightTrigger.started += GetComponent<PickThrowComponent>().ThrowLaunch;
-        poncherActions.PlayerGameplay.RightTrigger.canceled += GetComponent<PickThrowComponent>().ThrowLaunch;
+        //poncherActions.PlayerGameplay.RightTrigger.started += GetComponent<PickThrowComponent>().ThrowLaunch;
+        //poncherActions.PlayerGameplay.RightTrigger.canceled += GetComponent<PickThrowComponent>().ThrowLaunch;
 
-        //poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
+        ////poncherActions.PlayerGameplay.Roll.started += GetComponent<RollComponent>().ParkourRoll;
 
-        // Y or Tringle Button
-        poncherActions.PlayerGameplay.Ragdoll.started += SwitcBones;
+        //// Y or Tringle Button
+        //poncherActions.PlayerGameplay.Ragdoll.started += SwitcBones;
 
         //poncherActions.PlayerGameplay.Movement.performed += CalculateInputs;
     }

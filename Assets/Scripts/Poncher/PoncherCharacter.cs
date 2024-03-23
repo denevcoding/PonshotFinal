@@ -86,8 +86,8 @@ public class PoncherCharacter : PonshotEntity
     private void Awake()
     {
         InitPoncherComponents();
-        if (poncherGUI)        
-            poncherGUI.InitPoncheGUI(this);        
+        //if (poncherGUI)        
+        //    poncherGUI.InitPoncheGUI(this);        
      
     }
 
@@ -176,24 +176,24 @@ public class PoncherCharacter : PonshotEntity
         poncherCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
 
-        jumpComponent = GetComponent<JumpComponent>();
-        moveComponent = GetComponent<MoveComponent>();
-        poncherController = GetComponent<PoncherController>();
-        rollComponent = GetComponent<RollComponent>();
-        animManager = GetComponent<PoncherAnimManager>();
-        pickThrowComponent = GetComponent<PickThrowComponent>();
+        //jumpComponent = GetComponent<JumpComponent>();
+        //moveComponent = GetComponent<MoveComponent>();
+        //poncherController = GetComponent<PoncherController>();
+        //rollComponent = GetComponent<RollComponent>();
+        //animManager = GetComponent<PoncherAnimManager>();
+        //pickThrowComponent = GetComponent<PickThrowComponent>();
 
 
-        ragdollController = GetComponent<RagdollController>();
+        //ragdollController = GetComponent<RagdollController>();
 
         //Init PonshotComponents with the owner
-        PoncherComponentBase[] poncherComponents = this.GetComponents<PoncherComponentBase>();
-        foreach (PoncherComponentBase poncherComp in poncherComponents)
-        {
-            poncherComp.poncherCharacter = this;
+        //PoncherComponentBase[] poncherComponents = this.GetComponents<PoncherComponentBase>();
+        //foreach (PoncherComponentBase poncherComp in poncherComponents)
+        //{
+        //    poncherComp.poncherCharacter = this;
 
-            poncherComp.Initcomponent();
-        }     
+        //    poncherComp.Initcomponent();
+        //}     
     }
 
    
