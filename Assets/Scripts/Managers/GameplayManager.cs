@@ -7,27 +7,23 @@ namespace Components
 {
     public class GameplayManager : SingletonTemplate<GameplayManager>
     {
-        [SerializeField] private GameData GameData;
-
         [Header("Gameplay Objects")]
         [SerializeField] PoolManager m_PoolManager;
 
 
-        [Header("GAMEPLAY MANAGER SETTINGS")]
-        //Players Settings
-        public GameObject[] CharacterPrefabs;
+        public override void Awake()
+        {
+            //base.Awake();
+            //m_GameData = GameData.Instance;
+        }
+
 
         // Start is called before the first frame update
         void Start()
         {
-
+           
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
 
 

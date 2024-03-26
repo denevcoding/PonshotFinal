@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Ball Info", menuName = "New Ball Info")]
+[CreateAssetMenu(fileName = "Ball Info", menuName = "Ponshot Data/New Ball Info")]
 public class BallInfoSB : ScriptableObject
 {
     [Header("General Info")]

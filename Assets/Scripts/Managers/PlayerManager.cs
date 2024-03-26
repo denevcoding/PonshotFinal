@@ -17,7 +17,6 @@ public class PlayerManager : MonoBehaviour
 
     public InputActionAsset poncherActionAsset;
 
-    [SerializeField] GameData m_GameData;
     [SerializeField] int playersAmount = 0;
 
     public Transform playerContainer;
@@ -38,10 +37,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        m_GameData = GameData.Instance;
-
-        InitPlayersSockets();      
-        
+        InitPlayersSockets();              
     }
 
     // Start is called before the first frame update
@@ -93,41 +89,59 @@ public class PlayerManager : MonoBehaviour
         Debug.Log($"Button {button} was pressed");
 
 
-        PlayerInput player = null;
+        PlayerInput inputComp = null;
         // Create a new player.
         if (device is Keyboard || device is Mouse)
         {
-            player = InstantiatePlayer(device, "Keyboard&Mouse", playersAmount);
+            inputComp = InstantiatePlayerInput(device, "Keyboard&Mouse", playersAmount);
 
         }
         else if (device is Gamepad)
         {
-            player = InstantiatePlayer(device, "Gamepad", playersAmount);
+            inputComp = InstantiatePlayerInput(device, "Gamepad", playersAmount);
             
         }
         else if (device is Joystick)
         {
             Debug.LogWarning("Joystick controller not isntantiating player Yet");
         }
+
+
+        //Creating and Adding 
+        int RandomPoncher = UnityEngine.Random.Range(0, GameData.singleinstance.PonchersData.Length);
+        PoncherDataSO poncher = GameData.singleinstance.PonchersData[RandomPoncher];
+        GameObject poncherGO = Instantiate(poncher.PoncherPrefab, transform);
+        poncherGO.transform.position = playerSockets[playersAmount].position;
+
+        PoncherCharacter poncherChar = poncherGO.GetComponent<PoncherCharacter>();
+        poncherChar.BindControllerToInputs(inputComp);
+
+        PlayerGUI playerGUI = inputComp.GetComponent<PlayerGUI>();
+        playerGUI.SetPoncher(poncherChar);
+
+
+        PlayerData playerData = new PlayerData(playersAmount, inputComp, poncherChar, playerGUI);
+
+        GameData.singleinstance.AddPlayerData(playerData);
         playersAmount += 1;
-
-
-        m_GameData.AddPlayer(playersAmount, player);
+            
 
         // If the player did not end up with a valid input setup,
         // unjoin the player.
-        if (player.hasMissingRequiredDevices)
-            Destroy(player);
+        if (inputComp.hasMissingRequiredDevices)
+            Destroy(inputComp);
 
         // If we only want to join a single player, could uninstall our listener here
         // or use CallOnce() instead of Call() when we set it up.
     }
 
 
-    PlayerInput InstantiatePlayer(InputDevice _device, string _scheme, int _pyIndex)
+
+
+    PlayerInput InstantiatePlayerInput(InputDevice _device, string _scheme, int _pyIndex)
     {
         PlayerInput player = PlayerInput.Instantiate(PlayerPrefab, -1, _scheme, pairWithDevice: _device);
-        player.transform.parent = this.transform;
+        //player.transform.parent = this.transform;
         player.transform.position = playerSockets[playersAmount].position;
         return player;
     }

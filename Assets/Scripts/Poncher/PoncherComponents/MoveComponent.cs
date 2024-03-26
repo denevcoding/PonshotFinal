@@ -134,14 +134,14 @@ public class MoveComponent : PoncherComponentBase
         
         //Handle turn 180 when change direction drastically
         float direction = Vector3.Dot(towardDir, transform.forward);
-        if (poncherCharacter.canRotate && !poncherCharacter.isRotBlocked)
+        if (poncherCharacter.canRotate && !poncherCharacter.isStrafing)
             poncherCharacter.GetAnimator().SetFloat("changeDirection", direction);
         else
             poncherCharacter.GetAnimator().SetFloat("ChangeDirection", 0.01f);
 
         direction = 0;
 
-        if (poncherCharacter.isRotBlocked)
+        if (poncherCharacter.isStrafing)
             towardDir *= -1;
         
 

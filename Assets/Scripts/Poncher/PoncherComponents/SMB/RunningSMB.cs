@@ -16,7 +16,21 @@ public class RunningSMB : BaseSMB
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //movementComponent.SetGroundAccel(0);
+        if (poncherCharacter.isGrounded)
+        {
+            if (animator.GetFloat("VelocityX") < 0)
+            {
+                poncherCharacter.GetMovementComp().SetLocomotionFactor(0.75f);
+            }
+            else
+            {
+                poncherCharacter.GetMovementComp().RestoreLocomotionFactor();
+            }
+        }
+        else
+        {
+            poncherCharacter.GetMovementComp().RestoreLocomotionFactor();
+        }
     }
 
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

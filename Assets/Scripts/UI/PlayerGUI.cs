@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PoncherGUI : MonoBehaviour
+public class PlayerGUI : MonoBehaviour
 {
     private PoncherCharacter ownerPoncher;
     private Vector3 offset;
@@ -41,7 +41,7 @@ public class PoncherGUI : MonoBehaviour
     }
 
     //Handle intialization for All world space poncher GUI
-    public void InitPoncheGUI(PoncherCharacter owner)
+    public void SetPoncher(PoncherCharacter owner)
     {
         if (owner != null)
         {

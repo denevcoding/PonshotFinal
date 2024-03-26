@@ -6,8 +6,8 @@ public class RagdollController : PoncherComponentBase
 {
     public Transform RootParent;
 
-    private List<GameObject> ragdollBones;
-    private List<CharacterJoint> joints;
+    [SerializeField]private List<GameObject> ragdollBones;
+    [SerializeField]private List<CharacterJoint> joints;
 
     public PhysicMaterial BouncePxMat;
 

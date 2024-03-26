@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
+using Utilities;
 
 public enum PoncherState
 {
@@ -35,15 +37,15 @@ public class PoncherCharacter : PonshotEntity
     //Poncher Components
     private JumpComponent jumpComponent;
     private MoveComponent moveComponent;
+    private MovementComp movementComponent;
     private PoncherController poncherController;
     private RollComponent rollComponent;
     private PickThrowComponent pickThrowComponent;
     private PoncherAnimManager animManager;
-
     private RagdollController ragdollController;
 
     [Header("Aimer Data")]
-    public PoncherGUI poncherGUI;
+    public PlayerGUI poncherGUI;
 
     [Header("Grounded Settings")]
     public bool isGrounded;
@@ -58,7 +60,7 @@ public class PoncherCharacter : PonshotEntity
     [Space(5)]
     public float coyoteTime;
     public float coyoteTimeCounter;
-    private float landingForce = 0;
+ 
 
     [Header("Walled Settings")]
     public bool isWalled;
@@ -71,7 +73,7 @@ public class PoncherCharacter : PonshotEntity
     [Header("Movement - Locomotion")]
     public bool isSidescroller = true;
     [Space(10)]
-    public bool isRotBlocked;
+    public bool isStrafing;
     public bool canMove;
     public bool canRotate;
     public bool rotToVel;
@@ -94,43 +96,43 @@ public class PoncherCharacter : PonshotEntity
     // Start is called before the first frame update
     void Start()
     {
-        InitPoncherInGameplay();
+        //InitPoncherInGameplay();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Handle blocked rotation, for flips and running backwards
-        if (!isRotBlocked)
-        {
-            animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
-        }
-        else
-        {
-            if (poncherController.GetInputDirection().magnitude > 0)
-            {
-                float direction = Vector3.Dot(poncherController.GetInputDirection(), transform.forward);
-                if (direction < 0)
-                {
-                    animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
-                }
-                else
-                {
-                    animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x));
-                }
-            }
-            else
-            {
-                animator.SetFloat("VelocityX", 0f);
-            }
-        }
+        //if (!isRotBlocked)
+        //{
+        //    animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
+        //}
+        //else
+        //{
+        //    if (poncherController.GetInputDirection().magnitude > 0)
+        //    {
+        //        float direction = Vector3.Dot(poncherController.GetInputDirection(), transform.forward);
+        //        if (direction < 0)
+        //        {
+        //            animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
+        //        }
+        //        else
+        //        {
+        //            animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x));
+        //        }
+        //    }
+        //    else
+        //    {
+        //        animator.SetFloat("VelocityX", 0f);
+        //    }
+        //}
 
 
 
-        if (IsGrounded() && !checkIsWalled())
-        {
-            jumpComponent.canDoubleJump = true;
-        }
+        //if (IsGrounded() && !checkIsWalled())
+        //{
+        //    jumpComponent.canDoubleJump = true;
+        //}
 
     }
 
@@ -138,27 +140,30 @@ public class PoncherCharacter : PonshotEntity
     {
 
         isGrounded = IsGrounded();
+        animator.SetBool("Grounded", isGrounded);
+        HandleCoyoteTime();
+
         //isWalled = checkIsWalled();
 
-        HandleCoyoteTime();
+
 
         //CorrectCorners();
         //LedgeDetection();
 
-        animator.SetBool("Grounded", isGrounded);
+
         //animator.SetBool("Walled", isWalled);
 
         //Debug.DrawRay(transform.position, poncheRigidbodie.velocity);
-        if (!isGrounded)
-        {
-            landingForce = Mathf.Abs(Mathf.Round(GetComponent<Rigidbody>().velocity.y));
-            GetAnimator().SetFloat("LandingForce", landingForce);
-            animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
-        }
-        else
-        {
-            animator.SetFloat("VelocityY", 0f);
-        }
+        //if (!isGrounded)
+        //{
+        //    landingForce = Mathf.Abs(Mathf.Round(GetComponent<Rigidbody>().velocity.y));
+        //    GetAnimator().SetFloat("LandingForce", landingForce);
+        //    animator.SetFloat("VelocityY", poncheRigidbodie.velocity.y);
+        //}
+        //else
+        //{
+        //    animator.SetFloat("VelocityY", 0f);
+        //}
     }
 
 
@@ -175,40 +180,51 @@ public class PoncherCharacter : PonshotEntity
         poncheRigidbodie = GetComponent<Rigidbody>();
         poncherCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
+        animManager = GetComponent<PoncherAnimManager>();
 
-        //jumpComponent = GetComponent<JumpComponent>();
+        ragdollController = GetComponent<RagdollController>();
+        movementComponent = GetComponent<MovementComp>();
+        jumpComponent = GetComponent<JumpComponent>();
+
+        poncherController = GetComponent<PoncherController>();
+  
         //moveComponent = GetComponent<MoveComponent>();
-        //poncherController = GetComponent<PoncherController>();
+
         //rollComponent = GetComponent<RollComponent>();
-        //animManager = GetComponent<PoncherAnimManager>();
         //pickThrowComponent = GetComponent<PickThrowComponent>();
 
 
-        //ragdollController = GetComponent<RagdollController>();
+
 
         //Init PonshotComponents with the owner
-        //PoncherComponentBase[] poncherComponents = this.GetComponents<PoncherComponentBase>();
-        //foreach (PoncherComponentBase poncherComp in poncherComponents)
-        //{
-        //    poncherComp.poncherCharacter = this;
+        PoncherComponentBase[] poncherComponents = this.GetComponents<PoncherComponentBase>();
+        foreach (PoncherComponentBase poncherComp in poncherComponents)
+        {
+            poncherComp.poncherCharacter = this;
 
-        //    poncherComp.Initcomponent();
-        //}     
+            poncherComp.Initcomponent();
+        }
     }
 
-   
-    void InitPoncherInGameplay() //possible inititialize from PlayerManager
+
+    public void BindControllerToInputs(PlayerInput _inputComp)
     {
-        //Initialization for Gameplay Character porpuses
-        poncherState = PoncherState.Idle;
-        groundedLayerMask = LayerMask.GetMask("Obstacle");
-
-        //Init Movement Properties
-        canMove = true;
-        canRotate = true;
-        rotToVel = false;
-        isRotBlocked = false;
+        if (GetController())
+            GetController().BindInputActions(_inputComp);
     }
+   
+    //void InitPoncherInGameplay() //possible inititialize from PlayerManager
+    //{
+    //    //Initialization for Gameplay Character porpuses
+    //    poncherState = PoncherState.Idle;
+    //    groundedLayerMask = LayerMask.GetMask("Obstacle");
+
+    //    //Init Movement Properties
+    //    canMove = true;
+    //    canRotate = true;
+    //    rotToVel = false;
+    //    isRotBlocked = false;
+    //}
     #endregion
 
 
@@ -240,14 +256,19 @@ public class PoncherCharacter : PonshotEntity
         point = GetComponent<CapsuleCollider>().bounds.size.x;
         //point /= 3;
         //point *= i;
-        Vector2 rayPos = new Vector2(transform.position.x, transform.position.y);          
+        Vector3 rayPos = new Vector3(transform.position.x, transform.position.y, 0f);
+        Vector3 boxSize = new Vector3(0.2f, 0.1f, 0.25f);
 
-
-         //Debug.DrawRay(rayPos, Vector3.down * rayLenght, Color.cyan, 0f);//Center
+        //Debug.DrawRay(rayPos, Vector3.down * rayLenght, Color.cyan, 0f);//Center
 
         //Physics.BoxCast(rayPos, GetComponent<CapsuleCollider>().bounds.size, Quaternion.identity, 0f, groundedLayerMask.value);
 
-          bool hit = Physics.Raycast(rayPos, Vector3.down, out hitCenter, rayLenght , groundedLayerMask.value);
+        //  bool hit = Physics.Raycast(rayPos, Vector3.down, out hitCenter, rayLenght , groundedLayerMask.value);
+        //Debug.DrawBox(origin, halfExtents, orientation, color);
+        //m_HitDetect = Physics.BoxCast(m_Collider.bounds.center, transform.localScale * 0.5f, transform.forward, out m_Hit, transform.rotation, m_MaxDistance);
+
+        DrawDebugCasts.DrawBoxCastBox(rayPos, boxSize, transform.rotation, Vector3.down, rayLenght, Color.cyan);
+        bool hit = Physics.BoxCast(rayPos, boxSize, Vector3.down, out hitCenter, transform.rotation, rayLenght, groundedLayerMask.value);
 
         //bool box = Physics.BoxCast(rayPos, new Vector3(0.2f, 0.2f, 0.2f), Vector3.down, out hitCenter, Quaternion.identity, rayLenght, groundedLayerMask.value);
         //Debug.Log(box);
@@ -271,7 +292,7 @@ public class PoncherCharacter : PonshotEntity
             }
            
         
-        moveComponent.movingObjSpeed = Vector3.zero;
+        //moveComponent.movingObjSpeed = Vector3.zero;
         return false;
     }
 
@@ -406,36 +427,36 @@ public class PoncherCharacter : PonshotEntity
 
     private void OnCollisionStay(Collision collision)
     {
-        float angle = Vector3.Angle(collision.GetContact(0).normal, Vector3.up);
-        wallNormal = collision.GetContact(0).normal;
+        //float angle = Vector3.Angle(collision.GetContact(0).normal, Vector3.up);
+        //wallNormal = collision.GetContact(0).normal;
 
-        if (angle > wallAngleTreshold)
-        {// In front of a wall                   
+        //if (angle > wallAngleTreshold)
+        //{// In front of a wall                   
 
-            isWalled = true;
+        //    isWalled = true;
 
 
-            float dot = Vector3.Dot(GetController().inputDirection, transform.forward);
-            //Debug.Log("DOT "+ dot);
-            if (dot > 0)
-            {   //Stiking                  
+        //    float dot = Vector3.Dot(GetController().inputDirection, transform.forward);
+        //    //Debug.Log("DOT "+ dot);
+        //    if (dot > 0)
+        //    {   //Stiking                  
 
-                if (GetState() != PoncherState.WallJumping && GetRigidbody().velocity.y < -1)
-                {
-                    //isStiking = true;
-                    //SetState(PoncherState.WallSliding);
+        //        if (GetState() != PoncherState.WallJumping && GetRigidbody().velocity.y < -1)
+        //        {
+        //            //isStiking = true;
+        //            //SetState(PoncherState.WallSliding);
 
-                    Vector3 newVel = GetRigidbody().velocity;
-                    Vector3 slide = new Vector3(0f, newVel.y * -5f, 0f);
-                    GetRigidbody().AddForce(slide, ForceMode.Acceleration);
-                    animator.SetBool("Walled", true);
-                }                
-            }
-            else
-            {
-                animator.SetBool("Walled", false);
-            }
-        }
+        //            Vector3 newVel = GetRigidbody().velocity;
+        //            Vector3 slide = new Vector3(0f, newVel.y * -5f, 0f);
+        //            GetRigidbody().AddForce(slide, ForceMode.Acceleration);
+        //            animator.SetBool("Walled", true);
+        //        }                
+        //    }
+        //    else
+        //    {
+        //        animator.SetBool("Walled", false);
+        //    }
+        //}
 
        
         //Debug.DrawRay(collision., Vector3.up * (dist), Color.cyan, 0f);
@@ -443,11 +464,11 @@ public class PoncherCharacter : PonshotEntity
 
     private void OnCollisionExit(Collision collision)
     {
-        if (isWalled == true)
-        {
-            isWalled = false;
-            animator.SetBool("Walled", false);
-        }
+        //if (isWalled == true)
+        //{
+        //    isWalled = false;
+        //    animator.SetBool("Walled", false);
+        //}
     }
 
 
@@ -488,10 +509,10 @@ public class PoncherCharacter : PonshotEntity
         poncherState = state;
     }
 
-    public float GetLandingForce()
-    {
-        return landingForce;
-    }
+    //public float GetLandingForce()
+    //{
+    //    return landingForce;
+    //}
 
     public Vector3 GetPoncherCenteredPosition()
     {
@@ -503,7 +524,7 @@ public class PoncherCharacter : PonshotEntity
 
 
 
-    public PoncherGUI GetponcherGUI()
+    public PlayerGUI GetponcherGUI()
     {
         return poncherGUI;
     }
@@ -514,6 +535,16 @@ public class PoncherCharacter : PonshotEntity
     {
         return moveComponent;
     }
+    public MovementComp GetMovementComp()
+    {
+        return movementComponent;
+    }
+
+    public JumpComponent GetJumpComp()
+    {
+        return jumpComponent;
+    }
+
     public PoncherAnimManager GetAnimManager()
     {
         return animManager;

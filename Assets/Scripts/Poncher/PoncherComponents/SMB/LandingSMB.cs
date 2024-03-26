@@ -14,8 +14,17 @@ public class LandingSMB : BaseSMB
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         poncherCharacter.SetState(PoncherState.Landing);
+        if (cancelJump)
+        {
+            poncherCharacter.GetComponent<JumpComponent>().canJump = false;
+        }
+        else
+        {
+            poncherCharacter.GetComponent<JumpComponent>().canJump = true;
+        }
 
-        if (poncherCharacter.isRotBlocked && !overrideRoll)
+
+        if (poncherCharacter.isStrafing && !overrideRoll)
         {
             poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
         }
@@ -30,15 +39,18 @@ public class LandingSMB : BaseSMB
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = acelerationAffect;
 
         poncherCharacter.canRotate = canRotate;
-        poncherCharacter.GetComponent<JumpComponent>().canJump = !cancelJump;
+
+        
+      
 
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (!poncherCharacter.isRotBlocked)
-            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
+        //if (!poncherCharacter.isStrafing)
+        //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
 
+        poncherCharacter.GetComponent<MovementComp>().landingForce = 0f;
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = defaultAccel;
         poncherCharacter.GetComponent<JumpComponent>().RestoreJump();
         poncherCharacter.canRotate = true;

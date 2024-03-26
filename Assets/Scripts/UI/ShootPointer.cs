@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class ShootPointer : MonoBehaviour
 {
     private PoncherCharacter ownerPoncher;
-    private PoncherGUI m_poncherGUI;
+    private PlayerGUI m_poncherGUI;
 
     private Vector3 offset;
 
@@ -64,7 +64,7 @@ public class ShootPointer : MonoBehaviour
         //Gizmos.DrawSphere(mouseWorldPos, 0.5f);
     }
 
-    public void InitAimer(PoncherGUI _guiOwner)
+    public void InitAimer(PlayerGUI _guiOwner)
     {
         m_poncherGUI = _guiOwner;
         PlayerInput PI = m_poncherGUI.GetInputcomp();
@@ -138,7 +138,7 @@ public class ShootPointer : MonoBehaviour
 
     public void AimWithMouse()
     {       
-        Debug.Log($"Mouse: {x} : {y}");
+        //Debug.Log($"Mouse: {x} : {y}");
 
         mosPos = Mouse.current.position.ReadValue();
         mosPos.z = 15;

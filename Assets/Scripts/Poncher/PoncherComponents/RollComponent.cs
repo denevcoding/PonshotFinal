@@ -76,7 +76,7 @@ public class RollComponent : PoncherComponentBase
                 return;
 
 
-            if (poncherCharacter.isRotBlocked && poncherCharacter.GetState() != PoncherState.Landing)
+            if (poncherCharacter.isStrafing && poncherCharacter.GetState() != PoncherState.Landing)
                 poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
             //else        
             //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);

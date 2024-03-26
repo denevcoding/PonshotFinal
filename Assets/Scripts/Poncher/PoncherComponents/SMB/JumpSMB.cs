@@ -9,16 +9,20 @@ public class JumpSMB : BaseSMB
         //pkComponent = poncherCharacter.GetParkourComponent();
         //pkComponent.canFlip = false;
 
-        poncherCharacter.SetState(PoncherState.Jumping);
+        poncherCharacter.SetState(PoncherState.Jumping);   
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        poncherCharacter.GetComponent<JumpComponent>().EndJump();
+        Debug.Log("End Called");
+        //poncherCharacter.GetComponent<JumpComponent>().EndJump();
+
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (poncherCharacter.GetRigidbody().velocity.y < -1)
+            poncherCharacter.GetComponent<JumpComponent>().EndJump();
         //movementComponent.SetGroundAccel(0);
     }
 

@@ -32,8 +32,10 @@ public class PoncherController : PoncherComponentBase
 
 
     [Header("Inputs and Directions")]
+    public PlayerGUI playerGUI; //Aimer refernece
     public Vector3 inputDirection;
     public Vector3 moveDirection;
+    public Vector3 lastMoveDir;
     public PoncherInputActions poncherActions;
     [Header("Input Properties")]
     PlayerInput poncherInput;
@@ -132,7 +134,8 @@ public class PoncherController : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
-       
+        moveDirection = Vector3.right;
+        lastMoveDir = Vector3.right;
     }
 
    
@@ -140,27 +143,27 @@ public class PoncherController : PoncherComponentBase
     // Update is called once per frame
     void Update()
     {
-        CalculateInputDirection();
+        //CalculateInputDirection();
       
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            //Get click operations
-        }
+        //if (Mouse.current.leftButton.wasPressedThisFrame)
+        //{
+        //    //Get click operations
+        //}
 
-        //Switch between Action maps
-        if (Keyboard.current.tKey.wasPressedThisFrame)
-        {
-            //poncherInput.SwitchCurrentActionMap("UI"); // C# events
-            poncherActions.PlayerGameplay.Enable();
-            //Disable the other current map manually when we have a c# class
-        }
+        ////Switch between Action maps
+        //if (Keyboard.current.tKey.wasPressedThisFrame)
+        //{
+        //    //poncherInput.SwitchCurrentActionMap("UI"); // C# events
+        //    poncherActions.PlayerGameplay.Enable();
+        //    //Disable the other current map manually when we have a c# class
+        //}
 
-        if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
-        {
-            //Debug.Log(inputBuffer.Count);
-            ExecuteInputBuffer();
-        }
+        //if (poncherCharacter.coyoteTimeCounter < poncherCharacter.coyoteTime)
+        //{
+        //    //Debug.Log(inputBuffer.Count);
+        //    ExecuteInputBuffer();
+        //}
     }
 
 
@@ -172,22 +175,57 @@ public class PoncherController : PoncherComponentBase
     {
         //UpdateUprightForce();
 
-        if (!CheckBasePreconditions())
-            return;
+        //if (!CheckBasePreconditions())
+        //    return;
 
-        //poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
+        ////poncherCharacter.GetMoveComponent().MoveTo(moveDirection, 0.05f, true);
 
-        if (poncherCharacter.rotToVel == false)
-        {
-            if (poncherCharacter.GetMoveComponent().GetCurRotSpeed() != 0 && inputDirection.magnitude != 0)
-            {
-                poncherCharacter.GetMoveComponent().RotateToDirection(moveDirection, true);
-            }
-        }
-        else
-        {
-            poncherCharacter.GetMoveComponent().RotateVelocity(poncherCharacter.GetMoveComponent().GetCurRotSpeed(), true);
-        }
+        //if (poncherCharacter.rotToVel == false)
+        //{
+        //    if (poncherCharacter.GetMoveComponent().GetCurRotSpeed() != 0 && inputDirection.magnitude != 0)
+        //    {
+        //        poncherCharacter.GetMoveComponent().RotateToDirection(moveDirection, true);
+        //    }
+        //}
+        //else
+        //{
+        //    poncherCharacter.GetMoveComponent().RotateVelocity(poncherCharacter.GetMoveComponent().GetCurRotSpeed(), true);
+        //}
+
+        CalculateInputDirection();
+        poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(inputDirection.x));   
+
+        poncherCharacter.GetMovementComp().MovePoncher(moveDirection);
+        poncherCharacter.GetMovementComp().RotateToDirection(lastMoveDir, true);
+
+
+
+
+        //Handle blocked rotation, for flips and running backwards
+        //if (!isRotBlocked)
+        //{
+        //    animator.SetFloat("VelocityX", Mathf.Abs(poncheRigidbodie.velocity.x));
+        //}
+        //else
+        //{
+        //    if (poncherController.GetInputDirection().magnitude > 0)
+        //    {
+        //        float direction = Vector3.Dot(poncherController.GetInputDirection(), transform.forward);
+        //        if (direction < 0)
+        //        {
+        //            animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x) * -1);
+        //        }
+        //        else
+        //        {
+        //            animator.SetFloat("VelocityX", Math.Abs(GetComponent<Rigidbody>().velocity.x));
+        //        }
+        //    }
+        //    else
+        //    {
+        //        animator.SetFloat("VelocityX", 0f);
+        //    }
+        //}
+
 
     }
 
@@ -223,10 +261,10 @@ public class PoncherController : PoncherComponentBase
     void CalculateInputDirection()
     {
 
-        Vector3 inputVector = poncherActions.PlayerGameplay.Movement.ReadValue<Vector2>();
+       // Vector3 inputVector = poncherActions.PlayerGameplay.Movement.ReadValue<Vector2>();
 
-        float h = inputVector.x;
-        float v = inputVector.y;
+        float h = inputDirection.x;
+        float v = inputDirection.y;
 
         ////adjust movement values if we're in the air or on the ground
         //curAccel = (poncherCharacter.isGrounded) ? accel : airAccel;
@@ -241,18 +279,21 @@ public class PoncherController : PoncherComponentBase
 
         //only apply vertical input to movemement, if player is not sidescroller
         if (!poncherCharacter.isSidescroller)
-            inputDirection = (screenMovementForward * v) + (screenMovementRight * h);
+            moveDirection = (screenMovementForward * v) + (screenMovementRight * h);
         else
-            inputDirection = Vector3.right * h;
+            moveDirection = Vector3.right * h;
+
+        if (moveDirection.magnitude > 0)
+            lastMoveDir = moveDirection;
 
 
-        if (inputDirection.magnitude > 1.0f)
-            inputDirection.Normalize();
+        //if (inputDirection.magnitude > 1.0f)
+        //    inputDirection.Normalize();
 
-        moveDirection = transform.position + inputDirection;
+        //moveDirection = transform.position + inputDirection;
 
         //Debug.DrawRay(transform.position, moveDirection, Color.green);
-        Debug.DrawRay(transform.position, inputDirection * 2f, Color.red);
+        Debug.DrawRay(transform.position, moveDirection * 2f, Color.green);
 
 
 
@@ -291,16 +332,57 @@ public class PoncherController : PoncherComponentBase
 
 
 
+    #region Input Actions Bindings
+    public void BindInputActions(PlayerInput inputComp)
+    {
+        poncherInput = inputComp;
+
+
+        Dictionary<string, Action<InputAction.CallbackContext>> ActionMap = new Dictionary<string, Action<InputAction.CallbackContext>>();
+        ActionMap.Add("Movement", OnMoveInput);
+        ActionMap.Add("Aim", OnLookInput);
+        ActionMap.Add("Jump", poncherCharacter.GetJumpComp().JumpWithPressed);
+        ActionMap.Add("L1", LeftShoulder);
+
+        foreach (string keyAction in ActionMap.Keys)
+        {
+            poncherInput.actions[keyAction].started += ActionMap[keyAction];
+            poncherInput.actions[keyAction].performed += ActionMap[keyAction];
+            poncherInput.actions[keyAction].canceled += ActionMap[keyAction];
+        }
+        poncherInput.actions["Aim"].performed += OnLookInput; //Binding to right stick values
+    }
+
+    public void OnMoveInput(InputAction.CallbackContext context)
+    {
+        inputDirection = context.ReadValue<Vector2>();
+
+        Debug.DrawRay(transform.position, inputDirection * 2f, Color.red);
+    }
+
+    public void OnLookInput(InputAction.CallbackContext context)
+    {
+
+    }
+
+
+
+    #endregion
+
+
 
     public void LeftShoulder(InputAction.CallbackContext context)
     {
+        if (context.started)        
+            poncherCharacter.isStrafing = true;        
+
         //Pressed
         if (context.performed)        
-            poncherCharacter.isRotBlocked = true;        
+            poncherCharacter.isStrafing = true;        
 
         //Release
         if (context.canceled)        
-            poncherCharacter.isRotBlocked = false;        
+            poncherCharacter.isStrafing = false;        
 
     }
 

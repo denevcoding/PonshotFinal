@@ -37,9 +37,27 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""8f434c03-732a-4f1f-b6bb-2414461e9f4f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""10b9162b-6b53-4cac-b055-401557422b22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FastDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9f051dc-c1a6-4903-b362-24924c8e36fe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -89,15 +107,6 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Aim"",
-                    ""type"": ""Value"",
-                    ""id"": ""8f434c03-732a-4f1f-b6bb-2414461e9f4f"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -225,7 +234,7 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0772de8d-17fd-4f8d-9ab2-e76d5f78b1fc"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -235,8 +244,19 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""dbad091b-d6e8-49de-ba37-546226e79e42"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""309d6886-c372-47bc-8213-6c56cae4370f"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -251,6 +271,17 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""L1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36248110-5efd-4feb-90e4-1402ee43a3e4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""L1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -285,6 +316,28 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10744f84-ddae-4a9b-ad6b-d8c64152dbbc"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""FastDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56fe1fc0-f5be-4e95-90f0-5727c53631c7"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""FastDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -352,13 +405,14 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
         // Player Gameplay
         m_PlayerGameplay = asset.FindActionMap("Player Gameplay", throwIfNotFound: true);
         m_PlayerGameplay_Movement = m_PlayerGameplay.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerGameplay_Aim = m_PlayerGameplay.FindAction("Aim", throwIfNotFound: true);
         m_PlayerGameplay_Jump = m_PlayerGameplay.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerGameplay_FastDown = m_PlayerGameplay.FindAction("FastDown", throwIfNotFound: true);
         m_PlayerGameplay_Roll = m_PlayerGameplay.FindAction("Roll", throwIfNotFound: true);
         m_PlayerGameplay_Ragdoll = m_PlayerGameplay.FindAction("Ragdoll", throwIfNotFound: true);
         m_PlayerGameplay_L1 = m_PlayerGameplay.FindAction("L1", throwIfNotFound: true);
         m_PlayerGameplay_R1 = m_PlayerGameplay.FindAction("R1", throwIfNotFound: true);
         m_PlayerGameplay_RightTrigger = m_PlayerGameplay.FindAction("RightTrigger", throwIfNotFound: true);
-        m_PlayerGameplay_Aim = m_PlayerGameplay.FindAction("Aim", throwIfNotFound: true);
         // Player UI
         m_PlayerUI = asset.FindActionMap("Player UI", throwIfNotFound: true);
         m_PlayerUI_Newaction = m_PlayerUI.FindAction("New action", throwIfNotFound: true);
@@ -424,25 +478,27 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerGameplay;
     private List<IPlayerGameplayActions> m_PlayerGameplayActionsCallbackInterfaces = new List<IPlayerGameplayActions>();
     private readonly InputAction m_PlayerGameplay_Movement;
+    private readonly InputAction m_PlayerGameplay_Aim;
     private readonly InputAction m_PlayerGameplay_Jump;
+    private readonly InputAction m_PlayerGameplay_FastDown;
     private readonly InputAction m_PlayerGameplay_Roll;
     private readonly InputAction m_PlayerGameplay_Ragdoll;
     private readonly InputAction m_PlayerGameplay_L1;
     private readonly InputAction m_PlayerGameplay_R1;
     private readonly InputAction m_PlayerGameplay_RightTrigger;
-    private readonly InputAction m_PlayerGameplay_Aim;
     public struct PlayerGameplayActions
     {
         private @PoncherInputActions m_Wrapper;
         public PlayerGameplayActions(@PoncherInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerGameplay_Movement;
+        public InputAction @Aim => m_Wrapper.m_PlayerGameplay_Aim;
         public InputAction @Jump => m_Wrapper.m_PlayerGameplay_Jump;
+        public InputAction @FastDown => m_Wrapper.m_PlayerGameplay_FastDown;
         public InputAction @Roll => m_Wrapper.m_PlayerGameplay_Roll;
         public InputAction @Ragdoll => m_Wrapper.m_PlayerGameplay_Ragdoll;
         public InputAction @L1 => m_Wrapper.m_PlayerGameplay_L1;
         public InputAction @R1 => m_Wrapper.m_PlayerGameplay_R1;
         public InputAction @RightTrigger => m_Wrapper.m_PlayerGameplay_RightTrigger;
-        public InputAction @Aim => m_Wrapper.m_PlayerGameplay_Aim;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -455,9 +511,15 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @FastDown.started += instance.OnFastDown;
+            @FastDown.performed += instance.OnFastDown;
+            @FastDown.canceled += instance.OnFastDown;
             @Roll.started += instance.OnRoll;
             @Roll.performed += instance.OnRoll;
             @Roll.canceled += instance.OnRoll;
@@ -473,9 +535,6 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
             @RightTrigger.started += instance.OnRightTrigger;
             @RightTrigger.performed += instance.OnRightTrigger;
             @RightTrigger.canceled += instance.OnRightTrigger;
-            @Aim.started += instance.OnAim;
-            @Aim.performed += instance.OnAim;
-            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(IPlayerGameplayActions instance)
@@ -483,9 +542,15 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @FastDown.started -= instance.OnFastDown;
+            @FastDown.performed -= instance.OnFastDown;
+            @FastDown.canceled -= instance.OnFastDown;
             @Roll.started -= instance.OnRoll;
             @Roll.performed -= instance.OnRoll;
             @Roll.canceled -= instance.OnRoll;
@@ -501,9 +566,6 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
             @RightTrigger.started -= instance.OnRightTrigger;
             @RightTrigger.performed -= instance.OnRightTrigger;
             @RightTrigger.canceled -= instance.OnRightTrigger;
-            @Aim.started -= instance.OnAim;
-            @Aim.performed -= instance.OnAim;
-            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(IPlayerGameplayActions instance)
@@ -588,13 +650,14 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
     public interface IPlayerGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnFastDown(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnRagdoll(InputAction.CallbackContext context);
         void OnL1(InputAction.CallbackContext context);
         void OnR1(InputAction.CallbackContext context);
         void OnRightTrigger(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
     }
     public interface IPlayerUIActions
     {
