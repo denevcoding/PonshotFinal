@@ -53,10 +53,11 @@ public class PoncherCharacter : PonshotEntity
     public float boxOffset;
     [Space(5)]
     public LayerMask groundedLayerMask;
-    public float slope; //Currnet slope from the ground I am 
+    public float slopeAngle; //Currnet slope from the ground I am 
     public Vector3 slopeNormal;
     public float slopeLimit = 40; //maximum navigaton slope angle
-    public float slideAmount = 35; //Force to down on slope not navigable
+    public float slideForceAmount = 35; //Force to down on slope not navigable
+   
     [Space(5)]
     public float coyoteTime;
     public float coyoteTimeCounter;
@@ -67,6 +68,7 @@ public class PoncherCharacter : PonshotEntity
     public bool isStiking;
     public float wallRayLenght;
     public float wallAngleTreshold;
+    public float wallSlopeAngle;
     public Vector3 wallNormal = Vector3.zero;
 
 
@@ -140,6 +142,8 @@ public class PoncherCharacter : PonshotEntity
     {
 
         isGrounded = IsGrounded();
+        isWalled = IsWalled();
+
         animator.SetBool("Grounded", isGrounded);
         HandleCoyoteTime();
 
@@ -250,41 +254,27 @@ public class PoncherCharacter : PonshotEntity
         //groundedLayerMask = LayerMask.NameToLayer("Obstacle");
         //get distance to ground, from centre of collider (where floorcheckers should be)
         float dist = GetComponent<CapsuleCollider>().bounds.extents.y;
-        RaycastHit hitCenter;
-    
-        float point = 0f;
-        point = GetComponent<CapsuleCollider>().bounds.size.x;
-        //point /= 3;
-        //point *= i;
+        RaycastHit hitCenter;    
+      
         Vector3 rayPos = new Vector3(transform.position.x, transform.position.y, 0f);
-        Vector3 boxSize = new Vector3(0.2f, 0.1f, 0.25f);
-
-        //Debug.DrawRay(rayPos, Vector3.down * rayLenght, Color.cyan, 0f);//Center
-
-        //Physics.BoxCast(rayPos, GetComponent<CapsuleCollider>().bounds.size, Quaternion.identity, 0f, groundedLayerMask.value);
-
-        //  bool hit = Physics.Raycast(rayPos, Vector3.down, out hitCenter, rayLenght , groundedLayerMask.value);
-        //Debug.DrawBox(origin, halfExtents, orientation, color);
-        //m_HitDetect = Physics.BoxCast(m_Collider.bounds.center, transform.localScale * 0.5f, transform.forward, out m_Hit, transform.rotation, m_MaxDistance);
+        Vector3 boxSize = new Vector3(0.2f, 0.1f, 0.25f);     
 
         DrawDebugCasts.DrawBoxCastBox(rayPos, boxSize, transform.rotation, Vector3.down, rayLenght, Color.cyan);
         bool hit = Physics.BoxCast(rayPos, boxSize, Vector3.down, out hitCenter, transform.rotation, rayLenght, groundedLayerMask.value);
 
-        //bool box = Physics.BoxCast(rayPos, new Vector3(0.2f, 0.2f, 0.2f), Vector3.down, out hitCenter, Quaternion.identity, rayLenght, groundedLayerMask.value);
-        //Debug.Log(box);
 
             if (hit)
             {
                 if (!hitCenter.transform.GetComponent<Collider>().isTrigger)
                 {
                     //slope control
-                    slope = Vector3.Angle(hitCenter.normal, Vector3.up);
+                    slopeAngle = Vector3.Angle(hitCenter.normal, Vector3.up);
                     slopeNormal = hitCenter.normal;
                     //Debug.Log("Slope is: " + slope);
-                    if (slope > slopeLimit /*&& hit.transform.tag != "Pushable"*/)
+                    if (slopeAngle > slopeLimit /*&& hit.transform.tag != "Pushable"*/)
                     {
-                        float slideForce = slope;
-                        Vector3 slide = new Vector3(0f, -slideForce, 0f);
+                        float slideForce = slopeAngle;
+                        Vector3 slide = new Vector3(0f, -5, 0f);
                         GetRigidbody().AddForce(slide, ForceMode.Force);
                     }
                     return true;
@@ -296,6 +286,70 @@ public class PoncherCharacter : PonshotEntity
         return false;
     }
 
+    public bool IsWalled()
+    {
+        //get distance to ground, from centre of collider (where floorcheckers should be)
+        float dist = GetComponent<Collider>().bounds.extents.y;
+
+        Vector3 boxSize = new Vector3(0.1f, 0.5f, 0.1f);
+
+        RaycastHit wallRay;
+        Vector3 centerPoncher = transform.position;
+        //enterPoncher.y = centerPoncher.y + dist / (2 + 0.5f);
+
+
+        Vector3 inputDir = poncherController.inputDirection;
+        //Debug.DrawRay(centerPoncher, transform.forward * wallRayLenght, Color.magenta, 0f);
+        DrawDebugCasts.DrawBoxCastBox(centerPoncher, boxSize, transform.rotation, transform.forward, wallRayLenght, Color.magenta);
+
+        bool hit = Physics.BoxCast(centerPoncher, boxSize, transform.forward, out wallRay, transform.rotation, wallRayLenght, groundedLayerMask.value);
+
+
+        if (hit)
+        {
+            if (!wallRay.transform.GetComponent<Collider>().isTrigger)
+            {
+                wallSlopeAngle = Vector3.Angle(wallRay.normal, Vector3.up);
+                wallNormal = wallRay.normal;
+
+                if (wallSlopeAngle >= wallAngleTreshold)
+                {// In front of a wall                   
+
+                    float dot = Vector3.Dot(inputDir, transform.forward);
+                    //Debug.Log("DOT "+ dot);
+                    if (dot > 0 && isGrounded == false && GetRigidbody().velocity.y < -1)
+                    {//Stiking                       
+                        if (GetState() != PoncherState.WallJumping)
+                        {
+                            isStiking = true;
+                            SetState(PoncherState.WallSliding);
+                            animator.SetBool("Walled", true);
+                            //Up force to simulate stick
+                            Vector3 newVel = GetRigidbody().velocity;
+                            Vector3 slide = new Vector3(0f, newVel.y * -5f, 0f);
+                            GetRigidbody().AddForce(slide, ForceMode.Acceleration);
+                            return true;
+                        }
+
+                    }
+                    else
+                    {
+                        //Not Stiking                       
+                        isStiking = false;
+                        animator.SetBool("Walled", false);
+                    }
+
+                    return true;
+                }
+            }
+        }
+
+        isStiking = false;
+        animator.SetBool("Walled", false);
+        wallNormal = Vector3.zero;
+        wallSlopeAngle = -1;
+        return false;
+    }
 
 
     public void CorrectCorners()
@@ -368,73 +422,19 @@ public class PoncherCharacter : PonshotEntity
         return true;
     }
 
-    public bool checkIsWalled()
-    {
-        //get distance to ground, from centre of collider (where floorcheckers should be)
-        float dist = GetComponent<Collider>().bounds.extents.y;
-
-        RaycastHit wallRay;
-        Vector3 centerPoncher = transform.position;
-        centerPoncher.y = centerPoncher.y + dist / 2;
-
-        Vector3 inputDir = poncherController.inputDirection;
-        Debug.DrawRay(centerPoncher, inputDir * wallRayLenght, Color.magenta, 0f);
-
-        if (Physics.Raycast(centerPoncher, transform.forward, out wallRay, wallRayLenght, groundedLayerMask))
-        {           
-            if (!wallRay.transform.GetComponent<Collider>().isTrigger)
-            {
-                float angle = Vector3.Angle(wallRay.normal, Vector3.up);
-                wallNormal = wallRay.normal;
-
-                if (angle > wallAngleTreshold)
-                {// In front of a wall                   
-
-                    float dot = Vector3.Dot(inputDir, transform.forward);
-                    //Debug.Log("DOT "+ dot);
-                    if (dot > 0)
-                    {   //Stiking                  
-
-                        if (isGrounded == false /*&& GetRigidbody().velocity.y < 0*/)
-                        {
-                            if (GetState() != PoncherState.WallJumping)
-                            {
-                                //isStiking = true;
-                                //SetState(PoncherState.WallSliding);
-
-                                Vector3 newVel = GetRigidbody().velocity;
-                                Vector3 slide = new Vector3(0f, newVel.y * -5f, 0f);
-                                GetRigidbody().AddForce(slide, ForceMode.Acceleration);
-                                return true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //Not Stiking                       
-                        return false;
-                    }
-
-                    return false;
-                }
-            }
-        }
-
    
-        return false;
-    }
-
 
     private void OnCollisionStay(Collision collision)
     {
-        //float angle = Vector3.Angle(collision.GetContact(0).normal, Vector3.up);
+        //wallAngleAmount = Vector3.Angle(collision.GetContact(0).normal, Vector3.up);
         //wallNormal = collision.GetContact(0).normal;
 
-        //if (angle > wallAngleTreshold)
+        //if (wallAngleAmount >= wallAngleTreshold)
         //{// In front of a wall                   
 
         //    isWalled = true;
 
+        //    Debug.DrawRay(collision.GetContact(0).point, collision.GetContact(0).normal * (2f), Color.cyan, 0f);
 
         //    float dot = Vector3.Dot(GetController().inputDirection, transform.forward);
         //    //Debug.Log("DOT "+ dot);
@@ -450,16 +450,17 @@ public class PoncherCharacter : PonshotEntity
         //            Vector3 slide = new Vector3(0f, newVel.y * -5f, 0f);
         //            GetRigidbody().AddForce(slide, ForceMode.Acceleration);
         //            animator.SetBool("Walled", true);
-        //        }                
+        //        }
         //    }
         //    else
         //    {
         //        animator.SetBool("Walled", false);
         //    }
         //}
-
-       
-        //Debug.DrawRay(collision., Vector3.up * (dist), Color.cyan, 0f);
+        //else
+        //{
+        //    isWalled = false;
+        //}
     }
 
     private void OnCollisionExit(Collision collision)
@@ -467,7 +468,7 @@ public class PoncherCharacter : PonshotEntity
         //if (isWalled == true)
         //{
         //    isWalled = false;
-        //    animator.SetBool("Walled", false);
+        //    //animator.SetBool("Walled", false);
         //}
     }
 

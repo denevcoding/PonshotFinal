@@ -5600,16 +5600,17 @@ MonoBehaviour:
   groundedLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  slope: 0
+  slopeAngle: 0
   slopeNormal: {x: 0, y: 0, z: 0}
   slopeLimit: 40
-  slideAmount: 35
+  slideForceAmount: 20
   coyoteTime: 0.1
   coyoteTimeCounter: 0
   isWalled: 0
   isStiking: 0
-  wallRayLenght: 0.5
-  wallAngleTreshold: 45
+  wallRayLenght: 1.1
+  wallAngleTreshold: 50
+  wallSlopeAngle: 0
   wallNormal: {x: 0, y: 0, z: 0}
   isSidescroller: 1
   isStrafing: 0
@@ -5725,6 +5726,7 @@ MonoBehaviour:
   inputDirection: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   lastMoveDir: {x: 0, y: 0, z: 0}
+  m_RotType: 0
   flipForce: 0.1
   jumpBufferTime: 0.15
 --- !u!114 &1956481293303678352
@@ -5777,6 +5779,7 @@ MonoBehaviour:
   airMoveSpeed: 10
   airAccel: 2
   airDecel: 1.5
+  landingForce: 0
   velPower: 0.9
   frictionAmount: 0.2
   m_LocomotionMultiplier: 1
@@ -5817,9 +5820,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
   isPressed: 0
-  jumpForce: {x: 0, y: 20, z: 0}
-  doubleJumpForce: {x: 0, y: 0, z: 0}
-  wallJumpForce: {x: 15, y: 20, z: 0}
+  jumpForce: {x: 0, y: 17, z: 0}
+  doubleJumpForce: {x: 0, y: 17, z: 0}
+  wallJumpForce: {x: 12, y: 15, z: 0}
   wallJumpXForce: 15
   canJump: 0
   canDoubleJump: 0

@@ -17,12 +17,22 @@ public class JumpSMB : BaseSMB
         Debug.Log("End Called");
         //poncherCharacter.GetComponent<JumpComponent>().EndJump();
 
+        //If wall jump restore the rotation settings
+        if (animator.GetInteger("JumpType") == 1)
+        {
+            poncherCharacter.GetController().m_RotType = RotationType.ToInputDir;
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (poncherCharacter.GetRigidbody().velocity.y < -1)
+        if (poncherCharacter.GetRigidbody().velocity.y < -0.5)
             poncherCharacter.GetComponent<JumpComponent>().EndJump();
+
+        if (animator.GetInteger("JumpType") == 1)
+        {
+            poncherCharacter.GetController().m_RotType = RotationType.ToVelocity;
+        }
         //movementComponent.SetGroundAccel(0);
     }
 

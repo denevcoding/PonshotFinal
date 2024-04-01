@@ -13,7 +13,8 @@ public class LandingSMB : BaseSMB
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        poncherCharacter.SetState(PoncherState.Landing);
+        poncherCharacter.SetState(PoncherState.Landing);      
+
         if (cancelJump)
         {
             poncherCharacter.GetComponent<JumpComponent>().canJump = false;

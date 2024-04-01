@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum RotationType
+{
+    ToInputDir,
+    ToVelocity,
+}
+
 public class PoncherController : PoncherComponentBase
 {
     [Header("Floating Properties")]
@@ -36,6 +42,7 @@ public class PoncherController : PoncherComponentBase
     public Vector3 inputDirection;
     public Vector3 moveDirection;
     public Vector3 lastMoveDir;
+    public RotationType m_RotType;
     public PoncherInputActions poncherActions;
     [Header("Input Properties")]
     PlayerInput poncherInput;
@@ -134,8 +141,10 @@ public class PoncherController : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
+        m_RotType = RotationType.ToInputDir;
         moveDirection = Vector3.right;
         lastMoveDir = Vector3.right;
+
     }
 
    
@@ -196,7 +205,17 @@ public class PoncherController : PoncherComponentBase
         poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(inputDirection.x));   
 
         poncherCharacter.GetMovementComp().MovePoncher(moveDirection);
-        poncherCharacter.GetMovementComp().RotateToDirection(lastMoveDir, true);
+
+        if (m_RotType == RotationType.ToVelocity)
+        {
+            poncherCharacter.GetMovementComp().RotateVelocity(true);
+        }
+        else if(m_RotType == RotationType.ToInputDir)
+        {
+            poncherCharacter.GetMovementComp().RotateToDirection(lastMoveDir, true);
+        }
+
+   
 
 
 
@@ -283,8 +302,12 @@ public class PoncherController : PoncherComponentBase
         else
             moveDirection = Vector3.right * h;
 
-        if (moveDirection.magnitude > 0)
+        if (moveDirection.magnitude > 0 && m_RotType== RotationType.ToInputDir)
             lastMoveDir = moveDirection;
+
+        if(poncherCharacter.GetRigidbody().velocity.magnitude > 0f && m_RotType == RotationType.ToVelocity)        
+            lastMoveDir = transform.forward;
+        
 
 
         //if (inputDirection.magnitude > 1.0f)

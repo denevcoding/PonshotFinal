@@ -75,7 +75,7 @@ public class MovementComp : PoncherComponentBase
         if (!poncherCharacter.isGrounded && velocity.y < 0f)
         {
             landingForce = Mathf.Abs(Mathf.Round(GetComponent<Rigidbody>().velocity.y));
-            poncherCharacter.GetAnimator().SetFloat("LandingForce", landingForce);
+            poncherCharacter.GetAnimator().SetFloat("LandingForce", landingForce);          
             poncherCharacter.GetAnimator().SetFloat("VelocityY", poncherCharacter.GetRigidbody().velocity.y);
         }
         else
@@ -175,10 +175,32 @@ public class MovementComp : PoncherComponentBase
         Quaternion dirQ = Quaternion.LookRotation(lookDir);
         Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, turnSpee * Time.deltaTime);
         poncherCharacter.GetRigidbody().MoveRotation(slerp);
-
-
-       
+               
     }
+
+
+    public void RotateVelocity(bool ignoreY)
+    {
+        Vector3 direction;
+        if (ignoreY)
+        {
+            direction = new Vector3(poncherCharacter.GetRigidbody().velocity.x, 0f, poncherCharacter.GetRigidbody().velocity.z);
+        }
+        else
+        {
+            direction = poncherCharacter.GetRigidbody().velocity;
+        }
+
+        if (direction.magnitude > 0.1f)
+        {
+            Quaternion dirQ = Quaternion.LookRotation(direction);
+            Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, direction.magnitude * curRotateSpeed * Time.deltaTime);
+            poncherCharacter.GetRigidbody().MoveRotation(slerp);
+        }
+    }
+
+
+
 
     public void ApplyGravity()
     {
