@@ -28,7 +28,8 @@ public class ShootPointer : MonoBehaviour
     [SerializeField] private float R_analog_threshold = 0.20f;
 
     public Slider chargeArrow;
-    public GameObject aimer;
+    public GameObject lookAimer;
+    public GameObject moveAimer;
 
     public delegate void AimBasedOnControlTypeFunc();
     public AimBasedOnControlTypeFunc AimBasedOnControlType;
@@ -54,7 +55,10 @@ public class ShootPointer : MonoBehaviour
         //Vector3 fixedPosition = transform.localPosition;
         //fixedPosition.x *= -x;
         //transform.localPosition = fixedPosition;
-        AimBasedOnControlType();       
+
+
+
+        //AimBasedOnControlType();       
     }
 
 
@@ -66,40 +70,40 @@ public class ShootPointer : MonoBehaviour
 
     public void InitAimer(PlayerGUI _guiOwner)
     {
-        m_poncherGUI = _guiOwner;
-        PlayerInput PI = m_poncherGUI.GetInputcomp();
+        //m_poncherGUI = _guiOwner;
+        //PlayerInput PI = m_poncherGUI.GetInputcomp();
 
-        if (PI)
-        {
-            switch (PI.currentControlScheme)
-            {
-                case "Keyboard&Mouse":
-                    AimBasedOnControlType = AimWithMouse;                    
-                    break;
+        //if (PI)
+        //{
+        //    switch (PI.currentControlScheme)
+        //    {
+        //        case "Keyboard&Mouse":
+        //            AimBasedOnControlType = AimWithMouse;                    
+        //            break;
 
-                case "Gamepad":
-                    AimBasedOnControlType = AimwithGamepad;                    
-                    break;
-            }
+        //        case "Gamepad":
+        //            AimBasedOnControlType = AimwithGamepad;                    
+        //            break;
+        //    }
 
-            BindInputActions(PI);
-        }
+        //    BindInputActions(PI);
+        //}
     }
 
-    void BindInputActions(PlayerInput _inputComp)
-    {
-        Dictionary<string, Action<InputAction.CallbackContext>> ActionMap = new Dictionary<string, Action<InputAction.CallbackContext>>();
-        ActionMap.Add("Movement", OnMoveInput);
-        ActionMap.Add("Aim", OnLookInput);
+    //void BindInputActions(PlayerInput _inputComp)
+    //{
+    //    Dictionary<string, Action<InputAction.CallbackContext>> ActionMap = new Dictionary<string, Action<InputAction.CallbackContext>>();
+    //    ActionMap.Add("Movement", OnMoveInput);
+    //    ActionMap.Add("Aim", OnLookInput);
 
-        foreach (string keyAction in ActionMap.Keys)
-        {
-            _inputComp.actions[keyAction].started += ActionMap[keyAction];
-            _inputComp.actions[keyAction].performed += ActionMap[keyAction];
-            _inputComp.actions[keyAction].canceled += ActionMap[keyAction];
-        }
-        _inputComp.actions["Aim"].performed += OnLookInput; //Binding to right stick values
-    }
+    //    foreach (string keyAction in ActionMap.Keys)
+    //    {
+    //        _inputComp.actions[keyAction].started += ActionMap[keyAction];
+    //        _inputComp.actions[keyAction].performed += ActionMap[keyAction];
+    //        _inputComp.actions[keyAction].canceled += ActionMap[keyAction];
+    //    }
+    //    _inputComp.actions["Aim"].performed += OnLookInput; //Binding to right stick values
+    //}
 
     public void InitSlider(float minValue, float maxValue)
     {
@@ -118,26 +122,26 @@ public class ShootPointer : MonoBehaviour
     }
 
     //If player is using a gamepad, this is the right stick to aim
-    public void OnLookInput(InputAction.CallbackContext context) 
-    {
-        m_LookInput = context.ReadValue<Vector2>();
+    //public void OnLookInput(InputAction.CallbackContext context) 
+    //{
+    //    m_LookInput = context.ReadValue<Vector2>();
 
-        if (context.started)        
-            isLooking = true;        
+    //    if (context.started)        
+    //        isLooking = true;        
 
-        if (context.canceled)        
-            isLooking = false;        
+    //    if (context.canceled)        
+    //        isLooking = false;        
  
-    }
+    //}
 
-    public void OnMoveInput(InputAction.CallbackContext context)
+    //public void OnMoveInput(InputAction.CallbackContext context)
+    //{
+    //    m_MoveInput = context.ReadValue<Vector2>();
+    //}
+
+
+    public Vector3 AimWithMouse()
     {
-        m_MoveInput = context.ReadValue<Vector2>();
-    }
-
-
-    public void AimWithMouse()
-    {       
         //Debug.Log($"Mouse: {x} : {y}");
 
         mosPos = Mouse.current.position.ReadValue();
@@ -145,23 +149,43 @@ public class ShootPointer : MonoBehaviour
 
         mouseWorldPos = Camera.main.ScreenToWorldPoint(mosPos);
 
-        m_LookInput = (mouseWorldPos - transform.position);     
+        m_LookInput = (mouseWorldPos - transform.position);
+        m_LookInput.Normalize();
 
         RotateByInput(m_LookInput);
+
         Debug.DrawRay(transform.position, m_LookInput * 2f, Color.blue);
+
+        return m_LookInput;
+
     }
 
-    public void AimwithGamepad()
-    {
-        if (!isLooking)
-        {
-            RotateByInput(m_MoveInput);
-        }
-        else
-        {
-            RotateByInput(m_LookInput);
-        }
-    }
+    //public void AimwithGamepad()
+    //{
+    //    if (!isLooking)
+    //    {
+    //        RotateByInput(m_MoveInput);
+    //    }
+    //    else
+    //    {
+    //        RotateByInput(m_LookInput);
+    //    }
+    //}
+
+    //Called from controller version
+    //public void AimwithGamepad(Vector3 _lookInput)
+    //{
+    //    RotateByInput(_lookInput);
+
+    //    //if (!isLooking)
+    //    //{
+    //    //    RotateByInput(m_MoveInput);
+    //    //}
+    //    //else
+    //    //{
+    //    //    RotateByInput(m_LookInput);
+    //    //}
+    //}
 
     public void RotateByInput(Vector2 axis)
     {

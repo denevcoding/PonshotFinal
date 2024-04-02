@@ -25,14 +25,14 @@ public class LandingSMB : BaseSMB
         }
 
 
-        if (poncherCharacter.isStrafing && !overrideRoll)
-        {
-            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
-        }
-        else
-        {
-            poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
-        }
+        //if (poncherCharacter.isStrafing && !overrideRoll)
+        //{
+        //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
+        //}
+        //else
+        //{
+        //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
+        //}
         
         
 

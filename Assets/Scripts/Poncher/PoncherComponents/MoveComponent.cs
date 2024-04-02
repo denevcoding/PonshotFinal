@@ -117,32 +117,32 @@ public class MoveComponent : PoncherComponentBase
     public void RotateToDirection(Vector3 lookDir, bool ignoreY)
     {
 
-        if (!poncherCharacter.canRotate)
-            return;
+        //if (!poncherCharacter.canRotate)
+        //    return;
 
-        Vector3 characterPos = transform.position;
-        if (ignoreY)
-        {
-            characterPos.y = 0;
-            lookDir.y = 0;
-        }
-        //Un número mayor o menor a este hará que mire hacia el otro lado al voltear
-        lookDir.z = 0;
+        //Vector3 characterPos = transform.position;
+        //if (ignoreY)
+        //{
+        //    characterPos.y = 0;
+        //    lookDir.y = 0;
+        //}
+        ////Un número mayor o menor a este hará que mire hacia el otro lado al voltear
+        //lookDir.z = 0;
 
-        Vector3 towardDir = lookDir - characterPos;
+        //Vector3 towardDir = lookDir - characterPos;
 
         
-        //Handle turn 180 when change direction drastically
-        float direction = Vector3.Dot(towardDir, transform.forward);
-        if (poncherCharacter.canRotate && !poncherCharacter.isStrafing)
-            poncherCharacter.GetAnimator().SetFloat("changeDirection", direction);
-        else
-            poncherCharacter.GetAnimator().SetFloat("ChangeDirection", 0.01f);
+        ////Handle turn 180 when change direction drastically
+        //float direction = Vector3.Dot(towardDir, transform.forward);
+        //if (poncherCharacter.canRotate && !poncherCharacter.isStrafing)
+        //    poncherCharacter.GetAnimator().SetFloat("changeDirection", direction);
+        //else
+        //    poncherCharacter.GetAnimator().SetFloat("ChangeDirection", 0.01f);
 
-        direction = 0;
+        //direction = 0;
 
-        if (poncherCharacter.isStrafing)
-            towardDir *= -1;
+        //if (poncherCharacter.isStrafing)
+        //    towardDir *= -1;
         
 
 
@@ -166,10 +166,10 @@ public class MoveComponent : PoncherComponentBase
         //if (canRotate == false)
         //    return;
 
-        float turnSpee = curRotateSpeed *= 1.6f;
-        Quaternion dirQ = Quaternion.LookRotation(towardDir);
-        Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, turnSpee * Time.deltaTime);
-        poncherCharacter.GetRigidbody().MoveRotation(slerp);
+        //float turnSpee = curRotateSpeed *= 1.6f;
+        //Quaternion dirQ = Quaternion.LookRotation(towardDir);
+        //Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, turnSpee * Time.deltaTime);
+        //poncherCharacter.GetRigidbody().MoveRotation(slerp);
     }
 
 

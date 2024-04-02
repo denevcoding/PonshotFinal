@@ -1234,9 +1234,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.038079053
+  m_TransitionDuration: 0.008324706
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 1.481632e-10
   m_HasExitTime: 0
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -1331,7 +1331,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.0046794596
+  m_TransitionDuration: 0.0009211028
   m_TransitionOffset: 0
   m_ExitTime: 0.00012458151
   m_HasExitTime: 0
@@ -1899,9 +1899,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.14882126
+  m_TransitionDuration: 0.06589023
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 0.055698775
   m_HasExitTime: 0
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -2278,7 +2278,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wall_Jump
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 91892479400087016}
@@ -3225,7 +3225,7 @@ AnimatorTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: LandingForce
-    m_EventTreshold: 22
+    m_EventTreshold: 30
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4877186062647994229}
   m_Solo: 0

@@ -61,8 +61,10 @@ public class MovementComp : PoncherComponentBase
         //poncherCharacter.GetRigidbody().WakeUp();
         ApplyGravity();
 
+
         velocity = poncherCharacter.GetRigidbody().velocity;
         velMag = poncherCharacter.GetRigidbody().velocity.magnitude;
+
 
         //Clamping maximum fall Y velocity
         if (velocity.y < -31)
@@ -156,17 +158,28 @@ public class MovementComp : PoncherComponentBase
         float velFactor = (1 * velMag) / moveSpeed;
         float velDir = 1;
 
-        if (poncherCharacter.isStrafing)
+        if (poncherCharacter.GetController().lockRotation)
         {
-            lookDir *= -1;
-            velDir = -1;
+            float alingment = Vector3.Dot(poncherCharacter.GetController().lastMoveDir, poncherCharacter.GetController().lookDirection);
+            if (alingment > 0)
+            {
+                Debug.Log("Align");
+           
+            }
+            else
+            {
+                Debug.Log("UnAlign");
+                lookDir *= -1;
+                velDir = -1;
+            }
+
         }
 
         velFactor *= velDir;
 
         //If It is running wth input but is against a wall for example
-        if (poncherCharacter.GetController().moveDirection.magnitude > 0 && velMag <= 0.05f)        
-            velFactor = poncherCharacter.GetController().moveDirection.magnitude * velDir;
+        if (poncherCharacter.GetController().moveDirection.magnitude > 0 && velMag <= 0.1f)        
+            velFactor = 0.2f * velDir;
 
         poncherCharacter.GetAnimator().SetFloat("VelocityX", velFactor);
 
@@ -191,12 +204,13 @@ public class MovementComp : PoncherComponentBase
             direction = poncherCharacter.GetRigidbody().velocity;
         }
 
-        if (direction.magnitude > 0.1f)
+        if (direction.magnitude > 0.20f)
         {
             Quaternion dirQ = Quaternion.LookRotation(direction);
             Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, direction.magnitude * curRotateSpeed * Time.deltaTime);
             poncherCharacter.GetRigidbody().MoveRotation(slerp);
         }
+       
     }
 
 

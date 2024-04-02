@@ -9,7 +9,21 @@ public class JumpSMB : BaseSMB
         //pkComponent = poncherCharacter.GetParkourComponent();
         //pkComponent.canFlip = false;
 
-        poncherCharacter.SetState(PoncherState.Jumping);   
+        switch (animator.GetInteger("JumpType"))
+        {
+            case 0:
+                poncherCharacter.SetState(PoncherState.Jumping);
+                break;
+            case 1:
+                poncherCharacter.SetState(PoncherState.WallJumping);
+                poncherCharacter.GetController().m_RotType = RotationType.ToVelocity;
+                break;
+            case 2:
+                poncherCharacter.SetState(PoncherState.Jumping);
+                break;
+            default:
+                break;
+        }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -17,11 +31,13 @@ public class JumpSMB : BaseSMB
         Debug.Log("End Called");
         //poncherCharacter.GetComponent<JumpComponent>().EndJump();
 
-        //If wall jump restore the rotation settings
+        //If wall jump restore the rotation settings        
         if (animator.GetInteger("JumpType") == 1)
         {
             poncherCharacter.GetController().m_RotType = RotationType.ToInputDir;
         }
+   
+        
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

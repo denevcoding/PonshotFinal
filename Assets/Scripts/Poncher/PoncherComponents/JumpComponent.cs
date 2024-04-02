@@ -104,7 +104,7 @@ public class JumpComponent : PoncherComponentBase
 
 
         //Early Exit if I am not in this skill
-        if (poncherCharacter.GetState() != PoncherState.Jumping)
+        if (poncherCharacter.GetState() != PoncherState.Jumping || poncherCharacter.GetState() != PoncherState.WallJumping)
             return;
 
         if (poncherCharacter.GetRigidbody().velocity.y < -0.5 /*|| poncherCharacter.isGrounded || poncherCharacter.isWalled*/)
@@ -127,7 +127,7 @@ public class JumpComponent : PoncherComponentBase
                 {
                     WallJump();
                 }
-                else if (!poncherCharacter.IsGrounded() && !poncherCharacter.IsWalled() && canDoubleJump)
+                else if (!poncherCharacter.IsGrounded() && poncherCharacter.GetState() != PoncherState.WallSliding && canDoubleJump)
                 {
                     DoubleJump();
                 }               
@@ -172,12 +172,25 @@ public class JumpComponent : PoncherComponentBase
 
     void WallJump()
     {
-        poncherCharacter.GetAnimator().SetInteger("JumpType", 1);
-        poncherCharacter.GetAnimator().SetBool("Jumping", true);
+        Vector3 fixedVel = new Vector3(poncherCharacter.GetRigidbody().velocity.x, 0f, 0f);
+        poncherCharacter.GetRigidbody().velocity = fixedVel;
+
+
+        if (poncherCharacter.GetState() == PoncherState.WallJumping)
+        {
+            poncherCharacter.GetAnimator().Play("Wall_Jump", -1, 0f);
+        }
+        else
+        {
+            poncherCharacter.GetAnimator().SetInteger("JumpType", 1);
+            poncherCharacter.GetAnimator().SetBool("Jumping", true);
+        }
+
+     
 
         poncherCharacter.GetRigidbody().AddForce(wallJumpForce.y * Vector2.up, ForceMode.Impulse);
         poncherCharacter.GetRigidbody().AddForce(wallJumpForce.x * poncherCharacter.wallNormal, ForceMode.Impulse);
-        poncherCharacter.GetRigidbody().AddForce((Vector2.right * -1) * poncherCharacter.GetRigidbody().velocity.x * (1 - 0.5f), ForceMode.Impulse);
+        //poncherCharacter.GetRigidbody().AddForce((Vector2.right * -1), ForceMode.Impulse);
     }
 
 
@@ -188,7 +201,7 @@ public class JumpComponent : PoncherComponentBase
         Vector3 fixedVel = new Vector3(poncherCharacter.GetRigidbody().velocity.x, 0f, 0f); 
         poncherCharacter.GetRigidbody().velocity = fixedVel;
         poncherCharacter.GetRigidbody().AddForce(doubleJumpForce.y * Vector2.up, ForceMode.Impulse);
-        poncherCharacter.GetRigidbody().AddForce((Vector2.right * -1) * poncherCharacter.GetRigidbody().velocity.x * (1 - 0.2f), ForceMode.Impulse);
+        //poncherCharacter.GetRigidbody().AddForce((Vector2.right * -1) * 10f, ForceMode.Impulse);
         poncherCharacter.GetAnimator().SetInteger("JumpType", 2);
         poncherCharacter.GetAnimator().SetBool("Jumping", true);
     }

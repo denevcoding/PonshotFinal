@@ -194,7 +194,7 @@ public class PickThrowComponent : PoncherComponentBase
         {
             IPickeable objectToLaunch = ObjectOnHand.GetComponent<IPickeable>();
 
-            Transform shooterAim = poncherCharacter.GetponcherGUI().shooterPointer.aimer.transform;
+            Transform shooterAim = poncherCharacter.GetponcherGUI().shooterPointer.moveAimer.transform;
             float axisX = poncherCharacter.GetponcherGUI().shooterPointer.GetComponent<ShootPointer>().GetXAxis();
 
             Debug.Log("Shoot force " + CurrentLaunchForce);

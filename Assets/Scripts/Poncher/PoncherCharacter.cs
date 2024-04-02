@@ -263,23 +263,28 @@ public class PoncherCharacter : PonshotEntity
         bool hit = Physics.BoxCast(rayPos, boxSize, Vector3.down, out hitCenter, transform.rotation, rayLenght, groundedLayerMask.value);
 
 
-            if (hit)
+        if (hit)
+        {
+            if (!hitCenter.transform.GetComponent<Collider>().isTrigger)
             {
-                if (!hitCenter.transform.GetComponent<Collider>().isTrigger)
+                //slope control
+                slopeAngle = Vector3.Angle(hitCenter.normal, Vector3.up);
+                slopeNormal = hitCenter.normal;
+                //Debug.Log("Slope is: " + slope);
+                if (slopeAngle > slopeLimit /*&& hit.transform.tag != "Pushable"*/)
                 {
-                    //slope control
-                    slopeAngle = Vector3.Angle(hitCenter.normal, Vector3.up);
-                    slopeNormal = hitCenter.normal;
-                    //Debug.Log("Slope is: " + slope);
-                    if (slopeAngle > slopeLimit /*&& hit.transform.tag != "Pushable"*/)
-                    {
-                        float slideForce = slopeAngle;
-                        Vector3 slide = new Vector3(0f, -5, 0f);
-                        GetRigidbody().AddForce(slide, ForceMode.Force);
-                    }
-                    return true;
+                    //poncherController.m_RotType = RotationType.ToVelocity;
+                    float slideForce = slopeAngle/3;
+                    Vector3 slide = new Vector3(0f, -slideForce, 0f);
+                    GetRigidbody().AddForce(slide, ForceMode.Force);
                 }
+                else
+                {
+                    poncherController.m_RotType = RotationType.ToInputDir;
+                }
+                return true;
             }
+        }
            
         
         //moveComponent.movingObjSpeed = Vector3.zero;

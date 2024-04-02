@@ -5608,7 +5608,7 @@ MonoBehaviour:
   coyoteTimeCounter: 0
   isWalled: 0
   isStiking: 0
-  wallRayLenght: 1.1
+  wallRayLenght: 0.9
   wallAngleTreshold: 50
   wallSlopeAngle: 0
   wallNormal: {x: 0, y: 0, z: 0}
@@ -5726,7 +5726,9 @@ MonoBehaviour:
   inputDirection: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   lastMoveDir: {x: 0, y: 0, z: 0}
+  lookDirection: {x: 0, y: 0, z: 0}
   m_RotType: 0
+  lockRotation: 0
   flipForce: 0.1
   jumpBufferTime: 0.15
 --- !u!114 &1956481293303678352
@@ -5769,16 +5771,16 @@ MonoBehaviour:
   poncherCharacter: {fileID: 0}
   isPressed: 0
   curRotateSpeed: 0
-  rotateSpeed: 8
-  airRotateSpeed: 8
+  rotateSpeed: 10
+  airRotateSpeed: 10
   velocity: {x: 0, y: 0, z: 0}
   velMag: 0
-  moveSpeed: 10
-  acceleration: 7.5
-  deceleration: 7
+  moveSpeed: 12
+  acceleration: 10
+  deceleration: 8
   airMoveSpeed: 10
-  airAccel: 2
-  airDecel: 1.5
+  airAccel: 3
+  airDecel: 1.2
   landingForce: 0
   velPower: 0.9
   frictionAmount: 0.2

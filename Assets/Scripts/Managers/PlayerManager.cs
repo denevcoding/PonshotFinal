@@ -88,10 +88,13 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Device " + device.shortDisplayName);
         Debug.Log($"Button {button} was pressed");
 
+        if (device is Mouse)        
+            return;
+        
 
         PlayerInput inputComp = null;
         // Create a new player.
-        if (device is Keyboard || device is Mouse)
+        if (device is Keyboard )
         {
             inputComp = InstantiatePlayerInput(device, "Keyboard&Mouse", playersAmount);
 
@@ -118,6 +121,8 @@ public class PlayerManager : MonoBehaviour
 
         PlayerGUI playerGUI = inputComp.GetComponent<PlayerGUI>();
         playerGUI.SetPoncher(poncherChar);
+
+        poncherChar.GetController().playerGUI = playerGUI;
 
 
         PlayerData playerData = new PlayerData(playersAmount, inputComp, poncherChar, playerGUI);

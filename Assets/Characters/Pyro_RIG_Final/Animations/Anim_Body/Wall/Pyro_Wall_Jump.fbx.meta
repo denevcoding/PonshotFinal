@@ -52,8 +52,8 @@ ModelImporter:
       name: Wall_Jump
       takeName: Wall_Jump
       internalID: 0
-      firstFrame: 14
-      lastFrame: 21.9
+      firstFrame: 11.1
+      lastFrame: 24.5
       wrapMode: 0
       orientationOffsetY: 180
       level: 0
