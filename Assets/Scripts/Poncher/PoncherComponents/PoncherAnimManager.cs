@@ -67,27 +67,27 @@ public class PoncherAnimManager : PoncherComponentBase
     //Handeling Root motion
     private void OnAnimatorMove()
     {
-        //if (!isRootMotion)
-        //    return;
+        if (!isRootMotion)
+            return;
 
-        //Vector3 tempPosition = transform.position;
+        Vector3 tempPosition = transform.position;
 
-        //if (!poncherCharacter.isWalled)        
-        //    tempPosition.x += poncherCharacter.GetAnimator().deltaPosition.x;
-        //else
-        //{
-        //    DeactivateRootmotion();           
-        //}
+        if (!poncherCharacter.isWalled)
+            tempPosition.x += poncherCharacter.GetAnimator().deltaPosition.x;
+        else
+        {
+            DeactivateRootmotion();
+        }
 
-        //if (!poncherCharacter.IsGrounded())
-        //{
-        //    tempPosition.y += -5f * Time.deltaTime;
-        //}
+        if (!poncherCharacter.IsGrounded())
+        {
+            tempPosition.y += -5f * Time.deltaTime;
+        }
 
 
-        //tempPosition.z = 0;
-        //poncherCharacter.GetRigidbody().MovePosition(tempPosition);
-        //transform.forward = animator.deltaRotation * transform.forward;
+        tempPosition.z = 0;
+        poncherCharacter.GetRigidbody().MovePosition(tempPosition);
+        transform.forward = animator.deltaRotation * transform.forward;
     }
 
     

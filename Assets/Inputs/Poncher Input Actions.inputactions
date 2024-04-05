@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FastDown",
-                    "type": "Button",
-                    "id": "d9f051dc-c1a6-4903-b362-24924c8e36fe",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Roll",
                     "type": "Button",
                     "id": "ef4946f6-5a6b-4a39-8e49-6a7235ff6eeb",
@@ -84,6 +75,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DownFast",
+                    "type": "Button",
+                    "id": "09961ce1-8a88-4bd2-8f9f-87272562c34f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(pressPoint=0.8)",
                     "initialStateCheck": false
                 }
             ],
@@ -288,23 +288,23 @@
                 },
                 {
                     "name": "",
-                    "id": "10744f84-ddae-4a9b-ad6b-d8c64152dbbc",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
+                    "id": "a51c496a-6fa9-44f3-8a87-a5fb2d507465",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "Press(pressPoint=0.8)",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "FastDown",
+                    "groups": "Gamepad",
+                    "action": "DownFast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "56fe1fc0-f5be-4e95-90f0-5727c53631c7",
-                    "path": "<Gamepad>/leftStick/down",
+                    "id": "966c37d1-a476-48ae-9ed5-c434aa49746c",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "FastDown",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DownFast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

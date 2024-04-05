@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 519c697b902ffb74eb6fd0b687998c30
+guid: be609ca49ebafe64f96058cd7c1b056c
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: -3361073683254679215
-    second: Hard_Landing
+      74: 688352758357962829
+    second: Falling
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,21 +22,41 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'GameSkeletonHipPart1_L'
-      : rotation error = 11.550887 deg\n\t'GameSkeletonKneePart1_L' : rotation error
-      = 2.810578 deg\n"
+      : rotation error = 4.303160 deg\n\t'GameSkeletonKneePart1_L' : rotation error
+      = 1.116816 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Hard_Landing' has import animation warnings
+    animationImportWarnings: "\nClip 'jump_complete' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'GameSkeletonJawJoint_M' has translation
       animation that will be discarded.\n\t'GameSkeletonScapula_R' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonScapula_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+      transforms and has rotation animation that will be discarded.\n\t'GameSkeletonShoulderPart1_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonElbow_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonWrist_R'
+      has scale animation that will be discarded.\n\t'GameSkeletonIndexFinger1_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonRingFinger1_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonPinkyFinger1_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonScapula_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonShoulderPart1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonElbow_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonElbowPart1_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonWrist_L'
+      has scale animation that will be discarded.\n\t'GameSkeletonIndexFinger1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonRingFinger1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonPinkyFinger1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKnee_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonAnkle_R'
+      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKnee_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonAnkle_L'
+      has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -50,38 +70,30 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Hard_Landing
-      takeName: Hard_Landing
+      name: Falling
+      takeName: jump_complete
       internalID: 0
-      firstFrame: 0
-      lastFrame: 44.5
+      firstFrame: 20.1
+      lastFrame: 26.099998
       wrapMode: 0
       orientationOffsetY: 0
-      level: 1
+      level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.14408092
-        functionName: CancelRoll
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 7bc558acaf353c744ac8c08a1dfd56f0,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
@@ -357,7 +369,7 @@ ModelImporter:
         weight: 0
       maskType: 1
       maskSource: {fileID: 31900000, guid: d89290837b4b51e468ee338db0cb97be, type: 2}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 0.96
     isReadable: 0
   meshes:
     lODScreenPercentages: []

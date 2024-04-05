@@ -40,22 +40,19 @@ public class RollComponent : PoncherComponentBase
         canFlip = true;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void FixedUpdate()
     {
         if (!poncherCharacter.isGrounded)
             canRoll = false; //Cant Roll in the air
-        else
-        {
+        else        
             canRoll = true;
-        }
 
-        if (poncherCharacter.GetRigidbody().velocity.y < -2 && poncherCharacter.GetState() == PoncherState.Fliping)
-        {
-            poncherCharacter.GetAnimator().SetBool("Flipping", false);
-        }
+        //if (poncherCharacter.GetRigidbody().velocity.y < -2 && poncherCharacter.GetState() == PoncherState.Fliping)
+        //{
+        //    poncherCharacter.GetAnimator().SetBool("Flipping", false);
+        //}
 
-            
     }
 
     public void FlipRoll(InputAction.CallbackContext context)
@@ -63,21 +60,21 @@ public class RollComponent : PoncherComponentBase
         if (CheckBasePreconditions() == false)
             return;
 
-        if (poncherCharacter.IsGrounded())
+        if (poncherCharacter.isGrounded)
         {
             //Perform RollPoncher is on the ground 
             if (poncherCharacter.GetState() == PoncherState.Rolling)
                 return;
 
-            if (poncherCharacter.coyoteTimeCounter < 0)
-                return;
+            //if (poncherCharacter.coyoteTimeCounter < 0)
+            //    return;
 
             if (!canRoll)
                 return;
 
 
-            if (poncherCharacter.isStrafing && poncherCharacter.GetState() != PoncherState.Landing)
-                poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
+            //if (poncherCharacter.isStrafing && poncherCharacter.GetState() != PoncherState.Landing)
+            //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
             //else        
             //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
 

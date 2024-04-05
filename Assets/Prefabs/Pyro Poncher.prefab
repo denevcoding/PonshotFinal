@@ -5489,13 +5489,14 @@ GameObject:
   - component: {fileID: 1196356099}
   - component: {fileID: 1196356100}
   - component: {fileID: 9076507809495912974}
-  - component: {fileID: 6508315963516702669}
   - component: {fileID: 1196356094}
-  - component: {fileID: 1956481293303678352}
   - component: {fileID: 139597773}
-  - component: {fileID: 9076507809495912975}
   - component: {fileID: 139597762}
+  - component: {fileID: 6508315963516702669}
+  - component: {fileID: 8311906518658326287}
   - component: {fileID: 139597763}
+  - component: {fileID: 9076507809495912975}
+  - component: {fileID: 1956481293303678352}
   - component: {fileID: 1507751851}
   - component: {fileID: 1507751852}
   m_Layer: 3
@@ -5621,32 +5622,6 @@ MonoBehaviour:
   rayCornerLenght: 0.5
   rayOffset: 0.5
   fixForce: 0.09
---- !u!114 &6508315963516702669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 071988bfca549624b9f7979d1736843f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poncherCharacter: {fileID: 0}
-  isPressed: 0
-  canPick: 0
-  ObjectOnHand: {fileID: 0}
-  DetectionRadius: 0
-  picking: 0
-  Charging: 0
-  LaunchPressedTimeTreshhold: 0
-  ShootMinForce: 0
-  ShoothMaxForce: 0
-  chargeMultiplierFactor: 0
-  CurrentLaunchForce: 0
-  LeftHandSocket: {fileID: 0}
-  RighHandSocket: {fileID: 0}
 --- !u!114 &1196356094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5719,7 +5694,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ForceScale: {x: 1, y: 0, z: 1}
-  GravityScaleDrop: 10
+  GravityScaleDrop: 9
   m_unitGoal: {x: 0, y: 0, z: 0}
   m_goalVel: {x: 0, y: 0, z: 0}
   playerGUI: {fileID: 0}
@@ -5731,31 +5706,6 @@ MonoBehaviour:
   lockRotation: 0
   flipForce: 0.1
   jumpBufferTime: 0.15
---- !u!114 &1956481293303678352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dfe0fbe8dff7ab42ae0f647561f0280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poncherCharacter: {fileID: 0}
-  isPressed: 0
-  accel: 115
-  decel: 5
-  airAccel: 30
-  airDecel: 2
-  maxSpeed: 150
-  rotateSpeed: 5
-  airRotateSpeed: 4.35
-  movingObjSpeed: {x: 0, y: 0, z: 0}
-  m_currentSpeed: {x: -6.096155e-36, y: 0, z: 0}
-  m_DistanceToTarget: 0.000000056189037
-  currentAngVel: {x: 0, y: 0, z: 0}
 --- !u!114 &139597773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5771,8 +5721,8 @@ MonoBehaviour:
   poncherCharacter: {fileID: 0}
   isPressed: 0
   curRotateSpeed: 0
-  rotateSpeed: 10
-  airRotateSpeed: 10
+  rotateSpeed: 20
+  airRotateSpeed: 20
   velocity: {x: 0, y: 0, z: 0}
   velMag: 0
   moveSpeed: 12
@@ -5786,28 +5736,6 @@ MonoBehaviour:
   frictionAmount: 0.2
   m_LocomotionMultiplier: 1
   gravityScale: 1.5
---- !u!114 &9076507809495912975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcefb07c385312947976e8226132b057, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poncherCharacter: {fileID: 0}
-  isPressed: 0
-  RootParent: {fileID: 4587006867672472566}
-  ragdollBones: []
-  joints: []
-  BouncePxMat: {fileID: 0}
-  IsRagdoll: 0
-  enableCollision: 0
-  hipGrounded: 0
-  ragdollToMecanimBlendTime: 0.5
 --- !u!114 &139597762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5834,6 +5762,49 @@ MonoBehaviour:
   jumpCutMultiplier: 0.7
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+--- !u!114 &6508315963516702669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071988bfca549624b9f7979d1736843f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  isPressed: 0
+  canPick: 0
+  ObjectOnHand: {fileID: 0}
+  DetectionRadius: 0
+  picking: 0
+  Charging: 0
+  LaunchPressedTimeTreshhold: 0
+  ShootMinForce: 0
+  ShoothMaxForce: 0
+  chargeMultiplierFactor: 0
+  CurrentLaunchForce: 0
+  LeftHandSocket: {fileID: 0}
+  RighHandSocket: {fileID: 0}
+--- !u!114 &8311906518658326287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32760f7aa8262c643a5b5e447a23f632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  isPressed: 0
+  rollType: 0
+  canRoll: 0
+  canFlip: 0
 --- !u!114 &139597763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5851,6 +5822,53 @@ MonoBehaviour:
   currentAnimation: {fileID: 0}
   isRootMotion: 0
   VelocityHash: 0
+--- !u!114 &9076507809495912975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcefb07c385312947976e8226132b057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  isPressed: 0
+  RootParent: {fileID: 4587006867672472566}
+  ragdollBones: []
+  joints: []
+  BouncePxMat: {fileID: 0}
+  IsRagdoll: 0
+  enableCollision: 0
+  hipGrounded: 0
+  ragdollToMecanimBlendTime: 0.5
+--- !u!114 &1956481293303678352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158079489810016374}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfe0fbe8dff7ab42ae0f647561f0280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poncherCharacter: {fileID: 0}
+  isPressed: 0
+  accel: 115
+  decel: 5
+  airAccel: 30
+  airDecel: 2
+  maxSpeed: 150
+  rotateSpeed: 5
+  airRotateSpeed: 4.35
+  movingObjSpeed: {x: 0, y: 0, z: 0}
+  m_currentSpeed: {x: -6.096155e-36, y: 0, z: 0}
+  m_DistanceToTarget: 0.000000056189037
+  currentAngVel: {x: 0, y: 0, z: 0}
 --- !u!114 &1507751851
 MonoBehaviour:
   m_ObjectHideFlags: 0

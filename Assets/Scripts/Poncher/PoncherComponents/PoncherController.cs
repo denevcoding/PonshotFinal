@@ -339,6 +339,7 @@ public class PoncherController : PoncherComponentBase
         ActionMap.Add("Aim", OnLookInput);
         ActionMap.Add("Jump", poncherCharacter.GetJumpComp().JumpWithPressed);
         ActionMap.Add("L1", LockRotationbyKey);
+        ActionMap.Add("DownFast", DownFast);
 
         foreach (string keyAction in ActionMap.Keys)
         {
@@ -362,11 +363,40 @@ public class PoncherController : PoncherComponentBase
         lookDirection = context.ReadValue<Vector2>();
         Debug.DrawRay(transform.position, lookDirection * 2f, Color.red);
 
+
         if (context.started)
             lockRotation = true;
 
         if (context.canceled)
             lockRotation = false;
+    }
+
+    public void DownFast(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("Started Fast Down");
+            int holi = 0;
+        }
+
+        if (context.performed)
+        {
+            if (!poncherCharacter.isGrounded)
+            {
+                Debug.Log("Passed the press Point");
+                poncherCharacter.GetRigidbody().AddForce(7 * Vector2.down, ForceMode.Impulse);
+            }
+            else
+            {//Down fast in the ground
+                //if (poncherCharacter.slope)
+                //{
+
+                //}
+            }
+            
+        }
+
+        
     }
 
 
