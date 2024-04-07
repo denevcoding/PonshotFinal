@@ -98,13 +98,20 @@ public class JumpComponent : PoncherComponentBase
         }
 
 
+        if (poncherCharacter.isGrounded && poncherCharacter.GetRigidbody().velocity.y > 0)
+        {
+
+        }
+
+
         //Early Exit if I am not in this skill
         if (poncherCharacter.GetState() != PoncherState.Jumping && poncherCharacter.GetState() != PoncherState.WallJumping)
             return;
 
-        
 
-        if (poncherCharacter.GetRigidbody().velocity.y < -0.5)
+       
+
+        if (poncherCharacter.GetRigidbody().velocity.y <= -0.05 ||(poncherCharacter.isGrounded && poncherCharacter.GetRigidbody().velocity.y > 1))
             EndJump();
 
     }
@@ -172,7 +179,7 @@ public class JumpComponent : PoncherComponentBase
         Vector3 fixedVel = new Vector3(poncherCharacter.GetRigidbody().velocity.x, 0f, 0f);
         poncherCharacter.GetRigidbody().velocity = fixedVel;
 
-
+        //If other wall is too close
         if (poncherCharacter.GetState() == PoncherState.WallJumping)
         {
             poncherCharacter.GetAnimator().Play("Wall_Jump", -1, 0f);
