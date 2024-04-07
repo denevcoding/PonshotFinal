@@ -354,9 +354,8 @@ public class PoncherController : PoncherComponentBase
     {
         inputDirection = context.ReadValue<Vector2>();
         Debug.DrawRay(transform.position, inputDirection * 2f, Color.green);
-
-
     }
+
 
     public void OnLookInput(InputAction.CallbackContext context)
     {
@@ -392,10 +391,8 @@ public class PoncherController : PoncherComponentBase
                 //{
 
                 //}
-            }
-            
+            }            
         }
-
         
     }
 

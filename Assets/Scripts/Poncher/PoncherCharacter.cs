@@ -263,7 +263,7 @@ public class PoncherCharacter : PonshotEntity
         bool hit = Physics.BoxCast(rayPos, boxSize, Vector3.down, out hitCenter, transform.rotation, rayLenght, groundedLayerMask.value);
 
 
-        if (hit)
+        if (hit && GetState() !=  PoncherState.Jumping)
         {
             if (!hitCenter.transform.GetComponent<Collider>().isTrigger)
             {

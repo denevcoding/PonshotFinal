@@ -42,8 +42,8 @@ public class JumpSMB : BaseSMB
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (poncherCharacter.GetRigidbody().velocity.y < -0.5)
-            poncherCharacter.GetComponent<JumpComponent>().EndJump();
+        //if (poncherCharacter.GetRigidbody().velocity.y < -0.5)
+        //    poncherCharacter.GetComponent<JumpComponent>().EndJump();
 
         if (animator.GetInteger("JumpType") == 1)
         {
