@@ -92,11 +92,6 @@ public class JumpComponent : PoncherComponentBase
         //Restoring double jump capabilities
         if ((poncherCharacter.isGrounded || poncherCharacter.isWalled))
         {
-            //if (poncherCharacter.GetState() == PoncherState.Jumping)
-            //{
-            //    EndJump();
-            //}
-           
 
             if (!canDoubleJump)
                 canDoubleJump = true;
@@ -104,10 +99,12 @@ public class JumpComponent : PoncherComponentBase
 
 
         //Early Exit if I am not in this skill
-        if (poncherCharacter.GetState() != PoncherState.Jumping || poncherCharacter.GetState() != PoncherState.WallJumping)
+        if (poncherCharacter.GetState() != PoncherState.Jumping && poncherCharacter.GetState() != PoncherState.WallJumping)
             return;
 
-        if (poncherCharacter.GetRigidbody().velocity.y < -0.5 /*|| poncherCharacter.isGrounded || poncherCharacter.isWalled*/)
+        
+
+        if (poncherCharacter.GetRigidbody().velocity.y < -0.5)
             EndJump();
 
     }

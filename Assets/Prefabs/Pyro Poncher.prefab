@@ -5735,7 +5735,7 @@ MonoBehaviour:
   velPower: 0.9
   frictionAmount: 0.2
   m_LocomotionMultiplier: 1
-  gravityScale: 1.5
+  gravityScale: 1.2
 --- !u!114 &139597762
 MonoBehaviour:
   m_ObjectHideFlags: 0
