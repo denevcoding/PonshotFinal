@@ -107,26 +107,102 @@ public class MovementComp : PoncherComponentBase
         if (!poncherCharacter.canMove)
             return;
 
+        Vector3 velX = velocity;
+        velX.z = 0f;
+        velX.y = 0f;
+
+
         float targetSpeed = poncherCharacter.GetController().GetInputDirection().x * currMovSpeed;
+        // Calculate desired velocity based on input
+        Vector3 desiredVel = new Vector3(targetSpeed, 0f, 0f);    
 
-        float speedDif = targetSpeed - poncherCharacter.GetRigidbody().velocity.x;
+        // Calculate direction from current velocity to desired velocity
+        Vector3 direction = desiredVel - velX;
+        Debug.DrawRay(transform.position, direction, Color.white);
 
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? currAccel : currDecel;
+        float speedDif = desiredVel.x - velocity.x;
+        float accelRate = (Mathf.Abs(desiredVel.x) > 0.01f) ? currAccel : currDecel;
 
-        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(direction.x);
 
+        // Move current velocity towards desired velocity based on sliding speed
         poncherCharacter.GetRigidbody().AddForce(movement * Vector2.right);
 
 
-
-        if (poncherCharacter.IsGrounded() && Mathf.Abs(poncherCharacter.GetController().inputDirection.magnitude) < 0.01f)
+        //applyig friction Manually
+        if (poncherCharacter.isGrounded && Mathf.Abs(poncherCharacter.GetController().inputDirection.magnitude) < 0.01f && velocity.x > 0.05f)
         {
-            float amount = Mathf.Min(Mathf.Abs(poncherCharacter.GetRigidbody().velocity.x), Mathf.Abs(frictionAmount));
+            float amount = Mathf.Min(Mathf.Abs(velocity.x), Mathf.Abs(frictionAmount));
 
-            amount *= Mathf.Sign(poncherCharacter.GetRigidbody().velocity.x);
+            amount *= Mathf.Sign(velocity.x);
 
             poncherCharacter.GetRigidbody().AddForce(Vector2.right * -amount, ForceMode.Impulse);
         }
+
+
+
+
+        if (velX.magnitude > 0.5f)
+        {
+            Debug.Log("entrando este hpta");
+            poncherCharacter.GetAnimator().SetFloat("CurrSpeed", velX.magnitude);
+
+            // Calculate the dot product between the velocity and the desired movement direction
+            float dotProduct = Vector3.Dot(velX.normalized, direction.normalized);
+
+
+            // Check if the dot product is negative, indicating deceleration or change in direction
+            if (dotProduct < 0f)
+            {
+                // Check if the character's velocity is below a certain threshold
+                // and if the direction magnitude is above a certain threshold
+                if (velX.magnitude < currMovSpeed && direction.magnitude > 0.5)
+                {
+                    // Set sliding animation
+                    poncherCharacter.GetAnimator().SetBool("IsSliding", true);
+                }
+                else
+                {
+                    // Not sliding when velocity or direction does not meet the thresholds
+                    poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+                }
+            }
+            else
+            {
+                // Not sliding
+                poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+            }          
+           
+        }        
+        else
+        {
+            poncherCharacter.GetAnimator().SetFloat("CurrSpeed", 0f);
+            poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+        }
+
+        //if (velX.magnitude >0)
+        //{
+        //    if (Vector3.Dot(velX, direction.normalized) < 0 && velX.magnitude > 1f)
+        //    {
+        //        poncherCharacter.GetAnimator().SetBool("IsSliding", direction.magnitude > 0.1f);
+        //    }
+        //    else
+        //    {
+        //        poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+        //    }
+
+        //}
+        //else
+        //{
+        //    poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+        //}
+
+
+
+
+
+
+       
     }
 
 
@@ -182,6 +258,7 @@ public class MovementComp : PoncherComponentBase
             velFactor = 0.2f * velDir;
 
         poncherCharacter.GetAnimator().SetFloat("VelocityX", velFactor);
+        
 
 
         float turnSpee = curRotateSpeed;

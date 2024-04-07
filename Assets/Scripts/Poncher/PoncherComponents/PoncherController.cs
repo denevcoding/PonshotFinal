@@ -113,7 +113,6 @@ public class PoncherController : PoncherComponentBase
         m_RotType = RotationType.ToInputDir;
         moveDirection = Vector3.right;
         lastMoveDir = Vector3.right;
-
     }
 
    
@@ -158,8 +157,7 @@ public class PoncherController : PoncherComponentBase
 
 
         CalculateInputDirection();
-        poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(inputDirection.x));   
-
+        poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(inputDirection.x));  
         poncherCharacter.GetMovementComp().MovePoncher(moveDirection);
 
       
@@ -226,6 +224,7 @@ public class PoncherController : PoncherComponentBase
 
 
 
+
       
 
         if (m_RotType == RotationType.ToVelocity)
@@ -244,7 +243,7 @@ public class PoncherController : PoncherComponentBase
         
         if (m_RotType == RotationType.ToInputDir)
         {
-            if (moveDirection.magnitude > 0)
+            if (moveDirection.magnitude > 0.1)
             {
                 lastMoveDir = moveDirection;
             }
@@ -287,7 +286,7 @@ public class PoncherController : PoncherComponentBase
 
 
 
-        Debug.DrawRay(transform.position, moveDirection * 2f, Color.green);
+       // Debug.DrawRay(transform.position, moveDirection * 2f, Color.green);
 
        
 

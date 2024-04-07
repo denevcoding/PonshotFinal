@@ -284,8 +284,7 @@ public class PoncherCharacter : PonshotEntity
                     poncherController.m_RotType = RotationType.ToInputDir;
                 }
 
-                float dot = Vector3.Dot(Vector3.down, poncherController.inputDirection);
-                Debug.Log(dot);
+                float dot = Vector3.Dot(Vector3.down, poncherController.inputDirection);               
                 if (dot > 0.5)
                 {
                     GetAnimator().SetBool("Crouched", true);
