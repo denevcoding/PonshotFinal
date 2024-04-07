@@ -160,6 +160,8 @@ public class JumpComponent : PoncherComponentBase
         poncherCharacter.GetAnimator().SetInteger("JumpType", 0);
         Debug.Log("Jumpiiiiiiig");
         poncherCharacter.GetAnimator().SetBool("Jumping", true);
+
+        
         //Normal Jump
         poncherCharacter.GetRigidbody().AddForce(jumpForce.y * Vector2.up, ForceMode.Impulse);
         //poncherCharacter.GetRigidbody().AddForce((Vector2.right * -1) * poncherCharacter.GetRigidbody().velocity.x * (1 - 0.2f), ForceMode.Impulse);
