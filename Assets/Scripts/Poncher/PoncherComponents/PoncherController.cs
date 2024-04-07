@@ -380,7 +380,7 @@ public class PoncherController : PoncherComponentBase
 
         if (context.performed)
         {
-            if (!poncherCharacter.isGrounded)
+            if (!poncherCharacter.isGrounded && poncherCharacter.GetState() != PoncherState.Jumping)
             {
                 Debug.Log("Passed the press Point");
                 poncherCharacter.GetRigidbody().AddForce(7 * Vector2.down, ForceMode.Impulse);
@@ -389,9 +389,14 @@ public class PoncherController : PoncherComponentBase
             {//Down fast in the ground
                 //if (poncherCharacter.slope)
                 //{
-
+                
                 //}
             }            
+        }
+
+        if (context.canceled)
+        {
+
         }
         
     }

@@ -20,7 +20,8 @@ public enum PoncherState
     Hanging = 10,
     WallJumping = 11,
     WallSliding = 12,
-    GettingUp =13
+    GettingUp =13,
+    Crouch =14,
 
 }
 
@@ -282,6 +283,18 @@ public class PoncherCharacter : PonshotEntity
                 {
                     poncherController.m_RotType = RotationType.ToInputDir;
                 }
+
+                float dot = Vector3.Dot(Vector3.down, poncherController.inputDirection);
+                Debug.Log(dot);
+                if (dot > 0.5)
+                {
+                    GetAnimator().SetBool("Crouched", true);
+                }
+                else
+                {
+                    GetAnimator().SetBool("Crouched", false);
+                }
+
                 return true;
             }
         }

@@ -128,8 +128,6 @@ public class PoncherAnimManager : PoncherComponentBase
             poncherCharacter.canRotate = true;
             poncherCharacter.canMove = true;
         }
-
     }
-
 
 }
