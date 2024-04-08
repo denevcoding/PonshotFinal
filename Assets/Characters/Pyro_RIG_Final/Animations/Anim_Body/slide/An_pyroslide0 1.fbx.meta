@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 27e16b1bb7d758048b52843173d2c846
+guid: d018a018978ba3a4c864840e22041fc5
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: 5436749460389324802
-    second: Turn_180
+      74: -8125526192526290589
+    second: slide0
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -20,20 +20,75 @@ ModelImporter:
     removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
-      rotation in copied configuration does not match rotation in animation file:\n\t'GameSkeletonHipPart1_L'
-      : rotation error = 3.202030 deg\n\t'GameSkeletonKneePart1_L' : rotation error
-      = 2.530183 deg\n"
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'GameSkeletonHip_L'
+      : position error = 30.156315 mm\nCopied Avatar Rig Configuration mis-match.
+      Inbetween bone rotation in copied configuration does not match rotation in
+      animation file:\n\t'GameSkeletonHipPart1_L' : rotation error = 27.311401 deg\n\t'GameSkeletonKneePart1_L'
+      : rotation error = 0.527523 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Turn_180' has import animation warnings that
+    animationImportWarnings: "\nClip 'slide0' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'GameSkeletonScapula_R' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonScapula_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonElbowPart1_L'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
+      to improve retargeting quality.\n\t'GameSkeletonSpine1_M' has translation animation
+      that will be discarded.\n\t'GameSkeletonSpine1_M' has scale animation that
+      will be discarded.\n\t'GameSkeletonSpine2_M' has translation animation that
+      will be discarded.\n\t'GameSkeletonSpine2_M' has scale animation that will
+      be discarded.\n\t'GameSkeletonChest_M' has translation animation that will
+      be discarded.\n\t'GameSkeletonChest_M' has scale animation that will be discarded.\n\t'GameSkeletonNeck_M'
+      has translation animation that will be discarded.\n\t'GameSkeletonHead_M' has
+      translation animation that will be discarded.\n\t'GameSkeletonEyeJoint_R' has
+      translation animation that will be discarded.\n\t'GameSkeletonEyeJoint_R' has
+      scale animation that will be discarded.\n\t'GameSkeletonEyeJoint_L' has translation
+      animation that will be discarded.\n\t'GameSkeletonEyeJoint_L' has scale animation
+      that will be discarded.\n\t'GameSkeletonJawJoint_M' has translation animation
+      that will be discarded.\n\t'GameSkeletonJawJoint_M' has scale animation that
+      will be discarded.\n\t'GameSkeletonScapula_R' has translation animation that
+      will be discarded.\n\t'GameSkeletonShoulder_R' has translation animation that
+      will be discarded.\n\t'GameSkeletonShoulderPart1_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonElbow_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonElbowPart1_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonWrist_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonMiddleFinger1_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonMiddleFinger2_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonMiddleFinger3_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonThumbFinger1_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonThumbFinger2_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonThumbFinger3_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonIndexFinger1_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonIndexFinger2_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonIndexFinger3_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonRingFinger1_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonRingFinger2_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonRingFinger3_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonPinkyFinger1_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonPinkyFinger2_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonPinkyFinger3_R' has translation animation
+      that will be discarded.\n\t'GameSkeletonScapula_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonShoulder_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonShoulderPart1_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonElbow_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonElbowPart1_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonWrist_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonMiddleFinger1_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonMiddleFinger2_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonMiddleFinger3_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonThumbFinger1_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonThumbFinger2_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonThumbFinger3_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonIndexFinger1_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonIndexFinger2_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonIndexFinger3_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonRingFinger1_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonRingFinger2_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonRingFinger3_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonPinkyFinger1_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonPinkyFinger2_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonPinkyFinger3_L' has translation animation
+      that will be discarded.\n\t'GameSkeletonHip_R' has translation animation that
+      will be discarded.\n\t'GameSkeletonHipPart1_R' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonHip_L'
+      has translation animation that will be discarded.\n\t'GameSkeletonHipPart1_L'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'GameSkeletonKneePart1_L'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
@@ -49,20 +104,20 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Turn_180
-      takeName: Turn_180
+      name: slide0
+      takeName: slide0
       internalID: 0
-      firstFrame: 9.8
-      lastFrame: 17
+      firstFrame: 0
+      lastFrame: 40
       wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
+      orientationOffsetY: 270
+      level: 0.2
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -348,7 +403,7 @@ ModelImporter:
         weight: 0
       maskType: 1
       maskSource: {fileID: 31900000, guid: d89290837b4b51e468ee338db0cb97be, type: 2}
-      additiveReferencePoseFrame: 0.96
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

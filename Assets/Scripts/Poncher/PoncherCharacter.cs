@@ -22,6 +22,7 @@ public enum PoncherState
     WallSliding = 12,
     GettingUp =13,
     Crouch =14,
+    Sliding =15,
 
 }
 

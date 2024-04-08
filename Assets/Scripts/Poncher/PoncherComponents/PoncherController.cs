@@ -159,6 +159,7 @@ public class PoncherController : PoncherComponentBase
         CalculateInputDirection();
         poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(inputDirection.x));  
         poncherCharacter.GetMovementComp().MovePoncher(moveDirection);
+        poncherCharacter.GetMovementComp().ManageSpeed();
 
       
     }
@@ -222,7 +223,8 @@ public class PoncherController : PoncherComponentBase
         else
             moveDirection = Vector3.right * h;
 
-
+        if (!poncherCharacter.canMove)
+            moveDirection = Vector3.zero;
 
 
       

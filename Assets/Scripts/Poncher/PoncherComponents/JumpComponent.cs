@@ -157,6 +157,9 @@ public class JumpComponent : PoncherComponentBase
 
     public void Jump()
     {
+        Vector3 fixedVel = new Vector3(poncherCharacter.GetRigidbody().velocity.x, 0f, 0f);
+        poncherCharacter.GetRigidbody().velocity = fixedVel;
+
         poncherCharacter.GetAnimator().SetInteger("JumpType", 0);
         Debug.Log("Jumpiiiiiiig");
         poncherCharacter.GetAnimator().SetBool("Jumping", true);

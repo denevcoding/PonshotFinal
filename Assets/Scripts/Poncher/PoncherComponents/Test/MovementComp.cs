@@ -104,8 +104,8 @@ public class MovementComp : PoncherComponentBase
 
     public void MovePoncher(Vector2 _inputDir)
     {
-        if (!poncherCharacter.canMove)
-            return;
+        //if (!poncherCharacter.canMove)
+        //    return;
 
         Vector3 velX = velocity;
         velX.z = 0f;
@@ -125,24 +125,13 @@ public class MovementComp : PoncherComponentBase
 
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(direction.x);
 
+      
         // Move current velocity towards desired velocity based on sliding speed
         poncherCharacter.GetRigidbody().AddForce(movement * Vector2.right);
 
+     
 
-        //applyig friction Manually
-        if (poncherCharacter.isGrounded && Mathf.Abs(poncherCharacter.GetController().inputDirection.magnitude) < 0.01f && velocity.x > 0.05f)
-        {
-            float amount = Mathf.Min(Mathf.Abs(velocity.x), Mathf.Abs(frictionAmount));
-
-            amount *= Mathf.Sign(velocity.x);
-
-            poncherCharacter.GetRigidbody().AddForce(Vector2.right * -amount, ForceMode.Impulse);
-        }
-
-
-
-
-        if (velX.magnitude > 0.5f)
+        if (velX.magnitude > 0)
         {
             Debug.Log("entrando este hpta");
             poncherCharacter.GetAnimator().SetFloat("CurrSpeed", velX.magnitude);
@@ -154,23 +143,37 @@ public class MovementComp : PoncherComponentBase
             // Check if the dot product is negative, indicating deceleration or change in direction
             if (dotProduct < 0f)
             {
-                // Check if the character's velocity is below a certain threshold
-                // and if the direction magnitude is above a certain threshold
-                if (velX.magnitude < currMovSpeed && direction.magnitude > 0.5)
+                float changeDirection = Vector3.Dot(poncherCharacter.GetController().GetInputDirection(), direction);
+                if (changeDirection > 0)
                 {
-                    // Set sliding animation
-                    poncherCharacter.GetAnimator().SetBool("IsSliding", true);
+                    poncherCharacter.GetAnimator().SetBool("ChangeDir", true);
+                    poncherCharacter.GetAnimator().SetBool("IsSliding", false);
                 }
                 else
                 {
-                    // Not sliding when velocity or direction does not meet the thresholds
-                    poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+                    poncherCharacter.GetAnimator().SetBool("ChangeDir", false);
+                    // Check if the character's velocity is below a certain threshold
+                    // and if the direction magnitude is above a certain threshold
+                    if ((velX.magnitude < currMovSpeed && velX.magnitude > 5f) && direction.magnitude > 1)
+                    {
+                        // Set sliding animation
+                        poncherCharacter.GetAnimator().SetFloat("Direction", direction.magnitude);
+                        poncherCharacter.GetAnimator().SetBool("IsSliding", true);
+                    }
+                    else
+                    {
+                        // Not sliding when velocity or direction does not meet the thresholds
+                        poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+                    }
                 }
+
+              
             }
             else
             {
                 // Not sliding
                 poncherCharacter.GetAnimator().SetBool("IsSliding", false);
+                poncherCharacter.GetAnimator().SetBool("ChangeDir", false);
             }          
            
         }        
@@ -180,29 +183,21 @@ public class MovementComp : PoncherComponentBase
             poncherCharacter.GetAnimator().SetBool("IsSliding", false);
         }
 
-        //if (velX.magnitude >0)
-        //{
-        //    if (Vector3.Dot(velX, direction.normalized) < 0 && velX.magnitude > 1f)
-        //    {
-        //        poncherCharacter.GetAnimator().SetBool("IsSliding", direction.magnitude > 0.1f);
-        //    }
-        //    else
-        //    {
-        //        poncherCharacter.GetAnimator().SetBool("IsSliding", false);
-        //    }
-
-        //}
-        //else
-        //{
-        //    poncherCharacter.GetAnimator().SetBool("IsSliding", false);
-        //}
-
-
-
-
-
-
        
+       
+    }
+
+    public void ManageSpeed()
+    {
+        //applyig friction Manually
+        if (poncherCharacter.isGrounded && Mathf.Abs(poncherCharacter.GetController().inputDirection.magnitude) < 0.01f && velocity.x > 0.05f)
+        {
+            float amount = Mathf.Min(Mathf.Abs(velocity.x), Mathf.Abs(frictionAmount));
+
+            amount *= Mathf.Sign(velocity.x);
+
+            poncherCharacter.GetRigidbody().AddForce(Vector2.right * -amount, ForceMode.Impulse);
+        }
     }
 
 
