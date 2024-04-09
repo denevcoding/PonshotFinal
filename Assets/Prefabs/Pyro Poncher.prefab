@@ -5726,7 +5726,7 @@ MonoBehaviour:
   velocity: {x: 0.0000000017488975, y: 0, z: 0}
   velMag: 0.0000000017488975
   moveSpeed: 14
-  acceleration: 10
+  acceleration: 7
   deceleration: 8
   airMoveSpeed: 8
   airAccel: 5
