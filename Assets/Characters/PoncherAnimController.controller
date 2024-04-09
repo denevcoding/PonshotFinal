@@ -1503,7 +1503,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Turn_180 0
+  m_Name: Turn_180 1
   m_Speed: 0.8
   m_CycleOffset: 0
   m_Transitions:
@@ -2737,7 +2737,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Turn_180
+  m_Name: Slide Break
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
