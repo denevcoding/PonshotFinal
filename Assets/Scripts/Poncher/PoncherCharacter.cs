@@ -197,7 +197,7 @@ public class PoncherCharacter : PonshotEntity
         //moveComponent = GetComponent<MoveComponent>();
 
         //rollComponent = GetComponent<RollComponent>();
-        //pickThrowComponent = GetComponent<PickThrowComponent>();
+        pickThrowComponent = GetComponent<PickThrowComponent>(); 
 
 
 
@@ -562,6 +562,11 @@ public class PoncherCharacter : PonshotEntity
     public JumpComponent GetJumpComp()
     {
         return jumpComponent;
+    }
+
+    public PickThrowComponent GetPickDropComp()
+    {
+        return pickThrowComponent;
     }
 
     public PoncherAnimManager GetAnimManager()

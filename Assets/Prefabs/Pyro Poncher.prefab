@@ -618,6 +618,7 @@ Transform:
   - {fileID: 833773788963620923}
   - {fileID: 2938832964111035640}
   - {fileID: 309719640724637796}
+  - {fileID: 1614659839253453361}
   m_Father: {fileID: 4696008066467803654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3871,6 +3872,37 @@ Transform:
   m_Father: {fileID: 100727703766885772}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6170150322640967489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1614659839253453361}
+  m_Layer: 0
+  m_Name: Left Hand Socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1614659839253453361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170150322640967489}
+  m_LocalRotation: {x: 1.6484183e-13, y: -6.5208006e-16, z: 6.1594775e-16, w: 1}
+  m_LocalPosition: {x: -0.206, y: -0.116, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5895023071293733850}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6246807687129516377
 GameObject:
   m_ObjectHideFlags: 0
@@ -5731,6 +5763,10 @@ MonoBehaviour:
   airMoveSpeed: 8
   airAccel: 5
   airDecel: 2
+  isFallingFast: 0
+  curFallVel: 0
+  NormalFallVel: 0
+  FastFallVel: 0
   landingForce: 0
   velPower: 0.9
   frictionAmount: 0.2
@@ -5769,7 +5805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 071988bfca549624b9f7979d1736843f, type: 3}
   m_Name: 
@@ -5778,7 +5814,7 @@ MonoBehaviour:
   isPressed: 0
   canPick: 0
   ObjectOnHand: {fileID: 0}
-  DetectionRadius: 0
+  DetectionRadius: 3
   picking: 0
   Charging: 0
   LaunchPressedTimeTreshhold: 0
@@ -5786,8 +5822,8 @@ MonoBehaviour:
   ShoothMaxForce: 0
   chargeMultiplierFactor: 0
   CurrentLaunchForce: 0
-  LeftHandSocket: {fileID: 0}
-  RighHandSocket: {fileID: 0}
+  LeftHandSocket: {fileID: 1614659839253453361}
+  RighHandSocket: {fileID: 3820782105869959194}
 --- !u!114 &8311906518658326287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6019,6 +6055,37 @@ MonoBehaviour:
   - m_Rig: {fileID: 800132594}
     m_Active: 1
   m_Effectors: []
+--- !u!1 &8388365941560604897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3820782105869959194}
+  m_Layer: 0
+  m_Name: Right Hand Socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3820782105869959194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8388365941560604897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.187, y: -0.093, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2659569735449717514}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8389736482605597895
 GameObject:
   m_ObjectHideFlags: 0
@@ -6355,6 +6422,7 @@ Transform:
   - {fileID: 3937704779755394947}
   - {fileID: 5942056243907902566}
   - {fileID: 5734548724149620546}
+  - {fileID: 3820782105869959194}
   m_Father: {fileID: 6011721851769314154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

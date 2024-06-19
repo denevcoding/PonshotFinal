@@ -336,11 +336,17 @@ public class PoncherController : PoncherComponentBase
         poncherInput = inputComp;
 
         Dictionary<string, Action<InputAction.CallbackContext>> ActionMap = new Dictionary<string, Action<InputAction.CallbackContext>>();
+        
+        //Navigation Actions
         ActionMap.Add("Movement", OnMoveInput);
         ActionMap.Add("Aim", OnLookInput);
         ActionMap.Add("Jump", poncherCharacter.GetJumpComp().JumpWithPressed);
         ActionMap.Add("L1", LockRotationbyKey);
         ActionMap.Add("DownFast", DownFast);
+
+        //Ball Actions
+        ActionMap.Add("R1", poncherCharacter.GetPickDropComp().PickDrop);
+
 
         foreach (string keyAction in ActionMap.Keys)
         {
@@ -381,10 +387,11 @@ public class PoncherController : PoncherComponentBase
 
         if (context.performed)
         {
-            if (!poncherCharacter.isGrounded && poncherCharacter.GetState() != PoncherState.Jumping)
+            if (!poncherCharacter.isGrounded && poncherCharacter.GetState() != PoncherState.Jumping && !poncherCharacter.GetMovementComp().isFallingFast)
             {
+                poncherCharacter.GetMovementComp().isFallingFast = true;
                 Debug.Log("Passed the press Point");
-                poncherCharacter.GetRigidbody().AddForce(7 * Vector2.down, ForceMode.Impulse);
+                poncherCharacter.GetRigidbody().AddForce(5 * Vector2.down, ForceMode.Impulse);
             }
             else
             {//Down fast in the ground

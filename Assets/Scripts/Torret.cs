@@ -30,7 +30,7 @@ namespace Components
             pickeable.Picked(this, ShootPointer);
             pickeable.Throwed(10f, 1, ShootPointer);
 
-            Invoke("LoadBall", 1f);
+            //Invoke("LoadBall", 1f);
         }
 
         //void Shoot()

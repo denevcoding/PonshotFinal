@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Components;
 
 
 public enum BallState
@@ -158,9 +159,9 @@ public class PoncherBall : PonshotEntity, IPickeable
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
-        RecycleBall();       
+       // RecycleBall();       
 
-        return;
+       // return;
 
 
         //Material detection to change the type of the sound
@@ -172,7 +173,8 @@ public class PoncherBall : PonshotEntity, IPickeable
         //for VFX TODO: Implement Fixes
         if (collision.relativeVelocity.magnitude >= BallData.SpeedToPunch)
         {
-            GameObject vfx = objectPool.GetPrefab();
+            GameObject vfx = GameplayManager.singleinstance.GetPooler().GetFreeInstance(BounceVFX.name);
+            //GameObject vfx = objectPool.GetPrefab();
             vfx.transform.position = collision.GetContact(0).point;
             
             IPoncheable poncheable = collision.gameObject.GetComponent<IPoncheable>();

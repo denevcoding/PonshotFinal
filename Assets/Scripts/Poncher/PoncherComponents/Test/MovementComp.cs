@@ -22,6 +22,12 @@ public class MovementComp : PoncherComponentBase
     public float airAccel;
     public float airDecel;
 
+    [Header("Fast Fall")]
+    public bool isFallingFast;
+    public float curFallVel;
+    public float NormalFallVel;
+    public float FastFallVel;
+
 
     [Header("Landing")]
     public float landingForce = 0;
@@ -47,6 +53,10 @@ public class MovementComp : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
+        isFallingFast = false;
+        NormalFallVel = -22;
+        FastFallVel = -30;
+        curFallVel = -22;
         poncherCharacter.GetRigidbody().useGravity = false;
     }
 
@@ -67,9 +77,9 @@ public class MovementComp : PoncherComponentBase
 
 
         //Clamping maximum fall Y velocity
-        if (velocity.y < -31)
+        if (velocity.y < curFallVel)
         {
-            velocity.y = -31;
+            velocity.y = curFallVel;
             poncherCharacter.GetRigidbody().velocity = velocity;
         }
 
@@ -91,6 +101,16 @@ public class MovementComp : PoncherComponentBase
     {
         //Set rotation values
         curRotateSpeed = (poncherCharacter.isGrounded) ? rotateSpeed : airRotateSpeed;
+
+        //Fall Speeds
+        if (poncherCharacter.isGrounded || poncherCharacter.isWalled)
+        {
+            isFallingFast = false;
+            curFallVel = NormalFallVel;
+        }
+      
+        curFallVel = isFallingFast ? FastFallVel : NormalFallVel;
+        
 
         //adjust movement values if we're in the air or on the ground
         currMovSpeed = (poncherCharacter.isGrounded) ? moveSpeed : airMoveSpeed;
@@ -307,4 +327,10 @@ public class MovementComp : PoncherComponentBase
         m_LocomotionMultiplier = 1;
     }
     #endregion
+
+
+    public void SwitchFastFallVel(bool _isFastFall)
+    {
+       
+    }
 }

@@ -5526,7 +5526,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &3214636006612084918
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5549,8 +5549,7 @@ Animator:
     animation clip 'Disgust'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &1196356099
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5633,19 +5632,20 @@ MonoBehaviour:
   groundedLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  slope: 0
+  slopeAngle: 0
   slopeNormal: {x: 0, y: 0, z: 0}
   slopeLimit: 40
-  slideAmount: 35
+  slideForceAmount: 35
   coyoteTime: 0.1
   coyoteTimeCounter: 0
   isWalled: 0
   isStiking: 0
   wallRayLenght: 0.5
   wallAngleTreshold: 45
+  wallSlopeAngle: 0
   wallNormal: {x: 0, y: 0, z: 0}
   isSidescroller: 1
-  isRotBlocked: 0
+  isStrafing: 0
   canMove: 1
   canRotate: 1
   rotToVel: 0
@@ -5660,7 +5660,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 071988bfca549624b9f7979d1736843f, type: 3}
   m_Name: 
@@ -5754,8 +5754,13 @@ MonoBehaviour:
   GravityScaleDrop: 10
   m_unitGoal: {x: 0, y: 0, z: 0}
   m_goalVel: {x: 0, y: 0, z: 0}
+  playerGUI: {fileID: 0}
   inputDirection: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
+  lastMoveDir: {x: 0, y: 0, z: 0}
+  lookDirection: {x: 0, y: 0, z: 0}
+  m_RotType: 0
+  lockRotation: 0
   flipForce: 0.1
   jumpBufferTime: 0.15
 --- !u!114 &1956481293303678352
@@ -5765,7 +5770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dfe0fbe8dff7ab42ae0f647561f0280, type: 3}
   m_Name: 
@@ -5797,14 +5802,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poncherCharacter: {fileID: 0}
   isPressed: 0
+  curRotateSpeed: 0
+  rotateSpeed: 0
+  airRotateSpeed: 0
+  velocity: {x: 0, y: 0, z: 0}
+  velMag: 0
   moveSpeed: 10
   acceleration: 7
   deceleration: 6.5
   airMoveSpeed: 10
   airAccel: 2
   airDecel: 1.5
+  isFallingFast: 0
+  curFallVel: 22
+  NormalFallVel: 22
+  FastFallVel: 0
+  landingForce: 0
   velPower: 0.9
   frictionAmount: 0.2
+  m_LocomotionMultiplier: 0
   gravityScale: 1
 --- !u!114 &9076507809495912975
 MonoBehaviour:
@@ -5821,6 +5837,8 @@ MonoBehaviour:
   poncherCharacter: {fileID: 0}
   isPressed: 0
   RootParent: {fileID: 4587006867672472566}
+  ragdollBones: []
+  joints: []
   BouncePxMat: {fileID: 0}
   IsRagdoll: 0
   enableCollision: 0

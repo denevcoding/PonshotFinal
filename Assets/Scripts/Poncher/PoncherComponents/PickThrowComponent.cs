@@ -41,7 +41,7 @@ public class PickThrowComponent : PoncherComponentBase
 
     private void Awake()
     {
- 
+        canPick = true;
     }
 
     // Start is called before the first frame update
@@ -103,6 +103,15 @@ public class PickThrowComponent : PoncherComponentBase
     {
         if (context.started)
         {
+            if (ObjectOnHand != null)
+            {
+                //Has the object so, Drop It
+            }
+            else
+            {
+                //Does not have object
+            }
+
             if (Charging)
             {
                 Charging = false;
@@ -113,7 +122,6 @@ public class PickThrowComponent : PoncherComponentBase
 
             if (PreconditionsToPick() == false)
                 return;
-
           
 
             Collider[] hitColliders = Physics.OverlapSphere(GetSpherePos(), DetectionRadius);
