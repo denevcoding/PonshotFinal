@@ -31,6 +31,8 @@ public class ShootPointer : MonoBehaviour
     public GameObject lookAimer;
     public GameObject moveAimer;
 
+    public Transform shootSocket;
+
     public delegate void AimBasedOnControlTypeFunc();
     public AimBasedOnControlTypeFunc AimBasedOnControlType;
 

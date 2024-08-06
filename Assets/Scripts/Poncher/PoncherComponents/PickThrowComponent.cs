@@ -19,10 +19,10 @@ public class PickThrowComponent : PoncherComponentBase
     public float LaunchPressedTimeTreshhold;
     public float ShootMinForce;
     public float ShoothMaxForce;
-    public float chargeMultiplierFactor;
+   // public float chargeMultiplierFactor;
 
     private bool hasFired;
-    private float maxChargeTime = 0.7f;
+    [SerializeField]private float maxChargeTime = 0.7f;
     private float chargeSpeed;
 
     private float timerPressed = 0;
@@ -50,8 +50,9 @@ public class PickThrowComponent : PoncherComponentBase
         canPick = true;
         hasFired = false;
 
-        chargeSpeed = (ShoothMaxForce - ShootMinForce) / maxChargeTime;
+
         //TODO:: init from poncher GUI with poncher character DATa scriptable Object
+
 
         if (poncherCharacter.GetponcherGUI())        
             poncherCharacter.GetponcherGUI().shooterPointer.InitSlider(ShootMinForce, ShoothMaxForce);
@@ -62,7 +63,9 @@ public class PickThrowComponent : PoncherComponentBase
 
     // Update is called once per frame
     void Update()
-    {       
+    {
+
+        chargeSpeed = (ShoothMaxForce - ShootMinForce) / maxChargeTime;
         Charge();        
     }
 
@@ -155,23 +158,30 @@ public class PickThrowComponent : PoncherComponentBase
             return;
 
         if (context.started)
+        {           
+            hasFired = false;
+        }
+
+        if (context.performed)
         {
             Charging = true;
-            hasFired = false;
-           // CurrentLaunchForce = ShootMinForce;
-            poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;            
-   
+            CurrentLaunchForce = ShootMinForce;
+            poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;
         }
+
 
         if (context.canceled)
         {
-            Charging = false;
+            if (!Charging)            
+                CurrentLaunchForce = ShootMinForce;          
 
             if (!hasFired)
             {
                 Launch();
             }
-           
+
+            Charging = false;
+
         }
     }
 
@@ -202,7 +212,7 @@ public class PickThrowComponent : PoncherComponentBase
         {
             IPickeable objectToLaunch = ObjectOnHand.GetComponent<IPickeable>();
 
-            Transform shooterAim = poncherCharacter.GetponcherGUI().shooterPointer.moveAimer.transform;
+            Transform shooterAim = poncherCharacter.GetponcherGUI().shooterPointer.shootSocket.transform;
             float axisX = poncherCharacter.GetponcherGUI().shooterPointer.GetComponent<ShootPointer>().GetXAxis();
 
             Debug.Log("Shoot force " + CurrentLaunchForce);
@@ -215,8 +225,8 @@ public class PickThrowComponent : PoncherComponentBase
 
     public void ResetLaunch() 
     {
-        CurrentLaunchForce = ShootMinForce;
-        poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = CurrentLaunchForce;
+       // CurrentLaunchForce = ShootMinForce;
+        poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;
         //timerPressed = 0f;
         
     }

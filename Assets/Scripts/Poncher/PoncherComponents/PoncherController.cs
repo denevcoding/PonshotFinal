@@ -343,6 +343,7 @@ public class PoncherController : PoncherComponentBase
         ActionMap.Add("Jump", poncherCharacter.GetJumpComp().JumpWithPressed);
         ActionMap.Add("L1", LockRotationbyKey);
         ActionMap.Add("DownFast", DownFast);
+        ActionMap.Add("RightTrigger", poncherCharacter.GetPickDropComp().ThrowLaunch);
 
         //Ball Actions
         ActionMap.Add("R1", poncherCharacter.GetPickDropComp().PickDrop);

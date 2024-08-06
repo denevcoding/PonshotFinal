@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 using Data;
+using Components;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : SingletonTemplate<PlayerManager>
 {
     // We instantiate this GameObject to create a new player object.
     // Expected to have a PlayerInput component in its hierarchy.
@@ -122,6 +123,7 @@ public class PlayerManager : MonoBehaviour
         PlayerGUI playerGUI = inputComp.GetComponent<PlayerGUI>();
         playerGUI.SetPoncher(poncherChar);
 
+        poncherChar.poncherGUI = playerGUI;
         poncherChar.GetController().playerGUI = playerGUI;
 
 

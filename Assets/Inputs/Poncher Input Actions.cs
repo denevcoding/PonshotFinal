@@ -290,7 +290,7 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6d490ba4-7973-4324-bddc-8365783cc098"",
                     ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""RightTrigger"",

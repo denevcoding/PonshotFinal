@@ -23,6 +23,23 @@ public enum GameplayState
 
 namespace Data
 {
+    [Serializable]
+    public class PlayerData
+    {
+        public int m_PlayerIndex;
+        public PlayerInput m_InputComp;
+        public PoncherCharacter m_Poncher;
+        public PlayerGUI PlayerInstance; //Instance with UI and player input represent player in the scene
+
+        public PlayerData(int _index, PlayerInput _inputComp, PoncherCharacter _poncher, PlayerGUI _player)
+        {
+            m_PlayerIndex = _index;
+            m_InputComp = _inputComp;
+            m_Poncher = _poncher;
+            PlayerInstance = _player;
+        }
+    }
+
 
     [Serializable]
     public class GameData : SingletonTemplate<GameData>
@@ -65,27 +82,7 @@ namespace Data
     }
 
 
-
-
-
-
-
-    [Serializable]
-    public class PlayerData
-    {
-        public int m_PlayerIndex;
-        public PlayerInput m_InputComp;
-        public PoncherCharacter m_Poncher;
-        public PlayerGUI PlayerInstance; //Instance with UI and player input represent player in the scene
-
-        public PlayerData(int _index, PlayerInput _inputComp, PoncherCharacter _poncher, PlayerGUI _player)
-        {
-            m_PlayerIndex = _index;
-            m_InputComp = _inputComp;
-            m_Poncher = _poncher;
-            PlayerInstance = _player;
-        }
-    }
+   
 }
 
 

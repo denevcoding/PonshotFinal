@@ -5818,9 +5818,9 @@ MonoBehaviour:
   picking: 0
   Charging: 0
   LaunchPressedTimeTreshhold: 0
-  ShootMinForce: 0
-  ShoothMaxForce: 0
-  chargeMultiplierFactor: 0
+  ShootMinForce: 22
+  ShoothMaxForce: 45
+  maxChargeTime: 0.95
   CurrentLaunchForce: 0
   LeftHandSocket: {fileID: 1614659839253453361}
   RighHandSocket: {fileID: 3820782105869959194}
