@@ -12,7 +12,8 @@ namespace Events
         //Information,
         //Statistic,
         Transition,
-        Pooler
+        Pooler,
+        Player,
     }
 
 

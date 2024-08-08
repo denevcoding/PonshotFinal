@@ -6,22 +6,38 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 using Data;
 using Components;
+using Events;
 
 public class PlayerManager : SingletonTemplate<PlayerManager>
 {
+    //[SerializeField] private GameData gameData;
     // We instantiate this GameObject to create a new player object.
     // Expected to have a PlayerInput component in its hierarchy.
+
+    [Space(20)]
+    public Transform playerContainer;
+    [SerializeField] private Transform[] playerSockets;
     public GameObject PlayerPrefab;
+    public InputActionAsset poncherActionAsset;
+
     // We want to remove the event listener we install through InputSystem.onAnyButtonPress
     // after we're done so remember it here.
     private IDisposable m_EventListener;
 
-    public InputActionAsset poncherActionAsset;
-
     [SerializeField] int playersAmount = 0;
 
-    public Transform playerContainer;
-    [SerializeField]private Transform[] playerSockets;
+
+    [Header("Players Data")]
+    public Dictionary<int, PlayerInput> Players = new Dictionary<int, PlayerInput>();
+    public List<PlayerData> playersData = new List<PlayerData>();
+
+    [Header("Ponchers Data")]
+    //Players Settings
+    public PoncherDataSO[] PonchersData;
+
+
+
+
 
     private void OnEnable()
     {
@@ -36,9 +52,11 @@ public class PlayerManager : SingletonTemplate<PlayerManager>
     }
 
 
-    private void Awake()
+    public override void Awake()
     {
-        InitPlayersSockets();              
+        base.Awake();
+        //gameData = GameData.Instance; 
+        InitPlayersSockets();
     }
 
     // Start is called before the first frame update
@@ -53,16 +71,11 @@ public class PlayerManager : SingletonTemplate<PlayerManager>
 
         //        Debug.Log("but");
 
-           
+
         //    } );
-      
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
     #region Initialization
@@ -77,84 +90,40 @@ public class PlayerManager : SingletonTemplate<PlayerManager>
     #endregion
 
 
-    //REgistered to input system callbacks on any button pressed
-    void OnButtonPressed(InputControl button)
+    //Registered to input system callbacks on any button pressed
+    void OnButtonPressed(InputControl inputControl)
     {
-        InputDevice device = button.device;   
+        InputDevice device = inputControl.device;
 
         // Ignore presses on devices that are already used by a player.
         if (PlayerInput.FindFirstPairedToDevice(device) != null)
             return;
 
+        //Debug.Log("Alliases " + inputControl.aliases[0]);
         Debug.Log("Device " + device.shortDisplayName);
-        Debug.Log($"Button {button} was pressed");
+        Debug.Log($"Button {inputControl} was pressed");
+        // Debug.Log($"Descriptioon {device.description.manufacturer} {device.description.product} xD");
 
-        if (device is Mouse)        
-            return;
-        
 
-        PlayerInput inputComp = null;
-        // Create a new player.
-        if (device is Keyboard )
+        if (ApplicationManager.singleinstance.m_AppSstate == AppState.Splash || ApplicationManager.singleinstance.m_AppSstate == AppState.Menu)
         {
-            inputComp = InstantiatePlayerInput(device, "Keyboard&Mouse", playersAmount);
+            //InputControl control = ;
+            HandleJoinPlayers(device);
 
+            //if (InputControlPath.TryFindControl(inputControl, "start") != null || InputControlPath.TryFindControl(inputControl, "enter") != null)
+            //{         
+            //    HandleJoinPlayers(device);
+            //}          
+       
         }
-        else if (device is Gamepad)
-        {
-            inputComp = InstantiatePlayerInput(device, "Gamepad", playersAmount);
-            
-        }
-        else if (device is Joystick)
-        {
-            Debug.LogWarning("Joystick controller not isntantiating player Yet");
-        }
+        //else if (ApplicationManager.singleinstance.m_AppSstate == AppState.Menu)
+        //{
+        //    if (InputControlPath.TryFindControl(inputControl, "start") != null || InputControlPath.TryFindControl(inputControl, "enter") != null)            
+        //        HandleJoinPlayers(device);                  
+        //}
+     
 
-
-        //Creating and Adding 
-        int RandomPoncher = UnityEngine.Random.Range(0, GameData.singleinstance.PonchersData.Length);
-        PoncherDataSO poncher = GameData.singleinstance.PonchersData[RandomPoncher];
-        GameObject poncherGO = Instantiate(poncher.PoncherPrefab, transform);
-        poncherGO.transform.position = playerSockets[playersAmount].position;
-
-        PoncherCharacter poncherChar = poncherGO.GetComponent<PoncherCharacter>();
-        poncherChar.BindControllerToInputs(inputComp);
-
-        PlayerGUI playerGUI = inputComp.GetComponent<PlayerGUI>();
-        playerGUI.SetPoncher(poncherChar);
-
-        poncherChar.poncherGUI = playerGUI;
-        poncherChar.GetController().playerGUI = playerGUI;
-
-
-        PlayerData playerData = new PlayerData(playersAmount, inputComp, poncherChar, playerGUI);
-
-        GameData.singleinstance.AddPlayerData(playerData);
-        playersAmount += 1;
-            
-
-        // If the player did not end up with a valid input setup,
-        // unjoin the player.
-        if (inputComp.hasMissingRequiredDevices)
-            Destroy(inputComp);
-
-        // If we only want to join a single player, could uninstall our listener here
-        // or use CallOnce() instead of Call() when we set it up.
     }
-
-
-
-
-    PlayerInput InstantiatePlayerInput(InputDevice _device, string _scheme, int _pyIndex)
-    {
-        PlayerInput player = PlayerInput.Instantiate(PlayerPrefab, -1, _scheme, pairWithDevice: _device);
-        //player.transform.parent = this.transform;
-        player.transform.position = playerSockets[playersAmount].position;
-        return player;
-    }
-
-
-
 
 
     //Over head method
@@ -172,5 +141,112 @@ public class PlayerManager : SingletonTemplate<PlayerManager>
             }
         });
     }
+
+
+
+    GameObject HandleJoinPlayers(InputControl button)
+    {
+        InputDevice device = button.device;
+
+        if (device is Mouse)
+            return null;
+
+        PlayerInput inputComp = null;
+        // Create a new player.
+        if (device is Keyboard)
+        {
+            inputComp = InstantiatePlayerInput(device, "Keyboard&Mouse", playersAmount);
+
+        }
+        else if (device is Gamepad)
+        {
+            inputComp = InstantiatePlayerInput(device, "Gamepad", playersAmount);
+
+        }
+        else if (device is Joystick)
+        {
+            Debug.LogWarning("Joystick controller not isntantiating player Yet");
+        }
+
+
+        //Creating and Adding
+        int RandomPoncher = UnityEngine.Random.Range(0, PonchersData.Length);
+        PoncherDataSO poncher = PonchersData[RandomPoncher];
+        GameObject poncherGO = Instantiate(poncher.PoncherPrefab);
+        poncherGO.transform.position = playerSockets[playersAmount].position;
+
+        PoncherCharacter poncherChar = poncherGO.GetComponent<PoncherCharacter>();
+        poncherChar.BindControllerToInputs(inputComp);
+
+        PlayerGUI playerGUI = inputComp.GetComponent<PlayerGUI>();
+        playerGUI.SetPoncher(poncherChar);
+
+        poncherChar.poncherGUI = playerGUI;
+        poncherChar.GetController().playerGUI = playerGUI;
+
+
+        PlayerData playerData = new PlayerData(playersAmount, inputComp, poncherChar, playerGUI);
+
+        AddPlayerData(playerData);
+        playersAmount += 1;
+
+
+        // If the player did not end up with a valid input setup,
+        // unjoin the player.
+        if (inputComp.hasMissingRequiredDevices) {
+            Destroy(inputComp);
+            return null;
+        }
+
+        //Launching event when new player is added to the Game. We should 
+        PlayerEventInfo pyei = new PlayerEventInfo(PS_EventType.Player, "Recycling Ball", PlayerInfoType.Added, playerData);
+        EventManager.EM.DispatchEvent(pyei);
+
+
+        return poncherGO;
+        // If we only want to join a single player, could uninstall our listener here
+        // or use CallOnce() instead of Call() when we set it up.
+    }
+
+
+    PlayerInput InstantiatePlayerInput(InputDevice _device, string _scheme, int _pyIndex)
+    {
+        PlayerInput player = PlayerInput.Instantiate(PlayerPrefab, -1, _scheme, pairWithDevice: _device);
+        //player.transform.parent = this.transform;
+        player.transform.position = playerSockets[playersAmount].position;
+        return player;
+    }
+
+
+
+
+    //Players Management
+    public void AddPlayer(int _index, PlayerInput _inputComp)
+    {
+        Players.TryAdd(Players.Count, _inputComp);
+        Debug.Log("Players: " + Players.Count);
+
+        foreach (KeyValuePair<int, PlayerInput> player in Players)
+        {
+            Debug.Log("Player " + player.Key + ": " + player.Value.user.pairedDevices[0].displayName + " " + "Schema: " + player.Value.currentControlScheme);
+        }
+    }
+
+    public void AddPlayerData(PlayerData _player)
+    {
+        if (_player != null)
+        {
+            playersData.Add(_player);
+            Debug.Log("Player " + _player.m_PlayerIndex + ": " + _player.m_InputComp.user.pairedDevices[0].displayName + " " + "Schema: " + _player.m_InputComp.currentControlScheme);
+        }
+
+    }
+
+
+
+
+
+
+
 
 }

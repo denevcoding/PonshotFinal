@@ -153,7 +153,7 @@ public class MovementComp : PoncherComponentBase
 
         if (velX.magnitude > 0)
         {
-            Debug.Log("entrando este hpta");
+            //Debug.Log("entrando este hpta");
             poncherCharacter.GetAnimator().SetFloat("CurrSpeed", velX.magnitude);
 
             // Calculate the dot product between the velocity and the desired movement direction
