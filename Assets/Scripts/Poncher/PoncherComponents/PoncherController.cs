@@ -272,6 +272,7 @@ public class PoncherController : PoncherComponentBase
                         if (lockRotation)
                         {
                             playerGUI.shooterPointer.RotateByInput(lookDirection);
+                       
                             lastMoveDir = Vector3.right * lookDirection.x;
                         }
                         else
@@ -368,6 +369,7 @@ public class PoncherController : PoncherComponentBase
     public void OnLookInput(InputAction.CallbackContext context)
     {
         lookDirection = context.ReadValue<Vector2>();
+        poncherCharacter.GetAnimManager().SetAimDir((Vector2)lookDirection.normalized);
         Debug.DrawRay(transform.position, lookDirection * 2f, Color.red);
 
 

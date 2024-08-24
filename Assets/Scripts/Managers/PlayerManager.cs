@@ -105,7 +105,7 @@ public class PlayerManager : SingletonTemplate<PlayerManager>
         // Debug.Log($"Descriptioon {device.description.manufacturer} {device.description.product} xD");
 
 
-        if (ApplicationManager.singleinstance.m_AppSstate == AppState.Splash || ApplicationManager.singleinstance.m_AppSstate == AppState.Menu)
+        if (ApplicationManager.singleinstance.m_AppSstate == AppState.Splash || ApplicationManager.singleinstance.m_AppSstate == AppState.Menu || ApplicationManager.singleinstance.m_AppSstate == AppState.Gameplay)
         {
             //InputControl control = ;
             HandleJoinPlayers(device);

@@ -8,6 +8,9 @@ public class PoncherAnimManager : PoncherComponentBase
     [HideInInspector] public Animation currentAnimation;
     public bool isRootMotion = false; //Turns root motion just for actions that needed
 
+    //Hashes
+    int AimXHash;
+    int AimYHash;
 
     //Masks
 
@@ -31,11 +34,15 @@ public class PoncherAnimManager : PoncherComponentBase
 
     //Triggers
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        InitHashes();
     }
 
     // Update is called once per frame
@@ -49,6 +56,8 @@ public class PoncherAnimManager : PoncherComponentBase
         //}
     }
 
+
+    #region Initialization
     public override void Initcomponent()
     {
         BaseSMB[] bsmbs = poncherCharacter.GetAnimator().GetBehaviours<BaseSMB>();
@@ -61,6 +70,22 @@ public class PoncherAnimManager : PoncherComponentBase
         //init parameters
         VelocityHash = Animator.StringToHash("Velocity");
     }
+
+    public void InitHashes()
+    {
+        //Rotation Hashesh
+        AimXHash = Animator.StringToHash("AimX");
+        AimYHash = Animator.StringToHash("AimY");
+    }
+    #endregion
+
+    #region Settters
+    public void SetAimDir(Vector2 lookDir)
+    {
+        animator.SetFloat(AimXHash, lookDir.x);
+        animator.SetFloat(AimYHash, lookDir.y);
+    }
+    #endregion
 
 
 
