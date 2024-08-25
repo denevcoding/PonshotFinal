@@ -85,8 +85,12 @@ public class PoncherAnimManager : PoncherComponentBase
         animator.SetFloat(AimXHash, lookDir.x);
         animator.SetFloat(AimYHash, lookDir.y);
     }
-    #endregion
 
+    #endregion
+    public void SetUpperBodyLayerWeight(float weight)
+    {
+        animator.SetLayerWeight(1, weight);
+    }
 
 
     //Handeling Root motion

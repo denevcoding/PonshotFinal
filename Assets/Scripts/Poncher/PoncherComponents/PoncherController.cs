@@ -374,10 +374,17 @@ public class PoncherController : PoncherComponentBase
 
 
         if (context.started)
+        {
+            poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(1f);
             lockRotation = true;
+        }
+           
 
         if (context.canceled)
+        {
+            poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f);
             lockRotation = false;
+        }
     }
 
     public void DownFast(InputAction.CallbackContext context)
