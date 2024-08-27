@@ -95,7 +95,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800132595}
-  - component: {fileID: 800132594}
   m_Layer: 0
   m_Name: Target Tracking
   m_TagString: Untagged
@@ -119,20 +118,6 @@ Transform:
   m_Father: {fileID: 8826073122516431564}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &800132594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800132593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Weight: 0
-  m_Effectors: []
 --- !u!1 &52966446993655239
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,7 +5483,6 @@ GameObject:
   - component: {fileID: 139597762}
   - component: {fileID: 139597763}
   - component: {fileID: 1507751851}
-  - component: {fileID: 1507751852}
   m_Layer: 0
   m_Name: RMo_Pyrobito_Final
   m_TagString: Untagged
@@ -6021,22 +6005,6 @@ MonoBehaviour:
   - {fileID: 4604554180712602087}
   - {fileID: 5122425997157739819}
   - {fileID: 7721976216167594428}
---- !u!114 &1507751852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158079489810016374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 800132594}
-    m_Active: 1
-  m_Effectors: []
 --- !u!1 &8389736482605597895
 GameObject:
   m_ObjectHideFlags: 0

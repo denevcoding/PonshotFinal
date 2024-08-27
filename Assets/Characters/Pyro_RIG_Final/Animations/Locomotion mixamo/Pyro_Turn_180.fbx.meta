@@ -52,7 +52,7 @@ ModelImporter:
       name: Turn_180
       takeName: Turn_180
       internalID: 0
-      firstFrame: 9.8
+      firstFrame: 5.2
       lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
@@ -65,7 +65,7 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
