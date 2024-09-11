@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 7d4417c276d6e9c44992ac37f3b9fb47
+guid: 261f05281ef9a214391070e793d14620
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Up FK
+    second: Front fixed
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -20,10 +20,17 @@ ModelImporter:
     removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
-      rotation in copied configuration does not match rotation in animation file:\n\t'GameSkeletonHipPart1_L'
-      : rotation error = 12.999615 deg\n\t'GameSkeletonKneePart1_L' : rotation error
-      = 1.519897 deg\n"
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'GameSkeletonHip_L'
+      : position error = 74.483986 mm\n\t'GameSkeletonHip_R' : position error = 74.483994
+      mm\n\t'GameSkeletonSpine1_M' : position error = 7.267032 mm\n\t'GameSkeletonScapula_R'
+      : position error = 18.520472 mm\nCopied Avatar Rig Configuration mis-match.
+      Inbetween bone rotation in copied configuration does not match rotation in
+      animation file:\n\t'GameSkeletonHipPart1_L' : rotation error = 18.718287 deg\n\t'GameSkeletonKneePart1_L'
+      : rotation error = 0.172927 deg\n\t'GameSkeletonHipPart1_R' : rotation error
+      = 17.801878 deg\n\t'GameSkeletonKneePart1_R' : rotation error = 0.311200 deg\n\t'GameSkeletonScapula_R'
+      : rotation error = 5.224450 deg\n\t'GameSkeletonElbowPart1_R' : rotation error
+      = 13.012652 deg\n\t'GameSkeletonElbowPart1_L' : rotation error = 2.249750 deg\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -39,11 +46,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Up FK
+      name: Front fixed
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -53,9 +60,9 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
@@ -66,7 +73,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 33.84
     isReadable: 0
   meshes:
     lODScreenPercentages: []

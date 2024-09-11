@@ -108,13 +108,13 @@ public class PlayerManager : SingletonTemplate<PlayerManager>
         if (ApplicationManager.singleinstance.m_AppSstate == AppState.Splash || ApplicationManager.singleinstance.m_AppSstate == AppState.Menu || ApplicationManager.singleinstance.m_AppSstate == AppState.Gameplay)
         {
             //InputControl control = ;
-            HandleJoinPlayers(device);
+            //HandleJoinPlayers(device);
 
-            //if (InputControlPath.TryFindControl(inputControl, "start") != null || InputControlPath.TryFindControl(inputControl, "enter") != null)
-            //{         
-            //    HandleJoinPlayers(device);
-            //}          
-       
+            if (InputControlPath.TryFindControl(inputControl, "start") != null || InputControlPath.TryFindControl(inputControl, "enter") != null)
+            {
+                HandleJoinPlayers(device);
+            }
+
         }
         //else if (ApplicationManager.singleinstance.m_AppSstate == AppState.Menu)
         //{
@@ -183,6 +183,7 @@ public class PlayerManager : SingletonTemplate<PlayerManager>
 
         poncherChar.poncherGUI = playerGUI;
         poncherChar.GetController().playerGUI = playerGUI;
+        
 
 
         PlayerData playerData = new PlayerData(playersAmount, inputComp, poncherChar, playerGUI);

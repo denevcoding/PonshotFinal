@@ -159,7 +159,6 @@ public class ShootPointer : MonoBehaviour
         Debug.DrawRay(transform.position, m_LookInput * 2f, Color.blue);
 
         return m_LookInput;
-
     }
 
     //public void AimwithGamepad()
@@ -235,6 +234,11 @@ public class ShootPointer : MonoBehaviour
     public float GetYAxis()
     {
         return y;
+    }
+
+    public Transform GetAimTarget()
+    {
+        return lookAimer.transform;
     }
 
     

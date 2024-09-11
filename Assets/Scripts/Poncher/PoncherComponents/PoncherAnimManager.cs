@@ -1,9 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PoncherAnimManager : PoncherComponentBase
 {
+
+
+    [Header("ANIMATION RIGGING")]
+    public RigBuilder PoncherRigBuilder;
+    public Rig AimTargetRig;
+    public MultiAimConstraint headAimConstraint;
+    public Transform AimTarget;
+
+    [Space(20)]
+    public float aimWeight;
+
+    [Header("IK SETTINGS")]
+    public Transform RightArmIK;
+    public Transform LeftArmIK;
+
     Animator animator;   
     [HideInInspector] public Animation currentAnimation;
     public bool isRootMotion = false; //Turns root motion just for actions that needed
@@ -43,11 +59,36 @@ public class PoncherAnimManager : PoncherComponentBase
     void Start()
     {
         InitHashes();
+
+        AimTarget = poncherCharacter.GetController().playerGUI.shooterPointer.GetAimTarget();
+
+        //Init Target Source
+        foreach (MultiAimConstraint multiAim in AimTargetRig.GetComponentsInChildren<MultiAimConstraint>())
+        {
+            WeightedTransformArray sources = new WeightedTransformArray();
+            sources.Add(new WeightedTransform(AimTarget, 1f));
+            multiAim.data.sourceObjects = sources;
+
+
+            animator.enabled = false;
+            PoncherRigBuilder.Build();
+            animator.enabled = true;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        AimTargetRig.weight = Mathf.Lerp(AimTargetRig.weight, aimWeight, Time.deltaTime * 10f);
+        animator.SetLayerWeight(1, AimTargetRig.weight);
+
+
+        //if (AimTarget)
+        //{
+        //    AimTarget.transform.position = poncherCharacter.GetController().playerGUI.
+        //}
+
         //Validate preconditions
 
         //if (!poncherCharacter.isGrounded && isRootMotion)
@@ -89,7 +130,9 @@ public class PoncherAnimManager : PoncherComponentBase
     #endregion
     public void SetUpperBodyLayerWeight(float weight)
     {
-        animator.SetLayerWeight(1, weight);
+        aimWeight = weight;
+        //AimTargetRig.weight = weight;
+        //animator.SetLayerWeight(1, weight);
     }
 
 
