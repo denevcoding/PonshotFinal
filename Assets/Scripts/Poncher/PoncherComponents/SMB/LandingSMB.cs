@@ -53,6 +53,7 @@ public class LandingSMB : BaseSMB
             poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
 
         poncherCharacter.GetComponent<MovementComp>().landingForce = 0f;
+        poncherCharacter.GetAnimator().SetFloat("LandingForce", 0f);
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = defaultAccel;
         poncherCharacter.GetComponent<JumpComponent>().RestoreJump();
         poncherCharacter.canRotate = true;
