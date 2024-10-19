@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 5a993b4f9cbd40d4eb38ca89f5b2e97b
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: -3158867910723510705
@@ -52,8 +52,8 @@ ModelImporter:
       name: Falling_to_Roll Definitive
       takeName: Falling_to_Roll
       internalID: 0
-      firstFrame: 2.1
-      lastFrame: 26.7
+      firstFrame: 4
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0.9
@@ -67,7 +67,7 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -1537,7 +1537,6 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

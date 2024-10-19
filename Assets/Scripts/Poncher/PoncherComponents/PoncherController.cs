@@ -39,10 +39,12 @@ public class PoncherController : PoncherComponentBase
 
     [Header("Inputs and Directions")]
     public PlayerGUI playerGUI; //Aimer refernece
-    public Vector3 inputDirection;
-    public Vector3 moveDirection;
-    public Vector3 lastMoveDir;
-    public Vector3 lookDirection;
+    public Vector3 movInputDirection;
+    public Vector3 _lookDir;
+    public Vector3 lookInputDirection;
+
+    public Vector3 lastLookDirection;
+
     public RotationType m_RotType;
     public bool lockRotation; //lock the rotation to look the look input aimer
     public PoncherInputActions poncherActions;
@@ -111,8 +113,8 @@ public class PoncherController : PoncherComponentBase
     void Start()
     {
         m_RotType = RotationType.ToInputDir;
-        moveDirection = Vector3.right;
-        lastMoveDir = Vector3.right;
+        _lookDir = Vector3.right;
+        lastLookDirection = Vector3.right;
     }
 
    
@@ -152,16 +154,10 @@ public class PoncherController : PoncherComponentBase
     {
         //UpdateUprightForce();
 
-        //if (!CheckBasePreconditions())
-        //    return;
-
-
         CalculateInputDirection();
-        poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(inputDirection.x));  
-        poncherCharacter.GetMovementComp().MovePoncher(moveDirection);
+        poncherCharacter.GetMovementComp().RotateToDirection(lastLookDirection, true);
+        poncherCharacter.GetMovementComp().MovePoncher(_lookDir);
         poncherCharacter.GetMovementComp().ManageSpeed();
-
-      
     }
 
 
@@ -201,16 +197,8 @@ public class PoncherController : PoncherComponentBase
 
     void CalculateInputDirection()
     {
-        float h = inputDirection.x;
-        float v = inputDirection.y;
-
-
-
-        ////adjust movement values if we're in the air or on the ground
-        //curAccel = (poncherCharacter.isGrounded) ? accel : airAccel;
-        //curDecel = (poncherCharacter.isGrounded) ? decel : airDecel;
-        //curRotateSpeed = (poncherCharacter.isGrounded) ? rotateSpeed : airRotateSpeed;
-
+        float h = movInputDirection.x;
+        float v = movInputDirection.y;
 
 
         //get movement axis relative to camera
@@ -219,13 +207,9 @@ public class PoncherController : PoncherComponentBase
 
         //only apply vertical input to movemement, if player is not sidescroller
         if (!poncherCharacter.isSidescroller)
-            moveDirection = (screenMovementForward * v) + (screenMovementRight * h);
+            _lookDir = (screenMovementForward * v) + (screenMovementRight * h);
         else
-            moveDirection = Vector3.right * h;
-
-        if (!poncherCharacter.canMove)
-            moveDirection = Vector3.zero;
-
+            _lookDir = Vector3.right * h;
 
       
 
@@ -237,7 +221,7 @@ public class PoncherController : PoncherComponentBase
             if (velDir.magnitude > 0.45f)
             {
                 float xDir = Mathf.Clamp(velDir.x, -1, 1);
-                lastMoveDir = Vector3.right * xDir;
+                lastLookDirection = Vector3.right * xDir;
             }
 
             poncherCharacter.GetMovementComp().RotateVelocity(true);
@@ -245,12 +229,26 @@ public class PoncherController : PoncherComponentBase
         
         if (m_RotType == RotationType.ToInputDir)
         {
-            if (moveDirection.magnitude > 0.1)
+
+
+            if (movInputDirection.magnitude > 0)
             {
-                lastMoveDir = moveDirection;
+                if (lockRotation)
+                {
+                    CalculateLastLookDir(movInputDirection *-1);
+                }
+                else
+                {
+                    CalculateLastLookDir(movInputDirection);
+                }                
             }
 
-            poncherCharacter.GetMovementComp().RotateToDirection(lastMoveDir, true);
+
+            if (lookInputDirection.magnitude > 0)
+            {
+                CalculateLastLookDir(lookInputDirection);
+            }
+        
 
             if (poncherInput)
             {
@@ -259,30 +257,68 @@ public class PoncherController : PoncherComponentBase
                     case "Keyboard&Mouse":
                         if (lockRotation)
                         {
-                            lookDirection = playerGUI.shooterPointer.AimWithMouse();
-                            lastMoveDir = Vector3.right * lookDirection.x;
+                            lookInputDirection = playerGUI.shooterPointer.AimWithMouse();
+                            lastLookDirection = Vector3.right * lookInputDirection.x;
                         }
                         else
-                            playerGUI.shooterPointer.RotateByInput(inputDirection);
+                            playerGUI.shooterPointer.RotateByInput(movInputDirection);
 
                         break;
 
 
                     case "Gamepad":
-                        if (lockRotation)
+                        if (lookInputDirection.magnitude > 0f)
+                            playerGUI.shooterPointer.RotateByInput(lookInputDirection);
+                        else if(movInputDirection.magnitude > 0f)
                         {
-                            playerGUI.shooterPointer.RotateByInput(lookDirection);
-                       
-                            lastMoveDir = Vector3.right * lookDirection.x;
+                            if (lockRotation)                            
+                                playerGUI.shooterPointer.RotateByInput(movInputDirection*-1);
+                            else
+                                playerGUI.shooterPointer.RotateByInput(movInputDirection);
+
+
                         }
-                        else
-                            playerGUI.shooterPointer.RotateByInput(inputDirection);
+                            
+                       
+                        
+                        
+
+
+
+
+                        //if (lockRotation)
+                        //{
+                        //    playerGUI.shooterPointer.RotateByInput(lookInputDirection);
+                        //    lastLookDirection = Vector3.right * lookInputDirection.x;
+                        //}
+                        //else
+                        //    playerGUI.shooterPointer.RotateByInput(movInputDirection);
 
                         break;
                 }
             }
+
+
+
         }
 
+
+        void CalculateLastLookDir(Vector2 _lookDir)
+        {
+            if (_lookDir.magnitude > 0)
+            {
+                if (_lookDir.x > 0)
+                {
+                    lastLookDirection = _lookDir.normalized;
+                    lastLookDirection.x = 1;
+                }
+                else
+                {
+                    lastLookDirection = _lookDir.normalized;
+                    lastLookDirection.x = -1;
+                }
+            }
+        }
 
 
      
@@ -290,12 +326,6 @@ public class PoncherController : PoncherComponentBase
 
 
        // Debug.DrawRay(transform.position, moveDirection * 2f, Color.green);
-
-       
-
-
-
-
         //Flipping capsule
         //if (Input.GetMouseButton(0))
         //{
@@ -342,9 +372,10 @@ public class PoncherController : PoncherComponentBase
         ActionMap.Add("Movement", OnMoveInput);
         ActionMap.Add("Aim", OnLookInput);
         ActionMap.Add("Jump", poncherCharacter.GetJumpComp().JumpWithPressed);
+        ActionMap.Add("Roll", poncherCharacter.GetRoll().FlipRoll);
         ActionMap.Add("L1", LockRotationbyKey);
         ActionMap.Add("DownFast", DownFast);
-        ActionMap.Add("RightTrigger", poncherCharacter.GetPickDropComp().ThrowLaunch);
+        ActionMap.Add("ThrowPlug", poncherCharacter.GetPickDropComp().ThrowLaunch);
 
         //Ball Actions
         ActionMap.Add("R1", poncherCharacter.GetPickDropComp().PickDrop);
@@ -361,29 +392,29 @@ public class PoncherController : PoncherComponentBase
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        inputDirection = context.ReadValue<Vector2>();
-        Debug.DrawRay(transform.position, inputDirection * 2f, Color.green);
+        movInputDirection = context.ReadValue<Vector2>();
+        Debug.DrawRay(transform.position, movInputDirection * 2f, Color.green);
     }
 
 
     public void OnLookInput(InputAction.CallbackContext context)
     {
-        lookDirection = context.ReadValue<Vector2>();
-        poncherCharacter.GetAnimManager().SetAimDir((Vector2)lookDirection.normalized);
-        Debug.DrawRay(transform.position, lookDirection * 2f, Color.red);
+        lookInputDirection = context.ReadValue<Vector2>();
+        poncherCharacter.GetAnimManager().SetAimDir((Vector2)lookInputDirection.normalized);
+        Debug.DrawRay(transform.position, lookInputDirection * 2f, Color.red);
 
 
         if (context.started)
         {
-            poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(1f);
-            lockRotation = true;
+            int holi = 0;
+            //lockRotation = true;
         }
            
 
         if (context.canceled)
         {
-            poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f);
-            lockRotation = false;
+            //poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f);
+            //lockRotation = false;
         }
     }
 
@@ -493,7 +524,7 @@ public class PoncherController : PoncherComponentBase
 
         float speedFactor = 5f;
         float maxAcelForceFactor = 5f;
-        m_unitGoal = inputDirection;
+        m_unitGoal = movInputDirection;
 
         //Calculate new goal
         Vector3 unitVel = m_goalVel.normalized;
@@ -582,12 +613,20 @@ public class PoncherController : PoncherComponentBase
     #region Getters Setters
     public Vector3 GetInputDirection()
     {
-        return inputDirection;
+        return movInputDirection;
     }
 
     public PoncherInputActions GetPoncherActions()
     {
         return poncherActions;
+    }
+
+    public void SetLockRotation(bool _value)
+    {
+        if (lockRotation != _value)
+            lockRotation = _value;
+
+
     }
     #endregion
 

@@ -126,6 +126,8 @@ public class MovementComp : PoncherComponentBase
     {
         //if (!poncherCharacter.canMove)
         //    return;
+        poncherCharacter.GetAnimator().SetFloat("DistanceToTarget", Mathf.Abs(_inputDir.x));
+
 
         Vector3 velX = velocity;
         velX.z = 0f;
@@ -210,7 +212,7 @@ public class MovementComp : PoncherComponentBase
     public void ManageSpeed()
     {
         //applyig friction Manually
-        if (poncherCharacter.isGrounded && Mathf.Abs(poncherCharacter.GetController().inputDirection.magnitude) < 0.01f && velocity.x > 0.05f)
+        if (poncherCharacter.isGrounded && Mathf.Abs(poncherCharacter.GetController().movInputDirection.magnitude) < 0.01f && velocity.x > 0.05f)
         {
             float amount = Mathf.Min(Mathf.Abs(velocity.x), Mathf.Abs(frictionAmount));
 
@@ -223,8 +225,8 @@ public class MovementComp : PoncherComponentBase
 
     public void RotateToDirection(Vector3 lookDir, bool ignoreY)
     {
-        if (!poncherCharacter.canRotate)
-            return;
+        //if (!poncherCharacter.canRotate)
+        //    return;
 
         Vector3 characterPos = transform.position;
         if (ignoreY)
@@ -251,7 +253,7 @@ public class MovementComp : PoncherComponentBase
 
         if (poncherCharacter.GetController().lockRotation)
         {
-            float alingment = Vector3.Dot(poncherCharacter.GetController().lastMoveDir, poncherCharacter.GetController().lookDirection);
+            float alingment = Vector3.Dot(poncherCharacter.GetController().lastLookDirection, poncherCharacter.GetController().lookInputDirection);
             if (alingment > 0)
             {
                 Debug.Log("Align");
@@ -269,7 +271,7 @@ public class MovementComp : PoncherComponentBase
         velFactor *= velDir;
 
         //If It is running wth input but is against a wall for example
-        if (poncherCharacter.GetController().moveDirection.magnitude > 0 && velMag <= 0.1f)        
+        if (poncherCharacter.GetController()._lookDir.magnitude > 0 && velMag <= 0.1f)        
             velFactor = 0.2f * velDir;
 
         poncherCharacter.GetAnimator().SetFloat("VelocityX", velFactor);

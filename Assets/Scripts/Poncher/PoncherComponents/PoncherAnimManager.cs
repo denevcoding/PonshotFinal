@@ -80,8 +80,8 @@ public class PoncherAnimManager : PoncherComponentBase
     // Update is called once per frame
     void Update()
     {
-        AimTargetRig.weight = Mathf.Lerp(AimTargetRig.weight, aimWeight, Time.deltaTime * 10f);
-        animator.SetLayerWeight(1, AimTargetRig.weight);
+        //AimTargetRig.weight = Mathf.Lerp(AimTargetRig.weight, aimWeight, Time.deltaTime * 5f);
+        //animator.SetLayerWeight(1, AimTargetRig.weight);
 
 
         //if (AimTarget)
@@ -128,11 +128,20 @@ public class PoncherAnimManager : PoncherComponentBase
     }
 
     #endregion
-    public void SetUpperBodyLayerWeight(float weight)
+    public void SetUpperBodyLayerWeight(float weight, bool _instantly)
     {
-        aimWeight = weight;
-        //AimTargetRig.weight = weight;
-        //animator.SetLayerWeight(1, weight);
+        animator.SetLayerWeight(1, weight);
+
+        //if (_instantly)        
+        //    AimTargetRig.weight = weight;        
+        //else        
+            //aimWeight = weight;
+        
+          
+    }
+    public void SetUpperBodyRigWeight(float weight)
+    {
+        AimTargetRig.weight = weight;
     }
 
 

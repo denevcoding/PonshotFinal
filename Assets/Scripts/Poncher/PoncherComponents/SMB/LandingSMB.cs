@@ -25,16 +25,17 @@ public class LandingSMB : BaseSMB
         }
 
 
-        //if (poncherCharacter.isStrafing && !overrideRoll)
-        //{
-        //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
-        //}
-        //else
-        //{
-        //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
-        //}
-        
-        
+        if (poncherCharacter.isStrafing && !overrideRoll)
+        {
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.backRoll);
+        }
+        else
+        {
+            poncherCharacter.GetRoll().SetRollType(rollType);
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)rollType);
+        }
+
+
 
         defaultAccel = poncherCharacter.GetComponent<MovementComp>().moveSpeed;
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = acelerationAffect;
@@ -48,8 +49,8 @@ public class LandingSMB : BaseSMB
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //if (!poncherCharacter.isStrafing)
-        //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
+        if (!poncherCharacter.isStrafing)
+            poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
 
         poncherCharacter.GetComponent<MovementComp>().landingForce = 0f;
         poncherCharacter.GetComponent<MovementComp>().moveSpeed = defaultAccel;

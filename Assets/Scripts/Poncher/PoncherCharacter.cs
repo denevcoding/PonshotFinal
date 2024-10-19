@@ -23,6 +23,8 @@ public enum PoncherState
     GettingUp =13,
     Crouch =14,
     Sliding =15,
+    Launching =16,
+    Charging =17,
 
 }
 
@@ -196,7 +198,7 @@ public class PoncherCharacter : PonshotEntity
   
         //moveComponent = GetComponent<MoveComponent>();
 
-        //rollComponent = GetComponent<RollComponent>();
+        rollComponent = GetComponent<RollComponent>();
         pickThrowComponent = GetComponent<PickThrowComponent>(); 
 
 
@@ -285,7 +287,7 @@ public class PoncherCharacter : PonshotEntity
                     poncherController.m_RotType = RotationType.ToInputDir;
                 }
 
-                float dot = Vector3.Dot(Vector3.down, poncherController.inputDirection);               
+                float dot = Vector3.Dot(Vector3.down, poncherController.movInputDirection);               
                 if (dot > 0.5)
                 {
                     GetAnimator().SetBool("Crouched", true);
@@ -316,7 +318,7 @@ public class PoncherCharacter : PonshotEntity
         //enterPoncher.y = centerPoncher.y + dist / (2 + 0.5f);
 
 
-        Vector3 inputDir = poncherController.inputDirection;
+        Vector3 inputDir = poncherController.movInputDirection;
         //Debug.DrawRay(centerPoncher, transform.forward * wallRayLenght, Color.magenta, 0f);
         DrawDebugCasts.DrawBoxCastBox(centerPoncher, boxSize, transform.rotation, transform.forward, wallRayLenght, Color.magenta);
 

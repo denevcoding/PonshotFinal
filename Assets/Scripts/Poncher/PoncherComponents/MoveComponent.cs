@@ -56,26 +56,26 @@ public class MoveComponent : PoncherComponentBase
 
 
     //Movement
-    public bool MoveTo(Vector3 destination, float stopDistance, bool ignoreY)
-    {
-        if (!poncherCharacter.canMove)
-            return false;
+    //public bool MoveTo(Vector3 destination, float stopDistance, bool ignoreY)
+    //{
+    //    if (!poncherCharacter.canMove)
+    //        return false;
 
-        poncherCharacter.GetRigidbody().WakeUp();
+    //    poncherCharacter.GetRigidbody().WakeUp();
        
 
-        Vector3 relativePos = (destination - transform.position);
-        if (ignoreY)
-            relativePos.y = 0;
+    //    Vector3 relativePos = (destination - transform.position);
+    //    if (ignoreY)
+    //        relativePos.y = 0;
 
-        m_DistanceToTarget = relativePos.magnitude;
-        if (m_DistanceToTarget <= stopDistance)
-            return true;
-        else
-            poncherCharacter.GetRigidbody().AddForce(relativePos * curAccel * Time.deltaTime, ForceMode.VelocityChange);
+    //    m_DistanceToTarget = relativePos.magnitude;
+    //    if (m_DistanceToTarget <= stopDistance)
+    //        return true;
+    //    else
+    //        poncherCharacter.GetRigidbody().AddForce(relativePos * curAccel * Time.deltaTime, ForceMode.VelocityChange);
 
-        return false; // Keep moving we havent arrive
-    }
+    //    return false; // Keep moving we havent arrive
+    //}
     public void ManageSpeed(float deceleration, float maxSpeed, bool ignoreY)
     {
         m_currentSpeed = poncherCharacter.GetRigidbody().velocity;

@@ -25,7 +25,7 @@ public class RollComponent : PoncherComponentBase
     [Header("Roll Settings")]
     //Roll Settings
     public RollType rollType; //Handled from anim state SMB
-    public bool canRoll;
+    public bool canRoll = true;
     
     [Header("Flip Settings")]
     //Flip Settings
@@ -69,8 +69,8 @@ public class RollComponent : PoncherComponentBase
             //if (poncherCharacter.coyoteTimeCounter < 0)
             //    return;
 
-            if (!canRoll)
-                return;
+            //if (!canRoll)
+            //    return;
 
 
             //if (poncherCharacter.isStrafing && poncherCharacter.GetState() != PoncherState.Landing)
@@ -79,6 +79,7 @@ public class RollComponent : PoncherComponentBase
             //    poncherCharacter.GetAnimator().SetInteger("RollType", (int)RollType.standRoll);
 
             poncherCharacter.GetAnimator().SetTrigger("Roll");
+            poncherCharacter.GetAnimator().SetBool("Rolling", true);
         }
         else
         {

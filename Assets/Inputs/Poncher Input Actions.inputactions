@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightTrigger",
+                    "name": "ThrowPlug",
                     "type": "Button",
                     "id": "c482fbf8-0a52-4d25-b864-83c2f5878ae6",
                     "expectedControlType": "Button",
@@ -266,12 +266,56 @@
                 },
                 {
                     "name": "",
-                    "id": "6d490ba4-7973-4324-bddc-8365783cc098",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "a165ac6d-425d-4349-a93c-461189ac8f34",
+                    "path": "<Gamepad>/rightStick/left",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "RightTrigger",
+                    "action": "ThrowPlug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f93898d5-19ba-4d14-9e6d-57a6d309cf53",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ThrowPlug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "275d8f07-d8dc-474a-afeb-4215e35526a7",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ThrowPlug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c423067-5794-4533-b73a-409a761043fc",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ThrowPlug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b40c2728-d2fc-44fe-a606-e45de6084e19",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Hold(duration=0.1)",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ThrowPlug",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

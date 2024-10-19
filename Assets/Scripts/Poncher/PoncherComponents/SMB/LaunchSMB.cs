@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollSMB : BaseSMB
+public class LaunchSMB : BaseSMB
 {
-    public RollType RollType;
-    //public bool canMove;
-    //public bool canRotate;
-    //public bool useRootMotion;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        poncherCharacter.SetState(PoncherState.Rolling);
+        poncherCharacter.SetState(PoncherState.Launching);
         //poncherCharacter.GetRoll().SetRollType(RollType);
 
         //poncherCharacter.GetRigidbody().velocity = Vector3.zero;
         poncherCharacter.canMove = false;
         poncherCharacter.canRotate = false;
-        poncherCharacter.GetAnimManager().ActivateRootMotion();
+       // poncherCharacter.GetAnimManager().ActivateRootMotion();
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //Enu for launch Type
+        poncherCharacter.GetController().lockRotation = false;
         poncherCharacter.canMove = true;
         poncherCharacter.canRotate = true;
-        poncherCharacter.GetAnimManager().DeactivateRootmotion();
+        // poncherCharacter.GetAnimManager().DeactivateRootmotion();
+        poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f, true);
+        poncherCharacter.GetAnimManager().SetUpperBodyRigWeight(0f);
+        animator.SetBool("Launching", false);
+        
+        
+   
         //poncherCharacter.GetAnimator().SetBool("Rolling", false);
     }
 
@@ -40,6 +43,6 @@ public class RollSMB : BaseSMB
 
     override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+
     }
 }

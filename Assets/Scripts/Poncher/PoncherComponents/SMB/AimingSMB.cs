@@ -6,7 +6,7 @@ public class AimingSMB : BaseSMB
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //poncherCharacter.SetState(PoncherState.Sliding);
+        poncherCharacter.SetState(PoncherState.Charging);
 
         //poncherCharacter.canRotate = canRotate;
         //poncherCharacter.canMove = canRotate;
@@ -21,7 +21,7 @@ public class AimingSMB : BaseSMB
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        //poncherCharacter.SetState(PoncherState.Charging);
     }
 
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

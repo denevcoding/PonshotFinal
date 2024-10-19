@@ -91,7 +91,7 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightTrigger"",
+                    ""name"": ""ThrowPlug"",
                     ""type"": ""Button"",
                     ""id"": ""c482fbf8-0a52-4d25-b864-83c2f5878ae6"",
                     ""expectedControlType"": ""Button"",
@@ -288,12 +288,56 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6d490ba4-7973-4324-bddc-8365783cc098"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""id"": ""a165ac6d-425d-4349-a93c-461189ac8f34"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""RightTrigger"",
+                    ""action"": ""ThrowPlug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f93898d5-19ba-4d14-9e6d-57a6d309cf53"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ThrowPlug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""275d8f07-d8dc-474a-afeb-4215e35526a7"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ThrowPlug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c423067-5794-4533-b73a-409a761043fc"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ThrowPlug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b40c2728-d2fc-44fe-a606-e45de6084e19"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Hold(duration=0.1)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ThrowPlug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -400,7 +444,7 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
         m_PlayerGameplay_Ragdoll = m_PlayerGameplay.FindAction("Ragdoll", throwIfNotFound: true);
         m_PlayerGameplay_L1 = m_PlayerGameplay.FindAction("L1", throwIfNotFound: true);
         m_PlayerGameplay_R1 = m_PlayerGameplay.FindAction("R1", throwIfNotFound: true);
-        m_PlayerGameplay_RightTrigger = m_PlayerGameplay.FindAction("RightTrigger", throwIfNotFound: true);
+        m_PlayerGameplay_ThrowPlug = m_PlayerGameplay.FindAction("ThrowPlug", throwIfNotFound: true);
         m_PlayerGameplay_DownFast = m_PlayerGameplay.FindAction("DownFast", throwIfNotFound: true);
         // Player UI
         m_PlayerUI = asset.FindActionMap("Player UI", throwIfNotFound: true);
@@ -473,7 +517,7 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerGameplay_Ragdoll;
     private readonly InputAction m_PlayerGameplay_L1;
     private readonly InputAction m_PlayerGameplay_R1;
-    private readonly InputAction m_PlayerGameplay_RightTrigger;
+    private readonly InputAction m_PlayerGameplay_ThrowPlug;
     private readonly InputAction m_PlayerGameplay_DownFast;
     public struct PlayerGameplayActions
     {
@@ -486,7 +530,7 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
         public InputAction @Ragdoll => m_Wrapper.m_PlayerGameplay_Ragdoll;
         public InputAction @L1 => m_Wrapper.m_PlayerGameplay_L1;
         public InputAction @R1 => m_Wrapper.m_PlayerGameplay_R1;
-        public InputAction @RightTrigger => m_Wrapper.m_PlayerGameplay_RightTrigger;
+        public InputAction @ThrowPlug => m_Wrapper.m_PlayerGameplay_ThrowPlug;
         public InputAction @DownFast => m_Wrapper.m_PlayerGameplay_DownFast;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGameplay; }
         public void Enable() { Get().Enable(); }
@@ -518,9 +562,9 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
             @R1.started += instance.OnR1;
             @R1.performed += instance.OnR1;
             @R1.canceled += instance.OnR1;
-            @RightTrigger.started += instance.OnRightTrigger;
-            @RightTrigger.performed += instance.OnRightTrigger;
-            @RightTrigger.canceled += instance.OnRightTrigger;
+            @ThrowPlug.started += instance.OnThrowPlug;
+            @ThrowPlug.performed += instance.OnThrowPlug;
+            @ThrowPlug.canceled += instance.OnThrowPlug;
             @DownFast.started += instance.OnDownFast;
             @DownFast.performed += instance.OnDownFast;
             @DownFast.canceled += instance.OnDownFast;
@@ -549,9 +593,9 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
             @R1.started -= instance.OnR1;
             @R1.performed -= instance.OnR1;
             @R1.canceled -= instance.OnR1;
-            @RightTrigger.started -= instance.OnRightTrigger;
-            @RightTrigger.performed -= instance.OnRightTrigger;
-            @RightTrigger.canceled -= instance.OnRightTrigger;
+            @ThrowPlug.started -= instance.OnThrowPlug;
+            @ThrowPlug.performed -= instance.OnThrowPlug;
+            @ThrowPlug.canceled -= instance.OnThrowPlug;
             @DownFast.started -= instance.OnDownFast;
             @DownFast.performed -= instance.OnDownFast;
             @DownFast.canceled -= instance.OnDownFast;
@@ -645,7 +689,7 @@ public partial class @PoncherInputActions: IInputActionCollection2, IDisposable
         void OnRagdoll(InputAction.CallbackContext context);
         void OnL1(InputAction.CallbackContext context);
         void OnR1(InputAction.CallbackContext context);
-        void OnRightTrigger(InputAction.CallbackContext context);
+        void OnThrowPlug(InputAction.CallbackContext context);
         void OnDownFast(InputAction.CallbackContext context);
     }
     public interface IPlayerUIActions

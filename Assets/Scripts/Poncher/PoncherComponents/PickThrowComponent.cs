@@ -159,12 +159,17 @@ public class PickThrowComponent : PoncherComponentBase
 
         if (context.started)
         {           
-            hasFired = false;
+            hasFired = false;           
         }
 
+        //Hold interaction
         if (context.performed)
         {
+            //poncherCharacter.GetController().lockRotation = true;
             Charging = true;
+
+            poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(1f, true);
+            poncherCharacter.GetAnimManager().SetUpperBodyRigWeight(1f);
             CurrentLaunchForce = ShootMinForce;
             poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;
         }
@@ -172,15 +177,36 @@ public class PickThrowComponent : PoncherComponentBase
 
         if (context.canceled)
         {
-            if (!Charging)            
-                CurrentLaunchForce = ShootMinForce;          
+            if (!Charging)
+            {
+                //Quick Shoot
+                CurrentLaunchForce = ShootMinForce;
+            }
+            else
+            {
+                //Chraged Shoot
+                //poncherCharacter.GetController().lockRotation = false;
+                //poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f);
+                //Charging = false;
+            }
+
+            //poncherCharacter.GetController().lockRotation = false;
+            //poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f);
+            
 
             if (!hasFired)
             {
+                if (Charging)
+                {
+                    poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f, true);
+                    poncherCharacter.GetAnimManager().SetUpperBodyRigWeight(0f);
+                }
                 Launch();
+                Charging = false;
+
             }
 
-            Charging = false;
+           
 
         }
     }
@@ -208,16 +234,19 @@ public class PickThrowComponent : PoncherComponentBase
     {
         hasFired = true;
 
+        poncherCharacter.GetAnimator().SetBool("Launching", true);
+        poncherCharacter.GetAnimator().SetTrigger("Launch");
+
         if (ObjectOnHand)
         {
-            IPickeable objectToLaunch = ObjectOnHand.GetComponent<IPickeable>();
+            //IPickeable objectToLaunch = ObjectOnHand.GetComponent<IPickeable>();
 
-            Transform shooterAim = poncherCharacter.GetponcherGUI().shooterPointer.shootSocket.transform;
-            float axisX = poncherCharacter.GetponcherGUI().shooterPointer.GetComponent<ShootPointer>().GetXAxis();
+            //Transform shooterAim = poncherCharacter.GetponcherGUI().shooterPointer.shootSocket.transform;
+            //float axisX = poncherCharacter.GetponcherGUI().shooterPointer.GetComponent<ShootPointer>().GetXAxis();
 
-            Debug.Log("Shoot force " + CurrentLaunchForce);
-            objectToLaunch.Throwed(CurrentLaunchForce, axisX, shooterAim);
-            ObjectOnHand = null;
+            //Debug.Log("Shoot force " + CurrentLaunchForce);
+            //objectToLaunch.Throwed(CurrentLaunchForce, axisX, shooterAim);
+            //ObjectOnHand = null;
         }
 
         ResetLaunch();
