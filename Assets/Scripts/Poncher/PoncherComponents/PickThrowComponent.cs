@@ -168,8 +168,9 @@ public class PickThrowComponent : PoncherComponentBase
             //poncherCharacter.GetController().lockRotation = true;
             Charging = true;
 
-            poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(1f, true);
-            poncherCharacter.GetAnimManager().SetUpperBodyRigWeight(1f);
+            //poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(1f, true);
+            //poncherCharacter.GetAnimManager().SetUpperBodyRigWeight(1f);
+            poncherCharacter.GetAnimManager().aimWeight = 1f;
             CurrentLaunchForce = ShootMinForce;
             poncherCharacter.GetponcherGUI().shooterPointer.chargeArrow.value = ShootMinForce;
         }
@@ -198,8 +199,9 @@ public class PickThrowComponent : PoncherComponentBase
             {
                 if (Charging)
                 {
-                    poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f, true);
-                    poncherCharacter.GetAnimManager().SetUpperBodyRigWeight(0f);
+                    poncherCharacter.GetAnimManager().aimWeight = 0f;
+                    //poncherCharacter.GetAnimManager().SetUpperBodyLayerWeight(0f, true);
+                    //poncherCharacter.GetAnimManager().SetUpperBodyRigWeight(0f);
                 }
                 Launch();
                 Charging = false;

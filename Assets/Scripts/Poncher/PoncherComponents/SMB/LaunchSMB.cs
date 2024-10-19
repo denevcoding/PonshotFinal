@@ -12,6 +12,7 @@ public class LaunchSMB : BaseSMB
         //poncherCharacter.GetRigidbody().velocity = Vector3.zero;
         poncherCharacter.canMove = false;
         poncherCharacter.canRotate = false;
+        poncherCharacter.GetJumpComp().EndJump();
        // poncherCharacter.GetAnimManager().ActivateRootMotion();
     }
 

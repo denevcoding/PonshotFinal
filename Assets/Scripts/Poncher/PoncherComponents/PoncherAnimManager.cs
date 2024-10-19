@@ -15,6 +15,7 @@ public class PoncherAnimManager : PoncherComponentBase
 
     [Space(20)]
     public float aimWeight;
+    public float aimWeightSpeed = 3.5f;
 
     [Header("IK SETTINGS")]
     public Transform RightArmIK;
@@ -97,6 +98,13 @@ public class PoncherAnimManager : PoncherComponentBase
         //}
     }
 
+    private void FixedUpdate()
+    {
+        AimTargetRig.weight = Mathf.Lerp(AimTargetRig.weight, aimWeight, Time.deltaTime * aimWeightSpeed);
+      
+        animator.SetLayerWeight(1, AimTargetRig.weight);
+    }
+
 
     #region Initialization
     public override void Initcomponent()
@@ -130,7 +138,9 @@ public class PoncherAnimManager : PoncherComponentBase
     #endregion
     public void SetUpperBodyLayerWeight(float weight, bool _instantly)
     {
-        animator.SetLayerWeight(1, weight);
+        aimWeight = weight;
+
+        //animator.SetLayerWeight(1, weight);
 
         //if (_instantly)        
         //    AimTargetRig.weight = weight;        

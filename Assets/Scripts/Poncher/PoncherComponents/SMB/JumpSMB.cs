@@ -35,7 +35,10 @@ public class JumpSMB : BaseSMB
         if (animator.GetInteger("JumpType") == 1)
         {
             poncherCharacter.GetController().m_RotType = RotationType.ToInputDir;
+
         }
+
+        //poncherCharacter.GetJumpComp().EndJump();
    
         
     }
