@@ -5897,10 +5897,10 @@ MonoBehaviour:
   m_unitGoal: {x: 0, y: 0, z: 0}
   m_goalVel: {x: 0, y: 0, z: 0}
   playerGUI: {fileID: 0}
-  inputDirection: {x: 0, y: 0, z: 0}
-  moveDirection: {x: 0, y: 0, z: 0}
-  lastMoveDir: {x: 0, y: 0, z: 0}
-  lookDirection: {x: 0, y: 0, z: 0}
+  movInputDirection: {x: 0, y: 0, z: 0}
+  _lookDir: {x: 0, y: 0, z: 0}
+  lookInputDirection: {x: 0, y: 0, z: 0}
+  lastLookDirection: {x: 0, y: 0, z: 0}
   m_RotType: 0
   lockRotation: 0
   flipForce: 0.1
@@ -5927,6 +5927,8 @@ MonoBehaviour:
   moveSpeed: 14
   acceleration: 7
   deceleration: 8
+  defaultAccel: 0
+  aimingAceleration: 9
   airMoveSpeed: 8
   airAccel: 5
   airDecel: 2
@@ -6027,6 +6029,7 @@ MonoBehaviour:
   headAimConstraint: {fileID: 0}
   AimTarget: {fileID: 0}
   aimWeight: 0
+  aimWeightSpeed: 3.5
   RightArmIK: {fileID: 0}
   LeftArmIK: {fileID: 0}
   currentAnimation: {fileID: 0}

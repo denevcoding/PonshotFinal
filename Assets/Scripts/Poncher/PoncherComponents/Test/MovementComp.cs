@@ -16,6 +16,10 @@ public class MovementComp : PoncherComponentBase
     public float moveSpeed;
     public float acceleration;
     public float deceleration;
+    public float defaultAccel;
+
+    [Space(10)]
+    public float aimingAceleration;
 
     [Space(5)]
     public float airMoveSpeed;
@@ -53,6 +57,7 @@ public class MovementComp : PoncherComponentBase
     // Start is called before the first frame update
     void Start()
     {
+        defaultAccel = moveSpeed;
         isFallingFast = false;
         NormalFallVel = -22;
         FastFallVel = -30;
@@ -251,22 +256,23 @@ public class MovementComp : PoncherComponentBase
         float velFactor = (1 * velMag) / moveSpeed;
         float velDir = 1;
 
-        if (poncherCharacter.GetController().lockRotation)
-        {
-            float alingment = Vector3.Dot(poncherCharacter.GetController().lastLookDirection, poncherCharacter.GetController().lookInputDirection);
+        //if (poncherCharacter.GetController().lockRotation)
+        //{
+            float alingment = Vector3.Dot(poncherCharacter.GetController().lastLookDirection, poncherCharacter.GetController().movInputDirection);
             if (alingment > 0)
             {
                 Debug.Log("Align");
-           
+                moveSpeed = defaultAccel;
             }
             else
             {
                 Debug.Log("UnAlign");
-                lookDir *= -1;
+                //lookDir *= -1;
+                moveSpeed = aimingAceleration;
                 velDir = -1;
             }
 
-        }
+        //}
 
         velFactor *= velDir;
 

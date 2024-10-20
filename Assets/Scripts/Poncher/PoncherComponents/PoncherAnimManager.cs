@@ -5,8 +5,6 @@ using UnityEngine.Animations.Rigging;
 
 public class PoncherAnimManager : PoncherComponentBase
 {
-
-
     [Header("ANIMATION RIGGING")]
     public RigBuilder PoncherRigBuilder;
     public Rig AimTargetRig;
